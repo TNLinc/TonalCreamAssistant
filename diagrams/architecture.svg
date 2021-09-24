@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1012px" preserveAspectRatio="none" style="width:938px;height:1012px;background:#FFFFFF;" version="1.1" viewBox="0 0 938 1012" width="938px" zoomAndPan="magnify"><defs><filter height="300%" id="fyhn76rp9l6w2" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="4.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="8.0" dy="8.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[979da56a7f83e2393dc758167ae295d0]
+cluster Server--><polygon fill="#FFA1F8" filter="url(#fyhn76rp9l6w2)" points="58,32,78,12,796,12,796,463,776,483,58,483,58,32" style="stroke:#000000;stroke-width:3.0;"/><line style="stroke:#000000;stroke-width:3.0;" x1="776" x2="796" y1="32" y2="12"/><line style="stroke:#000000;stroke-width:3.0;" x1="58" x2="776" y1="32" y2="32"/><line style="stroke:#000000;stroke-width:3.0;" x1="776" x2="776" y1="32" y2="483"/><text fill="#000000" font-family="sans-serif" font-size="34" font-weight="bold" lengthAdjust="spacing" textLength="112" x="363" y="70.8711">Server</text><!--MD5=[693167bafc98937ea57d8098595f952f]
+cluster Front--><polygon fill="#FFA1F8" filter="url(#fyhn76rp9l6w2)" points="32,551,52,531,508,531,508,731,488,751,32,751,32,551" style="stroke:#000000;stroke-width:3.0;"/><line style="stroke:#000000;stroke-width:3.0;" x1="488" x2="508" y1="551" y2="531"/><line style="stroke:#000000;stroke-width:3.0;" x1="32" x2="488" y1="551" y2="551"/><line style="stroke:#000000;stroke-width:3.0;" x1="488" x2="488" y1="551" y2="751"/><text fill="#000000" font-family="sans-serif" font-size="34" font-weight="bold" lengthAdjust="spacing" textLength="94" x="215" y="589.8711">Front</text><!--MD5=[495ea01d4c8c18e2c3ccf4051f22d926]
+entity HTTP_Server--><rect fill="#6A9EFF" filter="url(#fyhn76rp9l6w2)" height="100.043" style="stroke:#000000;stroke-width:3.0;" width="284" x="138" y="351"/><rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="382" y="361"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="378" y="365"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="378" y="373"/><text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="204" x="168" y="423.8711">HTTP_Server</text><!--MD5=[d1c8ee89b135b048ed2d79523da162f3]
+entity CV--><rect fill="#6A9EFF" filter="url(#fyhn76rp9l6w2)" height="100.043" style="stroke:#000000;stroke-width:3.0;" width="126" x="91" y="100"/><rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="177" y="110"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="173" y="114"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="173" y="122"/><text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="46" x="121" y="172.8711">CV</text><!--MD5=[f9ba5bf973e7832d2ce5ed59077b93f7]
+entity DB--><path d="M287,121 C287,101 330,101 330,101 C330,101 373,101 373,121 L373,179.043 C373,199.043 330,199.043 330,199.043 C330,199.043 287,199.043 287,179.043 L287,121 " fill="#6A9E82" filter="url(#fyhn76rp9l6w2)" style="stroke:#000000;stroke-width:3.0;"/><path d="M287,121 C287,141 330,141 330,141 C330,141 373,141 373,121 " fill="none" style="stroke:#000000;stroke-width:3.0;"/><text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="46" x="307" y="181.8711">DB</text><!--MD5=[e9d67db8e32334fce0118c641bced45d]
+entity Admin_pannel--><rect fill="#6A9EFF" filter="url(#fyhn76rp9l6w2)" height="100.043" style="stroke:#000000;stroke-width:3.0;" width="320" x="444" y="100"/><rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="724" y="110"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="720" y="114"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="720" y="122"/><text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="240" x="474" y="172.8711">Admin_pannel</text><!--MD5=[3193059314a247eafe92785e7a6ac74f]
+entity Web--><rect fill="#6A9EFF" filter="url(#fyhn76rp9l6w2)" height="100.043" style="stroke:#000000;stroke-width:3.0;" width="150" x="325" y="619"/><rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="435" y="629"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="431" y="633"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="431" y="641"/><text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="70" x="355" y="691.8711">Web</text><!--MD5=[196d6eeb2242891742fda3f334b4ab6e]
+entity Mobile--><rect fill="#6A9EFF" filter="url(#fyhn76rp9l6w2)" height="100.043" style="stroke:#000000;stroke-width:3.0;" width="190" x="65" y="619"/><rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="215" y="629"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="211" y="633"/><rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="211" y="641"/><text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="110" x="95" y="691.8711">Mobile</text><!--MD5=[261b70d766cf3b488716fdc7774eedb5]
+entity Client1--><ellipse cx="400" cy="858" fill="#6A44FF" filter="url(#fyhn76rp9l6w2)" rx="16" ry="16" style="stroke:#000000;stroke-width:3.0;"/><path d="M400,874 L400,928 M374,890 L426,890 M400,928 L374,958 M400,928 L426,958 " fill="none" filter="url(#fyhn76rp9l6w2)" style="stroke:#000000;stroke-width:3.0;"/><text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacing" textLength="98" x="351" y="996.0703">Client1</text><!--MD5=[87b5331bd98359a6a5d777d873059d3a]
+entity Client2--><ellipse cx="160" cy="858" fill="#6A44FF" filter="url(#fyhn76rp9l6w2)" rx="16" ry="16" style="stroke:#000000;stroke-width:3.0;"/><path d="M160,874 L160,928 M134,890 L186,890 M160,928 L134,958 M160,928 L186,958 " fill="none" filter="url(#fyhn76rp9l6w2)" style="stroke:#000000;stroke-width:3.0;"/><text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacing" textLength="98" x="111" y="996.0703">Client2</text><!--MD5=[97ab183161fd5d1db7fba7485cf76add]
+entity Admin--><ellipse cx="880" cy="88" fill="#6A44FF" filter="url(#fyhn76rp9l6w2)" rx="16" ry="16" style="stroke:#000000;stroke-width:3.0;"/><path d="M880,104 L880,158 M854,120 L906,120 M880,158 L854,188 M880,158 L906,188 " fill="none" filter="url(#fyhn76rp9l6w2)" style="stroke:#000000;stroke-width:3.0;"/><text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacing" textLength="90" x="835" y="226.0703">Admin</text><!--MD5=[540c3113aba20dfe658dc4fd1d42a800]
+link CV to HTTP_Server--><path d="M179.1952,200.1904 C201.171,243.9676 232.8856,307.1452 254.8486,350.8966 " fill="none" id="CV-HTTP_Server" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[ba55130af4dca39a79cfae2ebb34c776]
+link DB to HTTP_Server--><path d="M320.1216,199.5896 C311.4128,243.3076 298.7826,306.7112 290.029,350.6544 " fill="none" id="DB-HTTP_Server" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[5918d2604ae8012f93ff85bea7b53a3d]
+link DB to Admin_pannel--><path d="M373.3476,150 C396.7732,150 420.199,150 443.6246,150 " fill="none" id="DB-Admin_pannel" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[246b41b92a3abd17159e41f63210603f]
+link HTTP_Server to Web--><path d="M302.571,451.4088 C324.0252,499.323 356.1096,570.978 377.5302,618.8172 " fill="none" id="HTTP_Server-Web" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[711f56a57d9208bf3f1df36db5c2feca]
+link HTTP_Server to Mobile--><path d="M257.429,451.4088 C235.9748,499.323 203.8904,570.978 182.4698,618.8172 " fill="none" id="HTTP_Server-Mobile" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[fddd2f744a01b72d07d053afcf8f7d35]
+link Web to Client1--><path d="M400,719.1904 C400,753.2392 400,799.0242 400,838.2772 " fill="none" id="Web-Client1" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[7264fd1a748e49842f8d74c905e11e98]
+link Mobile to Client2--><path d="M160,719.1904 C160,753.2392 160,799.0242 160,838.2772 " fill="none" id="Mobile-Client2" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[8a61d3169403768495d995ff7b5c6018]
+link Admin_pannel to Admin--><path d="M764.1016,150 C787.6434,150 811.1854,150 834.7272,150 " fill="none" id="Admin_pannel-Admin" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[f5d75239f8c4ccab6a71ed53c05344e1]
+@startuml
+skinparam component {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9EFF
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam database {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9E82
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam actor {
+    BackgroundColor    #6A44ff
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam node {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #FFA1F8
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+node "Server"{
+    [HTTP_Server] -up- [CV]
+    database DB
+    HTTP_Server -up- DB
+    [Admin_pannel] -left- DB
+}
+
+
+node "Front"{
+    [Web] -up- HTTP_Server
+    [Mobile] -up- HTTP_Server
+}
+
+actor Client1
+actor Client2
+
+Client1 -up- Web
+Client2 -up- Mobile
+
+actor Admin
+
+Admin -left- Admin_pannel
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 15:40:07 MSK 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ru
+Country: RU
+--></g></svg>

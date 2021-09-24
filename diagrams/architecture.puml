@@ -1,0 +1,63 @@
+@startuml
+skinparam component {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9EFF
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam database {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9E82
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam actor {
+    BackgroundColor    #6A44ff
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam node {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #FFA1F8
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+node "Server"{
+    [HTTP_Server] -up- [CV]
+    database DB
+    HTTP_Server -up- DB
+    [Admin_pannel] -left- DB
+}
+
+
+node "Front"{
+    [Web] -up- HTTP_Server
+    [Mobile] -up- HTTP_Server
+}
+
+actor Client1
+actor Client2
+
+Client1 -up- Web
+Client2 -up- Mobile
+
+actor Admin
+
+Admin -left- Admin_pannel
+@enduml
