@@ -1,0 +1,67 @@
+version: "3.9"
+services:
+  vendor_db:
+    build: ./db
+    image: vendor_db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - main
+    ports:
+      - "${DB_PORT}:5432"
+    restart: on-failure
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+      - db_volume:/var/lib/comparing/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    image: "nginx:stable-perl"
+    depends_on:
+      admin_panel:
+        condition: service_healthy
+    ports:
+      - 80:80
+    networks:
+      - main
+    volumes:
+      - ./services/admin_panel/static:/data/static
+      - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d
+
+  admin_panel:
+    build: ./services/admin_panel
+    image: vendor_admin_pannel
+    depends_on:
+      vendor_db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    environment:
+      ADMIN_PANEL_SECRET_KEY: ${ADMIN_PANEL_SECRET_KEY}
+      ADMIN_PANEL_DEBUG: ${ADMIN_PANEL_DEBUG}
+      ADMIN_PANEL_DB_URL: "postgres://${DB_USER}:${DB_PASSWORD}@vendor_db:5432/${DB_NAME}"
+    networks:
+      - main
+    ports:
+      - "${ADMIN_PANEL_PORT}:8000"
+    restart: on-failure
+    volumes:
+      - ./services/admin_panel/static:/admin_pannel/static
+    healthcheck:
+      test: ["CMD-SHELL", "bash scripts/django_health_check.sh"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+
+volumes:
+  db_volume: {}
+
+networks:
+  main: {}

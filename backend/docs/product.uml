@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>1ee5782e-5f8c-468d-8931-06e2ad25977e.TABLE:vendor.vendor.product</OriginalElement>
+  <nodes>
+    <node x="0.0" y="150.0">1ee5782e-5f8c-468d-8931-06e2ad25977e.TABLE:vendor.vendor.product</node>
+    <node x="30.5" y="0.0">1ee5782e-5f8c-468d-8931-06e2ad25977e.TABLE:vendor.vendor.vendor</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="1ee5782e-5f8c-468d-8931-06e2ad25977e.TABLE:vendor.vendor.product" target="1ee5782e-5f8c-468d-8931-06e2ad25977e.TABLE:vendor.vendor.vendor" relationship="REFERENCES">
+      <point x="0.0" y="-72.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="98.5" y="147.0" />
+  <SelectedNodes>
+    <node>1ee5782e-5f8c-468d-8931-06e2ad25977e.TABLE:vendor.vendor.product</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

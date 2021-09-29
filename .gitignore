@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+!/backend/.env
+
+# Poetry
+!/backend/services/admin_panel/poetry.lock

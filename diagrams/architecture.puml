@@ -39,16 +39,27 @@ skinparam node {
 }
 
 node "Server"{
-    [HTTP_Server] -up- [CV]
+    component CV
     database DB
-    HTTP_Server -up- DB
-    [Admin_pannel] -left- DB
+    component Admin_panel
+    node HTTP_Server {
+        [CV_HTTP_service] -up-[CV]
+        [DB_API_Service] -up- DB
+        [Nginx] -up- CV_HTTP_service : запросы фронта на обработку изображений
+        [Nginx] -up- DB_API_Service : запросы фронта к базе данных
+    }
+    interface port_8000
+    port_8000 -left- Admin_panel
+    [Admin_panel] -up- DB
 }
+
+interface port_80
+port_80 -up-[Nginx]
 
 
 node "Front"{
-    [Web] -up- HTTP_Server
-    [Mobile] -up- HTTP_Server
+    [Web] -up- port_80
+    [Mobile] -up- port_80
 }
 
 actor Client1
@@ -59,5 +70,5 @@ Client2 -up- Mobile
 
 actor Admin
 
-Admin -left- Admin_pannel
+Admin -left- port_8000 : управляет содержимым базы данных
 @enduml
