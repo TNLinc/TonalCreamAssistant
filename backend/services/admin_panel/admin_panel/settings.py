@@ -1,4 +1,3 @@
-import os.path
 from pathlib import Path
 
 from environs import Env
@@ -27,6 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "health_check",
     "colorfield",
     "vendor",

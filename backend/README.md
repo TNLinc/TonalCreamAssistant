@@ -21,6 +21,10 @@ Install Docker and Docker compose
    - `ADMIN_PANEL_DB_URL` = url for vendor_db for admin panel
    - `ADMIN_PANEL_PORT` = exposed port for admin panel (delete for production)
 3. Run `docker compose up` in the backend repository folder
+4. To create superuser for admin_panel run in the admin_panel folder
+   `python manage.py createsuperuser`
+5. To create mock data in the vendor_db run in the admin_panel
+   folder `python manage.py gen_data`
 
 # Service architecture
 
