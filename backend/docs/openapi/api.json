@@ -1,0 +1,327 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Vendor",
+    "description": "\nVendor API helps you do awesome stuff. рџљЂ\n\n## Vendor\n\nYou will be able to:\n\n* **Read vendor by id**\n* **Read all vendors**\n\n## Products\n\nYou will be able to:\n\n* **Read product by id**\n* **Read all products**\n* **Get product by color**\n\n",
+    "contact": {
+      "name": "Ilya Kochankov",
+      "email": "ilyakochankov@yandex.ru"
+    },
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/v1/vendors/{item_id}": {
+      "get": {
+        "tags": ["vendors"],
+        "summary": "Get Vendor",
+        "operationId": "get_vendor_v1_vendors__item_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Item Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "item_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorWithProducts"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/vendors": {
+      "get": {
+        "tags": ["vendors"],
+        "summary": "Get All Vendors",
+        "operationId": "get_all_vendors_v1_vendors_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get All Vendors V1 Vendors Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VendorRead"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{item_id}": {
+      "get": {
+        "tags": ["products"],
+        "summary": "Get Vendor",
+        "operationId": "get_vendor_v1_products__item_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Item Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "item_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWithVendor"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products": {
+      "get": {
+        "tags": ["products"],
+        "summary": "Get All Vendors",
+        "operationId": "get_all_vendors_v1_products_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Color",
+              "type": "string",
+              "format": "color"
+            },
+            "name": "color",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get All Vendors V1 Products Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductRead"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ProductRead": {
+        "title": "ProductRead",
+        "required": ["name", "type", "color", "vendor_id"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProductType"
+          },
+          "color": {
+            "title": "Color",
+            "type": "string",
+            "format": "color"
+          },
+          "vendor_id": {
+            "title": "Vendor Id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ProductType": {
+        "title": "ProductType",
+        "enum": ["TONAL_CREAM"],
+        "description": "An enumeration."
+      },
+      "ProductWithVendor": {
+        "title": "ProductWithVendor",
+        "required": ["name", "type", "color", "vendor_id", "vendor"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProductType"
+          },
+          "color": {
+            "title": "Color",
+            "type": "string",
+            "format": "color"
+          },
+          "vendor_id": {
+            "title": "Vendor Id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/VendorRead"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      },
+      "VendorRead": {
+        "title": "VendorRead",
+        "required": ["name", "url"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "VendorWithProducts": {
+        "title": "VendorWithProducts",
+        "required": ["name", "url"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "products": {
+            "title": "Products",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductRead"
+            },
+            "default": []
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "vendors",
+      "description": "Operations with vendors."
+    },
+    {
+      "name": "products",
+      "description": "Operations with products."
+    }
+  ]
+}

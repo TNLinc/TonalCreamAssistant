@@ -60,6 +60,28 @@ services:
       timeout: 30s
       retries: 5
 
+  vendor:
+    build: ./services/vendor
+    image: vendor_api
+    depends_on:
+      vendor_db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    environment:
+      VENDOR_DB_URL: "postgresql+asyncpg://${DB_USER}:${DB_PASSWORD}@vendor_db:5432/${DB_NAME}"
+      VENDOR_DB_AUTH_SCHEMA: ${VENDOR_DB_AUTH_SCHEMA}
+    networks:
+      - main
+    ports:
+      - "${VENDOR_PORT}:8000"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "bash scripts/fastApi_health_check.sh"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+
 volumes:
   db_volume: {}
 

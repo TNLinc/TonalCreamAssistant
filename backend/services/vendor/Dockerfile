@@ -1,0 +1,13 @@
+FROM python:3.9
+
+RUN pip install poetry
+
+WORKDIR vendor
+COPY ./poetry.lock ./pyproject.toml /vendor/
+
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-interaction
+
+COPY . .
+
+CMD ["bash", "./scripts/fastApi-entrypoint.sh"]
