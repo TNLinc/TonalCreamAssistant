@@ -130,4 +130,7 @@ dmypy.json
 !/backend/.env
 
 # Poetry
-*.lock
+poetry.lock
+
+# Pycharm
+.idea
