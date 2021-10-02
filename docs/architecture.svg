@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     contentScriptType="application/ecmascript" contentStyleType="text/css" height="2002px" preserveAspectRatio="none"
+     style="width:2340px;height:2002px;background:#FFFFFF;" version="1.1" viewBox="0 0 2340 2002" width="2340px"
+     zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="fkds526allm2v" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="4.0"/>
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix"
+                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+            <feOffset dx="8.0" dy="8.0" in="blurOut2" result="blurOut3"/>
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
+        </filter>
+    </defs>
+    <g><!--MD5=[979da56a7f83e2393dc758167ae295d0]
+cluster Server-->
+        <polygon fill="#FFA1F8" filter="url(#fkds526allm2v)"
+                 points="32,32,52,12,1702,12,1702,1230,1682,1250,32,1250,32,32"
+                 style="stroke:#000000;stroke-width:3.0;"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="1682" x2="1702" y1="32" y2="12"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="32" x2="1682" y1="32" y2="32"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="1682" x2="1682" y1="32" y2="1250"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" font-weight="bold" lengthAdjust="spacing"
+              textLength="112" x="803" y="70.8711">Server
+        </text><!--MD5=[c61c48ce5d5178b2a0bd25f4390d851e]
+cluster HTTP_Server-->
+        <polygon fill="#FFA1F8" filter="url(#fkds526allm2v)"
+                 points="48,409,68,389,1264,389,1264,1214,1244,1234,48,1234,48,409"
+                 style="stroke:#000000;stroke-width:3.0;"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="1244" x2="1264" y1="409" y2="389"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="48" x2="1244" y1="409" y2="409"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="1244" x2="1244" y1="409" y2="1234"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" font-weight="bold" lengthAdjust="spacing"
+              textLength="224" x="536" y="447.8711">HTTP_Server
+        </text><!--MD5=[693167bafc98937ea57d8098595f952f]
+cluster Front-->
+        <polygon fill="#FFA1F8" filter="url(#fkds526allm2v)"
+                 points="268,1554,288,1534,712,1534,712,1702,692,1722,268,1722,268,1554"
+                 style="stroke:#000000;stroke-width:3.0;"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="692" x2="712" y1="1554" y2="1534"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="268" x2="692" y1="1554" y2="1554"/>
+        <line style="stroke:#000000;stroke-width:3.0;" x1="692" x2="692" y1="1554" y2="1722"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" font-weight="bold" lengthAdjust="spacing"
+              textLength="94" x="435" y="1592.8711">Front
+        </text><!--MD5=[d1c8ee89b135b048ed2d79523da162f3]
+entity CV-->
+        <rect fill="#6A9EFF" filter="url(#fkds526allm2v)" height="100.043" style="stroke:#000000;stroke-width:3.0;"
+              width="126" x="183" y="84"/>
+        <rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="269" y="94"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="265" y="98"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="265" y="106"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="46" x="213"
+              y="156.8711">CV
+        </text><!--MD5=[f9ba5bf973e7832d2ce5ed59077b93f7]
+entity DB-->
+        <path d="M1145,105 C1145,85 1188,85 1188,85 C1188,85 1231,85 1231,105 L1231,163.043 C1231,183.043 1188,183.043 1188,183.043 C1188,183.043 1145,183.043 1145,163.043 L1145,105 "
+              fill="#6A9E82" filter="url(#fkds526allm2v)" style="stroke:#000000;stroke-width:3.0;"/>
+        <path d="M1145,105 C1145,125 1188,125 1188,125 C1188,125 1231,125 1231,105 " fill="none"
+              style="stroke:#000000;stroke-width:3.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="46" x="1165"
+              y="165.8711">DB
+        </text><!--MD5=[e290ce1d73df4ab7e7b343154c9678f9]
+entity Admin_panel-->
+        <rect fill="#6A9EFF" filter="url(#fkds526allm2v)" height="100.043" style="stroke:#000000;stroke-width:3.0;"
+              width="298" x="1281" y="461"/>
+        <rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="1539" y="471"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="1535" y="475"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="1535" y="483"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="218" x="1311"
+              y="533.8711">Admin_panel
+        </text><!--MD5=[899629aacf9ceed11a0fc7b2ab0e7e58]
+entity port_8000-->
+        <ellipse cx="1668" cy="511" fill="#FEFECE" filter="url(#fkds526allm2v)" rx="16" ry="16"
+                 style="stroke:#A80036;stroke-width:3.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacing" textLength="144" x="1596"
+              y="572.0703">port_8000
+        </text><!--MD5=[6ac8b63fdd46cc8523881e6d2365f52a]
+entity CV_HTTP_service-->
+        <rect fill="#6A9EFF" filter="url(#fkds526allm2v)" height="100.043" style="stroke:#000000;stroke-width:3.0;"
+              width="362" x="65" y="461"/>
+        <rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="387" y="471"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="383" y="475"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="383" y="483"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="282" x="95"
+              y="533.8711">CV_HTTP_service
+        </text><!--MD5=[6f198f66dfd2efb45de74e7c3daef9c4]
+entity DB_API_Service-->
+        <rect fill="#6A9EFF" filter="url(#fkds526allm2v)" height="100.043" style="stroke:#000000;stroke-width:3.0;"
+              width="328" x="780" y="461"/>
+        <rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="1068" y="471"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="1064" y="475"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="1064" y="483"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="248" x="810"
+              y="533.8711">DB_API_Service
+        </text><!--MD5=[b7709df717efd9e6df0e9843c5de81db]
+entity Nginx-->
+        <rect fill="#6A9EFF" filter="url(#fkds526allm2v)" height="100.043" style="stroke:#000000;stroke-width:3.0;"
+              width="180" x="408" y="1118"/>
+        <rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="548" y="1128"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="544" y="1132"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="544" y="1140"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="100" x="438"
+              y="1190.8711">Nginx
+        </text><!--MD5=[3193059314a247eafe92785e7a6ac74f]
+entity Web-->
+        <rect fill="#6A9EFF" filter="url(#fkds526allm2v)" height="100.043" style="stroke:#000000;stroke-width:3.0;"
+              width="150" x="545" y="1606"/>
+        <rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="655" y="1616"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="651" y="1620"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="651" y="1628"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="70" x="575"
+              y="1678.8711">Web
+        </text><!--MD5=[196d6eeb2242891742fda3f334b4ab6e]
+entity Mobile-->
+        <rect fill="#6A9EFF" filter="url(#fkds526allm2v)" height="100.043" style="stroke:#000000;stroke-width:3.0;"
+              width="190" x="285" y="1606"/>
+        <rect fill="#6A9EFF" height="20" style="stroke:#000000;stroke-width:3.0;" width="30" x="435" y="1616"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="431" y="1620"/>
+        <rect fill="#6A9EFF" height="4" style="stroke:#000000;stroke-width:3.0;" width="8" x="431" y="1628"/>
+        <text fill="#000000" font-family="sans-serif" font-size="34" lengthAdjust="spacing" textLength="110" x="315"
+              y="1678.8711">Mobile
+        </text><!--MD5=[21a53ea847074d58f6a7c93457b0a8b1]
+entity port_80-->
+        <ellipse cx="498" cy="1398" fill="#FEFECE" filter="url(#fkds526allm2v)" rx="16" ry="16"
+                 style="stroke:#A80036;stroke-width:3.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacing" textLength="108" x="444"
+              y="1459.0703">port_80
+        </text><!--MD5=[261b70d766cf3b488716fdc7774eedb5]
+entity Client1-->
+        <ellipse cx="620" cy="1847" fill="#6A44FF" filter="url(#fkds526allm2v)" rx="16" ry="16"
+                 style="stroke:#000000;stroke-width:3.0;"/>
+        <path d="M620,1863 L620,1917 M594,1879 L646,1879 M620,1917 L594,1947 M620,1917 L646,1947 " fill="none"
+              filter="url(#fkds526allm2v)" style="stroke:#000000;stroke-width:3.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacing" textLength="98" x="571"
+              y="1985.0703">Client1
+        </text><!--MD5=[87b5331bd98359a6a5d777d873059d3a]
+entity Client2-->
+        <ellipse cx="380" cy="1847" fill="#6A44FF" filter="url(#fkds526allm2v)" rx="16" ry="16"
+                 style="stroke:#000000;stroke-width:3.0;"/>
+        <path d="M380,1863 L380,1917 M354,1879 L406,1879 M380,1917 L354,1947 M380,1917 L406,1947 " fill="none"
+              filter="url(#fkds526allm2v)" style="stroke:#000000;stroke-width:3.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacing" textLength="98" x="331"
+              y="1985.0703">Client2
+        </text><!--MD5=[97ab183161fd5d1db7fba7485cf76add]
+entity Admin-->
+        <ellipse cx="2282" cy="449" fill="#6A44FF" filter="url(#fkds526allm2v)" rx="16" ry="16"
+                 style="stroke:#000000;stroke-width:3.0;"/>
+        <path d="M2282,465 L2282,519 M2256,481 L2308,481 M2282,519 L2256,549 M2282,519 L2308,549 " fill="none"
+              filter="url(#fkds526allm2v)" style="stroke:#000000;stroke-width:3.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacing" textLength="90" x="2237"
+              y="587.0703">Admin
+        </text><!--MD5=[8ab6048afb945afd2e46026297cc075d]
+link CV to CV_HTTP_service-->
+        <path d="M246,184.0626 C246,256.1692 246,388.5088 246,460.7302 " fill="none" id="CV-CV_HTTP_service"
+              style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[375a6f3ce1f1351058dbd0f231bebc12]
+link DB to DB_API_Service-->
+        <path d="M1156.1012,183.2862 C1109.5972,255.1388 1023.6298,387.9654 976.6854,460.4984 " fill="none"
+              id="DB-DB_API_Service" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[02c8e2f9a3772d3ce013c75ef22d7e05]
+link CV_HTTP_service to Nginx-->
+        <path d="M199.7986,561.3808 C168.947,600.3404 134,657.2232 134,715 C134,715 134,715 134,995 C134,1055.348 299.2722,1112.9174 407.0864,1144.052 "
+              fill="none" id="CV_HTTP_service-Nginx" style="stroke:#222266;stroke-width:2.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacing" textLength="566" x="136"
+              y="865.1367">запросы фронта на обработку изображений
+        </text><!--MD5=[40bda83f599a1398ffda87cc0ac69560]
+link DB_API_Service to Nginx-->
+        <path d="M903.3262,561.3602 C875.6406,600.755 844,658.2022 844,715 C844,715 844,715 844,995 C844,1109.5072 690.5224,1148.226 588.0042,1161.3162 "
+              fill="none" id="DB_API_Service-Nginx" style="stroke:#222266;stroke-width:2.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacing" textLength="400" x="846"
+              y="865.1367">запросы фронта к базе данных
+        </text><!--MD5=[98f343313013d9f46c43147ab1a3ea1f]
+link Admin_panel to port_8000-->
+        <path d="M1579.6796,511 C1602.9098,511 1626.1398,511 1649.37,511 " fill="none" id="Admin_panel-port_8000"
+              style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[986e5ba4ac52903be485aef514cda205]
+link DB to Admin_panel-->
+        <path d="M1219.6372,183.2862 C1265.7602,255.1388 1351.0228,387.9654 1397.5826,460.4984 " fill="none"
+              id="DB-Admin_panel" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[03158dc547cdf27cf6a469d333fc5d4c]
+link Nginx to port_80-->
+        <path d="M498,1218.4744 C498,1269.2526 498,1344.8466 498,1379.47 " fill="none" id="Nginx-port_80"
+              style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[d9a6ab16b40e5f0a16f65c71a9f2a7f4]
+link port_80 to Web-->
+        <path d="M506.774,1416.5548 C525.2954,1455.7232 568.9274,1547.9942 596.2986,1605.8772 " fill="none"
+              id="port_80-Web" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[bd708b78a5eb0c94d73d3e4988739956]
+link port_80 to Mobile-->
+        <path d="M489.5138,1416.5548 C471.5994,1455.7232 429.398,1547.9942 402.9244,1605.8772 " fill="none"
+              id="port_80-Mobile" style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[fddd2f744a01b72d07d053afcf8f7d35]
+link Web to Client1-->
+        <path d="M620,1706.5902 C620,1741.199 620,1787.8368 620,1827.622 " fill="none" id="Web-Client1"
+              style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[7264fd1a748e49842f8d74c905e11e98]
+link Mobile to Client2-->
+        <path d="M380,1706.5902 C380,1741.199 380,1787.8368 380,1827.622 " fill="none" id="Mobile-Client2"
+              style="stroke:#222266;stroke-width:2.0;"/><!--MD5=[eccc2f33013807f4dfa927ee77ca7942]
+link port_8000 to Admin-->
+        <path d="M1686.3758,511 C1769.582,511 2112.3508,511 2236.6856,511 " fill="none" id="port_8000-Admin"
+              style="stroke:#222266;stroke-width:2.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacing" textLength="478" x="1722.5"
+              y="498.1367">управляет содержимым базы данных
+        </text><!--MD5=[7cb540e36d2056f1f9066cdb242fc63d]
+@startuml
+skinparam component {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9EFF
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam database {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9E82
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam actor {
+    BackgroundColor    #6A44ff
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam node {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #FFA1F8
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+node "Server"{
+    component CV
+    database DB
+    component Admin_panel
+    node HTTP_Server {
+        [CV_HTTP_service] -up-[CV]
+        [DB_API_Service] -up- DB
+        [Nginx] -up- CV_HTTP_service : запросы фронта на обработку изображений
+        [Nginx] -up- DB_API_Service : запросы фронта к базе данных
+    }
+    interface port_8000
+    port_8000 -left- Admin_panel
+    [Admin_panel] -up- DB
+}
+
+interface port_80
+port_80 -up-[Nginx]
+
+
+node "Front"{
+    [Web] -up- port_80
+    [Mobile] -up- port_80
+}
+
+actor Client1
+actor Client2
+
+Client1 -up- Web
+Client2 -up- Mobile
+
+actor Admin
+
+Admin -left- port_8000 : управляет содержимым базы данных
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 15:40:07 MSK 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ru
+Country: RU
+-->
+    </g>
+</svg>

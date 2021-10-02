@@ -32,7 +32,7 @@ Install Docker and Docker compose
 
 # Service architecture
 
-![Architecture](../diagrams/architecture.svg)
+![Architecture](../docs/architecture.svg)
 
 ---
 
