@@ -2,7 +2,7 @@
 
 ---
 
-### Preparations
+## Preparations
 
 Install Docker and Docker compose
 
@@ -11,7 +11,9 @@ Install Docker and Docker compose
 ## How to run docker-compose
 
 1. Create .env file in docker-compose directory (or rename .env.example)
+
 2. Fill .env file with the following variables:
+
    - `DB_NAME` = name of the database
    - `DB_USER` = name of db user
    - `DB_PASSWORD` = db password
@@ -24,25 +26,28 @@ Install Docker and Docker compose
    - `VENDOR_DB_URL` = url for vendor_db for vendor api service (async)
    - `VENDOR_DB_AUTH_SCHEMA` = schema of vendor_db for vendor api service
    - `VENDOR_PORT` = exposed port for the vendor service (delete for production)
+
 3. Run `docker compose up` in the backend repository folder
+
 4. To create superuser for admin_panel run in the admin_panel folder
    `python manage.py createsuperuser`
+
 5. To create mock data in the vendor_db run in the admin_panel folder
    `python manage.py gen_data`
 
-# Service architecture
+## Service architecture
 
 ![Architecture](../docs/architecture.svg)
 
 ---
 
-# Database architecture
+## Database architecture
 
 ![DB_architecture](./docs/product.svg)
 
 ---
 
-# API specification
+## API specification
 
 [see openapi here](./docs/openapi/api.md)
 
