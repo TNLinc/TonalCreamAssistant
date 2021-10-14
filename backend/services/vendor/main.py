@@ -7,8 +7,7 @@ from fastapi_health import health
 
 import db
 from api.v1 import product, vendor
-from core import loger
-from core import settings
+from core import loger, settings
 
 description = """
 Vendor API helps you do awesome stuff. 🚀

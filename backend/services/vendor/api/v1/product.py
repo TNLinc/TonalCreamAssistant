@@ -1,7 +1,7 @@
 import uuid
 from typing import List, Optional
 
-from fastapi import Depends, HTTPException, Query
+from fastapi import Depends, HTTPException
 from fastapi_utils.cbv import cbv
 from fastapi_utils.inferring_router import InferringRouter
 from pydantic.color import Color
@@ -10,7 +10,7 @@ from sqlalchemy.orm import joinedload
 from sqlmodel import select
 
 from db import get_db
-from models import Product, ProductRead, ProductWithVendor, Vendor
+from models import Product, ProductRead, ProductWithVendor
 
 router = InferringRouter()
 
@@ -21,7 +21,9 @@ class ProductAPI:
 
     @router.get("/products/{item_id}")
     async def get_vendor(self, item_id: uuid.UUID) -> ProductWithVendor:
-        product = await self.session.get(Product, item_id, options=[joinedload(Product.vendor)])
+        product = await self.session.get(
+            Product, item_id, options=[joinedload(Product.vendor)]
+        )
         if not product:
             raise HTTPException(status_code=404, detail="Vendor not found")
         return product

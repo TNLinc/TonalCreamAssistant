@@ -16,11 +16,17 @@ gunicorn = "^20.1.0"
 django-health-check = "^3.16.4"
 django-extensions = "^3.1.3"
 factory-boy = "^3.2.0"
+pylint-json2html = "^0.3.0"
 
 [tool.poetry.dev-dependencies]
 toml = "^0.10.2"
 yapf = "^0.31.0"
 isort = "^5.9.3"
+pylint = "^2.11.1"
+pylint-django = "^2.4.4"
+black = "^21.9b0"
+pyproject-flake8 = "^0.0.1-alpha.2"
+flake8-html = "^0.4.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -28,3 +34,28 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.yapf]
 based_on_style = "pep8"
+
+[tool.pylint.'MASTER']
+ignore = ".venv, Dockerfile, poetry.lock, pyproject.toml"
+load-plugins = ["pylint_django.checkers.migrations", "pylint_django"]
+django-settings-module = "admin_panel.settings"
+
+[tool.pylint.'REPORTS']
+output-format = "json"
+
+[tool.pylint.messages_control]
+max-line-length = 120
+disable = [
+    "missing-docstring",
+    "import-outside-toplevel",
+    "invalid-name",
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 120
+format = "html"
+htmldir = "flake-report"
+exclude = ".venv"

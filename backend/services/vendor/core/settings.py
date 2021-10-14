@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env.read_env(str(BASE_DIR.parent.joinpath(".env")))
 
-PROJECT_NAME = 'Vendor'
-DB_URL = env('VENDOR_DB_URL')
+PROJECT_NAME = "Vendor"
+DB_URL = env("VENDOR_DB_URL")
 
-DB_AUTH_SCHEMA = env('VENDOR_DB_AUTH_SCHEMA')
+DB_AUTH_SCHEMA = env("VENDOR_DB_AUTH_SCHEMA")

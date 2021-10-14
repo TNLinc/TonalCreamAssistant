@@ -9,13 +9,13 @@ class ProductInLine(admin.StackedInline):
 
 
 @admin.register(Vendor)
-class SubAdmin(admin.ModelAdmin):
+class VendorAdmin(admin.ModelAdmin):
     list_display = ("name", "url")
     search_fields = ("id", "name")
     inlines = [ProductInLine]
 
 
 @admin.register(Product)
-class SubAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     list_display = ("name", "type", "color")
     search_fields = ("id", "type", "name", "color")

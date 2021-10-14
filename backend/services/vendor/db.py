@@ -6,12 +6,12 @@ engine: Optional[AsyncEngine] = None
 
 
 async def start_db(db_url: str):
-    global engine
+    global engine  # pylint: disable=global-statement
     engine = create_async_engine(db_url)
 
 
 async def close_db():
-    global engine
+    global engine  # pylint: disable=global-variable-not-assigned
     if engine:
         await engine.dispose()
 
