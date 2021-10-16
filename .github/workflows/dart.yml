@@ -1,0 +1,34 @@
+name: Flutter_lints
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main, nastya_frontend]
+
+jobs:
+  flutter_lints:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.5'
+
+      - name: Install Pub Dependencies
+        run: |
+          cd frontend/src
+          flutter pub get
+
+      - name: Verify Formatting
+        run: |
+          cd frontend/src
+          dart format --set-exit-if-changed .
+
+      - name: Analyze Project Source
+        run: |
+          cd frontend/src
+          dart analyze
