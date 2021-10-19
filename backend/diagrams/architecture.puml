@@ -38,23 +38,72 @@ skinparam node {
     ArrowColor         #222266
 }
 
-node "Server"{
-    component CV
-    database DB
+node "VPN"{
+    database Elasticsearch
+    database Vendor_DB
+    database User_info_DB
+
+    component Logstash_1
+    component Logstash_2
+    component Logstash_3
+    component Logstash_4
+    component Logstash_5
+
+    component Kibana
     component Admin_panel
-    node HTTP_Server {
-        [CV_HTTP_service] -up-[CV]
-        [DB_API_Service] -up- DB
-        [Nginx] -up- CV_HTTP_service : запросы фронта на обработку изображений
-        [Nginx] -up- DB_API_Service : запросы фронта к базе данных
-    }
+    component Vendor_DB_API_Service
+    component CV_HTTP_service
+    component Nginx
+    component Auth
+    component Billing
+    component CRM
+
     interface port_8000
-    port_8000 -left- Admin_panel
-    [Admin_panel] -up- DB
+    interface port_5601
+
+    actor Manager
+    actor DevOps
+
+    Admin_panel -up- Vendor_DB
+    Admin_panel -down- port_8000
+
+    Vendor_DB_API_Service -up- Vendor_DB
+    Vendor_DB_API_Service -down- Nginx
+    Vendor_DB_API_Service -up-> Logstash_1
+
+    CV_HTTP_service -down- Nginx
+    CV_HTTP_service -right- Auth
+    CV_HTTP_service -up-> Logstash_2
+
+    Auth -down- User_info_DB
+    Auth -right- Billing
+    Auth -left- CRM
+    Auth -up-> Logstash_3
+
+    Billing -down- User_info_DB
+    Billing -up-> Logstash_4
+
+    CRM -down- User_info_DB
+    CRM -right- Billing
+    CRM -up-> Logstash_5
+
+    Logstash_1 -up-> Elasticsearch
+    Logstash_2 -up-> Elasticsearch
+    Logstash_3 -up-> Elasticsearch
+    Logstash_4 -up-> Elasticsearch
+    Logstash_5 -up-> Elasticsearch
+
+    Elasticsearch -right- Kibana
+
+    Kibana -right- port_5601
+
+    DevOps -left- port_5601
+
+    Manager -up- port_8000
 }
 
 interface port_80
-port_80 -up-[Nginx]
+port_80 -up-- Nginx
 
 
 node "Front"{
@@ -67,8 +116,4 @@ actor Client2
 
 Client1 -up- Web
 Client2 -up- Mobile
-
-actor Admin
-
-Admin -left- port_8000 : управляет содержимым базы данных
 @enduml
