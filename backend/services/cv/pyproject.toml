@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "cv"
+version = "0.1.0"
+description = ""
+authors = ["ilyakochankov <ilyakochankov@yandex.ru>"]
+
+[tool.poetry.dependencies]
+python = "3.9.7"
+opencv-python = "^4.5.3"
+matplotlib = "^3.4.3"
+scikit-learn = "^1.0"
+numpy = "^1.21.2"
+Flask = "^2.0.2"
+flask-apispec = "^0.11.0"
+marshmallow = "^3.14.0"
+gunicorn = "^20.1.0"
+py-healthcheck = "^1.10.1"
+environs = "^9.3.4"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.11.1"
+pylint-json2html = "^0.3.0"
+isort = "^5.9.3"
+black = "^21.9b0"
+pyproject-flake8 = "^0.0.1-alpha.2"
+flake8-html = "^0.4.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.yapf]
+based_on_style = "pep8"
+
+[tool.pylint.'MASTER']
+ignore=".venv, Dockerfile, poetry.lock, pyproject.toml, __init__.py, test_cv.py"
+
+[tool.pylint.'REPORTS']
+output-format="json"
+
+[tool.pylint.messages_control]
+max-line-length = 120
+disable = [
+    "missing-docstring",
+    "import-outside-toplevel",
+    "invalid-name",
+    "too-few-public-methods",
+    "no-member",
+    "no-name-in-module"
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+ignore = ["E203", "W503"]
+max-line-length = 120
+format = "html"
+htmldir = "flake-report"
+exclude = [".venv", "api/v1/cv/__init__.py"]

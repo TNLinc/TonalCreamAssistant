@@ -16,7 +16,7 @@ services:
       - ./db:/docker-entrypoint-initdb.d/
       - db_volume:/var/lib/comparing/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
+      test: [ "CMD-SHELL", "pg_isready" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -55,7 +55,7 @@ services:
     volumes:
       - ./services/admin_panel/static:/admin_pannel/static
     healthcheck:
-      test: ["CMD-SHELL", "bash scripts/django_health_check.sh"]
+      test: [ "CMD-SHELL", "bash scripts/django_health_check.sh" ]
       interval: 30s
       timeout: 30s
       retries: 5
@@ -77,13 +77,32 @@ services:
       - "${VENDOR_PORT}:8000"
     restart: on-failure
     healthcheck:
-      test: ["CMD-SHELL", "bash scripts/fastApi_health_check.sh"]
+      test: [ "CMD-SHELL", "bash scripts/fastApi_health_check.sh" ]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+
+  cv:
+    build: ./services/cv
+    image: cv_api
+    expose:
+      - "8000"
+    environment:
+      CV_SECRET_KEY: ${CV_SECRET_KEY}
+      CV_DEBUG: ${CV_DEBUG}
+    networks:
+      - main
+    ports:
+      - "${CV_PORT}:8000"
+    restart: on-failure
+    healthcheck:
+      test: [ "CMD-SHELL", "bash scripts/flask_health_check.sh" ]
       interval: 30s
       timeout: 30s
       retries: 5
 
 volumes:
-  db_volume: {}
+  db_volume: { }
 
 networks:
-  main: {}
+  main: { }

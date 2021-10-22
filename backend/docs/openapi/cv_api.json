@@ -1,0 +1,81 @@
+{
+  "definitions": {
+    "Color": {
+      "properties": {
+        "color": {
+          "type": "string"
+        }
+      }, 
+      "type": "object"
+    }, 
+    "Error": {
+      "properties": {
+        "error": {
+          "type": "string"
+        }
+      }, 
+      "type": "object"
+    }
+  }, 
+  "info": {
+    "description": "\nCV API helps you do awesome stuff. \ud83d\ude80\n\n## Tonal\n\nYou will be able to:\n\n* **Get tone of your skin by photo**\n", 
+    "title": "Cv api", 
+    "version": "v1"
+  }, 
+  "paths": {
+    "/api/cv/v1/skin_tone": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ], 
+        "description": "Search face on the photo and determine its skin color", 
+        "parameters": [
+          {
+            "description": "Selfie", 
+            "in": "formData", 
+            "name": "image", 
+            "required": true, 
+            "type": "file"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "Return color in hex code", 
+            "schema": {
+              "$ref": "#/definitions/Color"
+            }
+          }, 
+          "400": {
+            "description": "Problem with file", 
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }, 
+          "401": {
+            "description": "Wrong file extension", 
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }, 
+        "tags": [
+          "tonal"
+        ]
+      }
+    }, 
+    "/health": {
+      "get": {
+        "description": "Check service health", 
+        "parameters": [], 
+        "responses": {}
+      }
+    }
+  }, 
+  "swagger": "2.0.0", 
+  "tags": [
+    {
+      "description": "CV operations for tonal cream recommendation", 
+      "name": "tonal"
+    }
+  ]
+}

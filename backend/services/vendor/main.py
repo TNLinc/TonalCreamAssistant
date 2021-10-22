@@ -49,8 +49,8 @@ app = FastAPI(
         "email": "ilyakochankov@yandex.ru",
     },
     openapi_tags=tags_metadata,
-    docs_url="/api/openapi",
-    openapi_url="/api/openapi.json",
+    docs_url="/api/vendor/openapi",
+    openapi_url="/api/vendor/openapi.json",
     default_response_class=ORJSONResponse,
 )
 
@@ -69,8 +69,8 @@ def is_database_online(session: bool = Depends(db.get_db)):
     return session
 
 
-app.include_router(vendor.router, prefix="/api/v1", tags=["vendors"])
-app.include_router(product.router, prefix="/api/v1", tags=["products"])
+app.include_router(vendor.router, prefix="/api/vendor/v1", tags=["vendors"])
+app.include_router(product.router, prefix="/api/vendor/v1", tags=["products"])
 app.add_api_route("/health", health([is_database_online]))
 
 if __name__ == "__main__":

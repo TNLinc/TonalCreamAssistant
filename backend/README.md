@@ -26,6 +26,9 @@ Install Docker and Docker compose
    - `VENDOR_DB_URL` = url for vendor_db for vendor api service (async)
    - `VENDOR_DB_AUTH_SCHEMA` = schema of vendor_db for vendor api service
    - `VENDOR_PORT` = exposed port for the vendor service (delete for production)
+   - `CV_SECRET_KEY` = secret key for cv service
+   - `CV_DEBUG` = enable of disable debug mode for cv service
+   - `CV_PORT` = exposed port for cv service (delete for production)
 
 3. Run `docker compose up` in the backend repository folder
 
@@ -49,6 +52,14 @@ Install Docker and Docker compose
 
 ## API specification
 
-[see openapi here](./docs/openapi/api.md)
+### Vendor
 
-Or you can use `http://127.0.0.1:8000/api/openapi` when the vendor service is up
+[see openapi here](./docs/openapi/vendor_api.md)
+
+Or you can use `http://127.0.0.1:8001/api/vendor/openapi` when the vendor service is up
+
+### CV service
+
+[see openapi here](./docs/openapi/cv_api.md)
+
+Or you can use `http://127.0.0.1:8002/api/cv/openapi` when the cv service is up

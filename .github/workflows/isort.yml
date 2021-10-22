@@ -36,8 +36,6 @@ jobs:
         run: |
           cd backend/services/admin_panel
           poetry install --no-interaction --no-root
-          cd ../vendor
-          poetry install --no-interaction --no-root
       #----------------------------------------------
       # analise code
       #----------------------------------------------
@@ -76,14 +74,50 @@ jobs:
         run: |
           cd backend/services/vendor
           poetry install --no-interaction --no-root
-          cd ../vendor
-          poetry install --no-interaction --no-root
       #----------------------------------------------
       # analise code
       #----------------------------------------------
       - name: Analysing the vendor service code with isort
         run: |
           cd backend/services/vendor
+          source .venv/bin/activate
+          isort .
+          deactivate
+          exit ${exit_code}
+
+  cv:
+    runs-on: ubuntu-latest
+    steps:
+      #----------------------------------------------
+      #       check-out repo and set-up python
+      #----------------------------------------------
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      #----------------------------------------------
+      #  -----  install & configure poetry  -----
+      #----------------------------------------------
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      #----------------------------------------------
+      # install dependencies
+      #----------------------------------------------
+      - name: Install dependencies
+        run: |
+          cd backend/services/cv
+          poetry install --no-interaction --no-root
+      #----------------------------------------------
+      # analise code
+      #----------------------------------------------
+      - name: Analysing the vendor service code with isort
+        run: |
+          cd backend/services/cv
           source .venv/bin/activate
           isort .
           deactivate
