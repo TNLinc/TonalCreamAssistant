@@ -2,7 +2,7 @@ version: "3.9"
 services:
   vendor_db:
     build: ./db
-    image: vendor_db
+    image: fakafafakafa/vendor_db
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -37,7 +37,7 @@ services:
 
   admin_panel:
     build: ./services/admin_panel
-    image: vendor_admin_pannel
+    image: fakafafakafa/vendor_admin_pannel
     depends_on:
       vendor_db:
         condition: service_healthy
@@ -62,7 +62,7 @@ services:
 
   vendor:
     build: ./services/vendor
-    image: vendor_api
+    image: fakafafakafa/vendor_api
     depends_on:
       vendor_db:
         condition: service_healthy
@@ -84,7 +84,7 @@ services:
 
   cv:
     build: ./services/cv
-    image: cv_api
+    image: fakafafakafa/cv_api
     expose:
       - "8000"
     environment:
