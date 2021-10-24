@@ -4,9 +4,11 @@ on:
   pull_request:
     branches:
       - main
+    paths: 'backend/**'
   push:
     branches:
       - main
+
 jobs:
   admin_pannel:
     runs-on: ubuntu-latest
