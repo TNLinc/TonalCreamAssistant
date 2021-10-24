@@ -40,8 +40,8 @@ jobs:
           context: ./backend/db
           push: true
           tags: |
-            - tnlinc/db:${{ steps.tag_version.outputs.new_tag }}
-            - tnlinc/db:latest
+            tnlinc/db:${{ steps.tag_version.outputs.new_tag }}
+            tnlinc/db:latest
       -
         name: Build admin panel
         id: admin
@@ -51,8 +51,8 @@ jobs:
           context: ./backend/services/admin_panel
           push: true
           tags: |
-            - tnlinc/admin-panel:${{ steps.tag_version.outputs.new_tag }}
-            - tnlinc/admin-panel:latest
+            tnlinc/admin-panel:${{ steps.tag_version.outputs.new_tag }}
+            tnlinc/admin-panel:latest
       -
         name: Build vendor
         id: vendor
@@ -62,8 +62,8 @@ jobs:
           context: ./backend/services/vendor
           push: true
           tags: |
-            - tnlinc/vendor:${{ steps.tag_version.outputs.new_tag }}
-            - tnlinc/vendor:latest
+            tnlinc/vendor:${{ steps.tag_version.outputs.new_tag }}
+            tnlinc/vendor:latest
       -
         name: Build cv
         id: cv
@@ -73,5 +73,5 @@ jobs:
           context: ./backend/services/cv
           push: true
           tags: |
-            - tnlinc/cv:${{ steps.tag_version.outputs.new_tag }}
-            - tnlinc/cv:latest
+            tnlinc/cv:${{ steps.tag_version.outputs.new_tag }}
+            tnlinc/cv:latest
