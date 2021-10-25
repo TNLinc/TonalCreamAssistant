@@ -3,7 +3,12 @@ resource "aws_instance" "web-server-instance" {
   instance_type     = "t2.micro"
   availability_zone = "us-east-1a"
   key_name          = "main-key"
+<<<<<<< HEAD
   user_data         = <<-EOF
+=======
+
+  user_data = <<-EOF
+>>>>>>> f63ec27a132f4b233c9650df30989fd38b99bb6e
                 #!/bin/bash
                 sudo apt update -y
                 sudo apt install apache2 -y
@@ -13,4 +18,8 @@ resource "aws_instance" "web-server-instance" {
   tags = {
     Name = "web-server"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f63ec27a132f4b233c9650df30989fd38b99bb6e

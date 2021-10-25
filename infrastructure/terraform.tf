@@ -16,4 +16,8 @@ terraform {
 
 provider "aws" {
   region = "eu-central-1"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f63ec27a132f4b233c9650df30989fd38b99bb6e

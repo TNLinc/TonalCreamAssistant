@@ -9,13 +9,10 @@ terraform --version
 terraform init
 terraform validate
 
-if [[ "${EXEC}" == "apply" ]]
-then
-    terraform apply -auto-approve -input=false
+if [[ "${EXEC}" == "apply" ]]; then
+  terraform apply -auto-approve -input=false
 fi
 
-
-if [[ "${EXEC}" == "plan" ]]
-then
-    terraform plan -input=false
+if [[ "${EXEC}" == "plan" ]]; then
+  terraform plan -input=false
 fi
