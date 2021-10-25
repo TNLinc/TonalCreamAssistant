@@ -1,7 +1,7 @@
 # AWS TonalCreamAssistant Architecrute
  First revision architecrute ![Architecrute](./docs/aws_architecture.png)
 
-## Terraform solution which creates a whole environment. The following resources are created:
+## Terraform solution which creates a whole environment. The following resources are created
 
 * Amazon ECS cluster utilizing EC2 provider for managing services
 * ECS task definitions for admin_panel vendor and cv services
