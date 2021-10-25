@@ -122,9 +122,8 @@ def findFaceMask(img):
     results = faceMesh.process(imgRGB)
     if results.multi_face_landmarks:
         for faceLms in results.multi_face_landmarks:
-            mpDraw.draw_landmarks(
-                img, faceLms, mpFaceMesh.FACEMESH_CONTOURS, drawSpec, drawSpec
-            )
+            mpDraw.draw_landmarks(img, faceLms, mpFaceMesh.FACEMESH_CONTOURS,
+                                  drawSpec, drawSpec)
 
             for id, lm in enumerate(faceLms.landmark):
                 x, y = int(lm.x * iw), int(lm.y * ih)
@@ -200,12 +199,14 @@ def findFaceMask(img):
                 cv2.line(elem_mask, first, second, (255, 255, 255), 1)
                 first = second
 
-    thresh = cv2.threshold(face_mask, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    thresh = cv2.threshold(face_mask, 0, 255,
+                           cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     cv2.fillPoly(face_mask, cnts, (255, 255, 255))
 
-    thresh = cv2.threshold(elem_mask, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    thresh = cv2.threshold(elem_mask, 0, 255,
+                           cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     cv2.fillPoly(elem_mask, cnts, (100, 100, 100))
