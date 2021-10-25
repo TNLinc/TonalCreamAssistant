@@ -1,6 +1,6 @@
 # TonalCreamAssistant
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a87bc9053df4d16bb9e20b3569c2512)](https://app.codacy.com/gh/KochankovID/TonalCreamAssistant?utm_source=github.com&utm_medium=referral&utm_content=KochankovID/TonalCreamAssistant&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c80b916ef3224f089fc662cd70727f68)](https://www.codacy.com/gh/TNLinc/TonalCreamAssistant/dashboard?utm_source=github.com&utm_medium=referral&utm_content=TNLinc/TonalCreamAssistant&utm_campaign=Badge_Grade)
 
 ---
 
