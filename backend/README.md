@@ -40,13 +40,13 @@ Install Docker and Docker compose
 
 ## Service architecture
 
-![Architecture](../docs/architecture.svg)
+![Architecture](../docs/backend/architecture/architecture.svg)
 
 ---
 
 ## Database architecture
 
-![DB_architecture](./docs/product.svg)
+![DB_architecture](../docs/backend/ER%20diagrams/vendor_db.svg)
 
 ---
 
