@@ -6,7 +6,7 @@
 
 For people who want to buy a cosmetic, there is a problem in tone selection.
 
-![](./docs/tonals.svg)
+![](docs/logo/tonals.svg)
 
 In addition to this, different suppliers have different names of color tones.
 
