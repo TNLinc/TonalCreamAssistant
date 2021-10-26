@@ -56,7 +56,8 @@ Install Docker and Docker compose
 
 [see openapi here](./docs/openapi/vendor_api.md)
 
-Or you can use `http://127.0.0.1:8001/api/vendor/openapi` when the vendor service is up
+Or you can use `http://127.0.0.1:8001/api/vendor/openapi` when the vendor
+service is up
 
 ### CV service
 
