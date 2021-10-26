@@ -25,7 +25,9 @@
   "paths": {
     "/api/cv/v1/skin_tone": {
       "post": {
-        "consumes": ["multipart/form-data"],
+        "consumes": [
+          "multipart/form-data"
+        ],
         "description": "Search face on the photo and determine its skin color",
         "parameters": [
           {
@@ -56,7 +58,9 @@
             }
           }
         },
-        "tags": ["tonal"]
+        "tags": [
+          "tonal"
+        ]
       }
     },
     "/health": {
