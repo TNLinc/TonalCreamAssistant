@@ -6,8 +6,7 @@ from sklearn.cluster import KMeans
 
 class CVFaceDetection:
     def __init__(self):
-        self.face_cascade = cv2.CascadeClassifier(
-            "haarcascade_frontalface_default.xml")
+        self.face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 
 def palette(clusters):
@@ -15,7 +14,7 @@ def palette(clusters):
     palette = np.zeros((50, width, 3), np.uint8)
     steps = width / clusters.cluster_centers_.shape[0]
     for idx, centers in enumerate(clusters.cluster_centers_):
-        palette[:, int(idx * steps):(int((idx + 1) * steps)), :] = centers
+        palette[:, int(idx * steps) : (int((idx + 1) * steps)), :] = centers
     return palette
 
 
@@ -38,9 +37,14 @@ if __name__ == "__main__":
     face = face_cascade.detectMultiScale(gray, 1.1, 4)[0]
     eye_1 = eye_cascade.detectMultiScale(gray, 1.1, 4)[0]
     eye_2 = eye_cascade.detectMultiScale(gray, 1.1, 4)[1]
-    face_img = img[face[1]:face[1] + face[3],
-                   face[0] + int((face[2] - face[0]) * 0.2):face[0] + face[2] -
-                   int((face[2] - face[0]) * 0.2), :, ]
+    face_img = img[
+        face[1] : face[1] + face[3],
+        face[0]
+        + int((face[2] - face[0]) * 0.2) : face[0]
+        + face[2]
+        - int((face[2] - face[0]) * 0.2),
+        :,
+    ]
     print(face_img)
     cv2.rectangle(
         img,
