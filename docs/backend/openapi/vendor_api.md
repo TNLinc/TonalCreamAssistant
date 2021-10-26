@@ -19,9 +19,7 @@ You will be able to:
 
 ## Version: 0.0.1
 
-**Contact information:**
-Ilya Kochankov
-ilyakochankov@yandex.ru
+**Contact information:** Ilya Kochankov ilyakochankov@yandex.ru
 
 ### /v1/vendors/{item_id}
 
