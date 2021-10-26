@@ -12,7 +12,9 @@
   "paths": {
     "/v1/vendors/{item_id}": {
       "get": {
-        "tags": ["vendors"],
+        "tags": [
+          "vendors"
+        ],
         "summary": "Get Vendor",
         "operationId": "get_vendor_v1_vendors__item_id__get",
         "parameters": [
@@ -53,7 +55,9 @@
     },
     "/v1/vendors": {
       "get": {
-        "tags": ["vendors"],
+        "tags": [
+          "vendors"
+        ],
         "summary": "Get All Vendors",
         "operationId": "get_all_vendors_v1_vendors_get",
         "responses": {
@@ -76,7 +80,9 @@
     },
     "/v1/products/{item_id}": {
       "get": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Get Vendor",
         "operationId": "get_vendor_v1_products__item_id__get",
         "parameters": [
@@ -117,7 +123,9 @@
     },
     "/v1/products": {
       "get": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Get All Vendors",
         "operationId": "get_all_vendors_v1_products_get",
         "parameters": [
@@ -178,7 +186,12 @@
       },
       "ProductRead": {
         "title": "ProductRead",
-        "required": ["name", "type", "color", "vendor_id"],
+        "required": [
+          "name",
+          "type",
+          "color",
+          "vendor_id"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -207,12 +220,20 @@
       },
       "ProductType": {
         "title": "ProductType",
-        "enum": ["TONAL_CREAM"],
+        "enum": [
+          "TONAL_CREAM"
+        ],
         "description": "An enumeration."
       },
       "ProductWithVendor": {
         "title": "ProductWithVendor",
-        "required": ["name", "type", "color", "vendor_id", "vendor"],
+        "required": [
+          "name",
+          "type",
+          "color",
+          "vendor_id",
+          "vendor"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -244,7 +265,11 @@
       },
       "ValidationError": {
         "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "loc": {
@@ -266,7 +291,10 @@
       },
       "VendorRead": {
         "title": "VendorRead",
-        "required": ["name", "url"],
+        "required": [
+          "name",
+          "url"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -286,7 +314,10 @@
       },
       "VendorWithProducts": {
         "title": "VendorWithProducts",
-        "required": ["name", "url"],
+        "required": [
+          "name",
+          "url"
+        ],
         "type": "object",
         "properties": {
           "name": {
