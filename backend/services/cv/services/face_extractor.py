@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+from typing import Dict, List, NamedTuple, Optional, Tuple
 
 import mediapipe as mp
 import numpy as np
-from core.settings import HAARCASCADE_DIR
 from cv2 import cv2
+
+from core.settings import HAARCASCADE_DIR
 
 
 class BaseFaceExtractor(ABC):
@@ -22,7 +23,7 @@ class HaarFaceExtractor(BaseFaceExtractor):
     def get_face_pixels(self, image: np.ndarray) -> Optional[np.ndarray]:
         faces = self._face_detection(image)
         if len(faces) == 0:
-            return
+            return None
         return self._crop_face(image, faces[0]).reshape(-1, 3)
 
     def _face_detection(self, image: np.ndarray) -> List[tuple]:
@@ -64,6 +65,7 @@ class MediapipeFaceExtractor(BaseFaceExtractor):
         270,
         269,
         267,
+        0,
     ]
 
     FACE_LANDMARKS = [
@@ -103,6 +105,7 @@ class MediapipeFaceExtractor(BaseFaceExtractor):
         103,
         67,
         109,
+        10,
     ]
 
     RIGHT_EYE_LANDMARKS = [
@@ -123,6 +126,7 @@ class MediapipeFaceExtractor(BaseFaceExtractor):
         107,
         55,
         193,
+        244,
     ]
 
     LEFT_EYE_LANDMARKS = [
@@ -142,6 +146,7 @@ class MediapipeFaceExtractor(BaseFaceExtractor):
         296,
         285,
         417,
+        464,
     ]
 
     def __init__(self):
@@ -150,114 +155,97 @@ class MediapipeFaceExtractor(BaseFaceExtractor):
         )
 
     def get_face_pixels(self, image: np.ndarray) -> Optional[np.ndarray]:
-        lips_points = []
-        face_points = []
-        right_eye_points = []
-        left_eye_points = []
-
-        ih, iw, ic = image.shape
-
+        ih, iw, _ = image.shape
         image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         results = self.face_mesh.process(image_rgb)
 
         if not results.multi_face_landmarks:
-            return
+            return None
 
         face = results.multi_face_landmarks[0]
+        (
+            lips_points,
+            face_points,
+            right_eye_points,
+            left_eye_points,
+        ) = self._sort_landmarks(face=face, image_width=iw, image_height=ih)
 
-        for id, lm in enumerate(face.landmark):
-            x, y = int(lm.x * iw), int(lm.y * ih)
-            if id in self.LIPS_LANDMARKS:
-                lips_points.append((id, x, y))
-            if id in self.FACE_LANDMARKS:
-                face_points.append((id, x, y))
-            if id in self.RIGHT_EYE_LANDMARKS:
-                right_eye_points.append((id, x, y))
-            if id in self.LEFT_EYE_LANDMARKS:
-                left_eye_points.append((id, x, y))
-
-        elem_mask = np.uint8(np.zeros((ih, iw, 1)))
         face_mask = np.uint8(np.zeros((ih, iw, 1)))
+        elem_mask = np.uint8(np.zeros((ih, iw, 1)))
 
-        # lips
-        start, first, second = None, None, None
-        for id in range(len(self.LIPS_LANDMARKS) + 1):
-            if id == len(self.LIPS_LANDMARKS):
-                cv2.line(elem_mask, first, start, (255, 255, 255), 1)
-                break
-            for i in lips_points:
-                if self.LIPS_LANDMARKS[id] == i[0] and first is None:
-                    start = first = (i[1], i[2])
-                elif self.LIPS_LANDMARKS[id] == i[0]:
-                    second = (i[1], i[2])
-
-                    cv2.line(elem_mask, first, second, (255, 255, 255), 1)
-                    first = second
-
-        # face
-        start, first, second = None, None, None
-        for id in range(len(self.FACE_LANDMARKS) + 1):
-            if id == len(self.FACE_LANDMARKS):
-                cv2.line(face_mask, first, start, (255, 255, 255), 1)
-                break
-            for i in face_points:
-                if self.FACE_LANDMARKS[id] == i[0] and first is None:
-                    start = first = (i[1], i[2])
-                elif self.FACE_LANDMARKS[id] == i[0]:
-                    second = (i[1], i[2])
-
-                    cv2.line(face_mask, first, second, (255, 255, 255), 1)
-                    first = second
-
-        # right eye
-        start, first, second = None, None, None
-        for id in range(len(self.RIGHT_EYE_LANDMARKS) + 1):
-            if id == len(self.RIGHT_EYE_LANDMARKS):
-                cv2.line(elem_mask, first, start, (255, 255, 255), 1)
-                break
-            for i in right_eye_points:
-                if self.RIGHT_EYE_LANDMARKS[id] == i[0] and first is None:
-                    start = first = (i[1], i[2])
-                elif self.RIGHT_EYE_LANDMARKS[id] == i[0]:
-                    second = (i[1], i[2])
-
-                    cv2.line(elem_mask, first, second, (255, 255, 255), 1)
-                    first = second
-
-        # left eye
-        start, first, second = None, None, None
-        for id in range(len(self.LEFT_EYE_LANDMARKS) + 1):
-            if id == len(self.LEFT_EYE_LANDMARKS):
-                cv2.line(elem_mask, first, start, (255, 255, 255), 1)
-                break
-            for i in left_eye_points:
-                if self.LEFT_EYE_LANDMARKS[id] == i[0] and first is None:
-                    start = first = (i[1], i[2])
-                elif self.LEFT_EYE_LANDMARKS[id] == i[0]:
-                    second = (i[1], i[2])
-
-                    cv2.line(elem_mask, first, second, (255, 255, 255), 1)
-                    first = second
-
-        thresh = cv2.threshold(face_mask, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[
-            1
-        ]
-        contours, _ = cv2.findContours(
-            thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        self._draw_contour(
+            canvas_image=face_mask, points=face_points, landmarks=self.FACE_LANDMARKS
         )
-        cv2.fillPoly(face_mask, contours, (255, 255, 255))
 
-        thresh = cv2.threshold(elem_mask, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[
-            1
-        ]
-        contours, _ = cv2.findContours(
-            thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        self._draw_contour(
+            canvas_image=elem_mask, points=lips_points, landmarks=self.LIPS_LANDMARKS
         )
-        cv2.fillPoly(elem_mask, contours, (100, 100, 100))
+        self._draw_contour(
+            canvas_image=elem_mask,
+            points=right_eye_points,
+            landmarks=self.RIGHT_EYE_LANDMARKS,
+        )
+        self._draw_contour(
+            canvas_image=elem_mask,
+            points=left_eye_points,
+            landmarks=self.LEFT_EYE_LANDMARKS,
+        )
+
+        self._fill_contour(face_mask, (255, 255, 255))
+        self._fill_contour(elem_mask, (100, 100, 100))
 
         face_mask[elem_mask == 100] = 0
 
         return image[(face_mask != 0).repeat(repeats=3, axis=2)].reshape(-1, 3)
+
+    def _sort_landmarks(
+        self, face: NamedTuple, image_width: int, image_height: int
+    ) -> tuple[
+        Dict[int, Tuple[int, int]],
+        Dict[int, Tuple[int, int]],
+        Dict[int, Tuple[int, int]],
+        Dict[int, Tuple[int, int]],
+    ]:
+        lips_points = {}
+        face_points = {}
+        right_eye_points = {}
+        left_eye_points = {}
+
+        for landmark_id, lm in enumerate(face.landmark):
+            x, y = int(lm.x * image_width), int(lm.y * image_height)
+            if landmark_id in self.LIPS_LANDMARKS:
+                lips_points[landmark_id] = (x, y)
+            if landmark_id in self.FACE_LANDMARKS:
+                face_points[landmark_id] = (x, y)
+            if landmark_id in self.RIGHT_EYE_LANDMARKS:
+                right_eye_points[landmark_id] = (x, y)
+            if landmark_id in self.LEFT_EYE_LANDMARKS:
+                left_eye_points[landmark_id] = (x, y)
+
+        return lips_points, face_points, right_eye_points, left_eye_points
+
+    @staticmethod
+    def _draw_contour(
+        canvas_image: np.ndarray,
+        points: Dict[int, Tuple[int, int]],
+        landmarks: List[int],
+    ):
+        for i in range(1, len(landmarks)):
+            cv2.line(
+                canvas_image,
+                points[landmarks[i - 1]],
+                points[landmarks[i]],
+                (255, 255, 255),
+                1,
+            )
+
+    @staticmethod
+    def _fill_contour(image: np.ndarray, color: Tuple[int, int, int]):
+        thresh = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+        contours, _ = cv2.findContours(
+            thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        )
+        cv2.fillPoly(image, contours, color)
 
 
 face_extractor_fabric = {

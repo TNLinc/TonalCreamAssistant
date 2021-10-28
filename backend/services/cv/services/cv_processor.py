@@ -33,6 +33,6 @@ class CVProcessor:
     def get_face_skin_tone(self, image: np.ndarray) -> Optional[str]:
         face_skin_pixels = self.face_extractor.get_face_pixels(image)
         if face_skin_pixels is None:
-            return
+            return None
         rgb_tone = self.tone_extractor.get_tone(face_skin_pixels)
         return self.rgb_to_hex(rgb_tone)

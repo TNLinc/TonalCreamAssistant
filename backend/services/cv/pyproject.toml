@@ -40,7 +40,7 @@ based_on_style = "pep8"
 ignore=".venv, Dockerfile, poetry.lock, pyproject.toml, __init__.py, test_cv.py"
 
 [tool.pylint.'REPORTS']
-output-format="json"
+#output-format="json"
 
 [tool.pylint.messages_control]
 max-line-length = 120
@@ -50,7 +50,9 @@ disable = [
     "invalid-name",
     "too-few-public-methods",
     "no-member",
-    "no-name-in-module"
+    "no-name-in-module",
+    "c-extension-no-member",
+    "duplicate-code"
 ]
 
 [tool.isort]

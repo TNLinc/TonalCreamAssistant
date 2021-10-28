@@ -15,4 +15,4 @@ if __name__ == "__main__":
     cv_processor = CVProcessor.create('mediapipe', 'kmean')
     hex_color = cv_processor.get_face_skin_tone(img)
     rbg_color = cv_processor.hex_to_rgb(hex_color)
-    show_palette('First algorithm', img, rbg_color)
+    show_palette('Second algorithm', img, rbg_color)
