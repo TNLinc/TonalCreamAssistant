@@ -1,11 +1,10 @@
-from argparse import ArgumentParser
-
-import cv2
 import mediapipe as mp
 import numpy as np
+from cv2 import cv2
 
 
 def findFaceMask(img):
+    img = img.copy()
     # landmarks
     lips_landmarks = [
         0,
@@ -68,40 +67,73 @@ def findFaceMask(img):
         109,
     ]
     right_eye_landmarks = [
-        243,
-        112,
-        26,
-        22,
-        23,
-        24,
-        110,
-        25,
-        130,
-        113,
-        46,
-        53,
-        52,
-        65,
+        # 243,
+        # 112,
+        # 26,
+        # 22,
+        # 23,
+        # 24,
+        # 110,
+        # 25,
+        # 130,
+        # 113,
+        # 46,
+        # 53,
+        # 52,
+        # 65,
+        # 55,
+        # 189,
+        244,
+        233,
+        232,
+        231,
+        230,
+        229,
+        228,
+        31,
+        35,
+        156,
+        70,
+        63,
+        105,
+        66,
+        107,
         55,
-        189,
+        193
     ]
     left_eye_landmarks = [
-        463,
-        341,
-        256,
-        252,
-        253,
-        254,
-        339,
-        255,
-        359,
-        342,
-        276,
-        283,
-        282,
-        295,
+        # 463,
+        # 341,
+        # 256,
+        # 252,
+        # 253,
+        # 254,
+        # 339,
+        # 255,
+        # 359,
+        # 342,
+        # 276,
+        # 283,
+        # 282,
+        # 295,
+        # 285,
+        # 413,
+        464,
+        453,
+        452,
+        451,
+        450,
+        449,
+        448,
+        261,
+        265,
+        383,
+        300,
+        293,
+        334,
+        296,
         285,
-        413,
+        417,
     ]
 
     # lists of points
@@ -201,36 +233,32 @@ def findFaceMask(img):
 
     thresh = cv2.threshold(face_mask, 0, 255,
                            cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-    cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    cnts, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cv2.fillPoly(face_mask, cnts, (255, 255, 255))
 
     thresh = cv2.threshold(elem_mask, 0, 255,
                            cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-    cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    cnts, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cv2.fillPoly(elem_mask, cnts, (100, 100, 100))
 
-    print(elem_mask[100][100])
-    for y in range(ih):
-        for x in range(iw):
-            if elem_mask[y][x] == (100):
-                face_mask[y][x] = 0
+    face_mask[elem_mask == 100] = 0
 
     return face_mask
 
 
+TEST_IMAGE_PATH = '../data/w_sexy.jpeg'
 # Arguments
-arguments_parser = ArgumentParser()
-arguments_parser.add_argument("-p", "--photo", help="Photo of the face")
+if __name__ == '__main__':
+    # arguments_parser = ArgumentParser()
+    # arguments_parser.add_argument("-p", "--photo", help="Photo of the face")
+    #
+    # args = arguments_parser.parse_args()
 
-args = arguments_parser.parse_args()
+    src_img = cv2.imread(TEST_IMAGE_PATH, cv2.IMREAD_COLOR)
+    cv2.imshow("photo", src_img)
+    cv2.waitKey()
 
-src_img = cv2.imread(args.photo, cv2.IMREAD_COLOR)
-cv2.imshow("photo", src_img)
-cv2.waitKey()
-
-# Find the face
-face_mask = findFaceMask(src_img)
-cv2.imshow("face_mask", face_mask)
-cv2.waitKey()
+    # Find the face
+    face_mask = findFaceMask(src_img)
+    cv2.imshow("face_mask", face_mask)
+    cv2.waitKey()

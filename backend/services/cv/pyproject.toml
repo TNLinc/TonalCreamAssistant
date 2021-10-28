@@ -6,22 +6,25 @@ authors = ["ilyakochankov <ilyakochankov@yandex.ru>"]
 
 [tool.poetry.dependencies]
 python = "3.9.7"
-opencv-python = "^4.5.3"
+opencv-python = "^3.4.16.57"
 matplotlib = "^3.4.3"
-scikit-learn = "^1.0"
-numpy = "^1.21.2"
+scikit-learn = "^1.0.1"
+numpy = "^1.21.3"
 Flask = "^2.0.2"
 flask-apispec = "^0.11.0"
 marshmallow = "^3.14.0"
 gunicorn = "^20.1.0"
 py-healthcheck = "^1.10.1"
 environs = "^9.3.4"
+Pillow = "^8.4.0"
+mediapipe = "^0.8.8"
+six = "^1.16.0"
 
 [tool.poetry.dev-dependencies]
-pylint = "^2.11.1"
+pylint = "2.9.3"
 pylint-json2html = "^0.3.0"
 isort = "^5.9.3"
-black = "^21.9b0"
+black = "21.5b1"
 pyproject-flake8 = "^0.0.1-alpha.2"
 flake8-html = "^0.4.1"
 

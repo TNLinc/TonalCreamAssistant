@@ -6,9 +6,12 @@ from flask import Flask, jsonify
 from flask_apispec import FlaskApiSpec, doc
 from healthcheck import HealthCheck
 
+from api.v1.cv import bp as cv_bp_v1
+from api.v1.cv.tonal import cv_skin_tone_v1
+from api.v2.cv import bp as cv_bp_v2
+from api.v2.cv.tonal import cv_skin_tone_v2
 from core import settings
-from api.v1.cv import bp as cv_bp
-from api.v1.cv.tonal import cv_skin_tone
+from schemas.error_schema import ErrorSchema
 
 description = """
 CV API helps you do awesome stuff. 🚀
@@ -59,15 +62,17 @@ app.config.update(
 )
 docs = FlaskApiSpec(app, document_options=False)
 
-app.register_blueprint(cv_bp)
-docs.register(cv_skin_tone, blueprint=cv_bp.name)
+app.register_blueprint(cv_bp_v1)
+app.register_blueprint(cv_bp_v2)
+docs.register(cv_skin_tone_v1, blueprint=cv_bp_v1.name)
+docs.register(cv_skin_tone_v2, blueprint=cv_bp_v2.name)
 docs.register(health_check)
 
 
 @app.errorhandler(422)
 def handle_validation_error(err):
     exc = err.exc
-    return jsonify({"error": exc.messages}), 422
+    return ErrorSchema().dump({"error": exc.messages}), 422
 
 
 if __name__ == "__main__":
