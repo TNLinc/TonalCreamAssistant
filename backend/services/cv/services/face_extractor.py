@@ -186,7 +186,7 @@ class MediapipeFaceExtractor(BaseFaceExtractor):
                 cv2.line(elem_mask, first, start, (255, 255, 255), 1)
                 break
             for i in lips_points:
-                if self.LIPS_LANDMARKS[id] == i[0] and first == None:
+                if self.LIPS_LANDMARKS[id] == i[0] and first is None:
                     start = first = (i[1], i[2])
                 elif self.LIPS_LANDMARKS[id] == i[0]:
                     second = (i[1], i[2])
