@@ -1,10 +1,14 @@
-FROM python:3.9
+FROM amd64/python:3.9-bullseye
 
-RUN apt-get update \
-    && apt-get install --no-install-recommends ffmpeg=7:4.3.2-0+deb11u2 libsm6=2:1.2.3-1 libxext6=2:1.3.3-1.1 -y \
+# requirements for opencv
+RUN apt-get update && apt-get install --no-install-recommends\
+    ffmpeg=7:4.3.2-0+deb11u2 \
+    libsm6=2:1.2.3-1 \
+    libxext6=2:1.3.3-1.1 -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip install --upgrade pip==21.1.1 setuptools==58.3.0
 RUN pip install poetry==1.1.11
 
 WORKDIR /cv

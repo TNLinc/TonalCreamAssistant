@@ -1,6 +1,6 @@
 from marshmallow import Schema
-from marshmallow.fields import String
+from marshmallow.fields import Dict
 
 
 class ErrorSchema(Schema):
-    error = String()
+    error = Dict()
