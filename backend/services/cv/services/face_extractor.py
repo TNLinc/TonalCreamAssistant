@@ -181,7 +181,7 @@ class MediapipeFaceExtractor(BaseFaceExtractor):
 
         # lips
         start, first, second = None, None, None
-        for id in range(0, len(self.LIPS_LANDMARKS) + 1):
+        for id in range(len(self.LIPS_LANDMARKS) + 1):
             if id == len(self.LIPS_LANDMARKS):
                 cv2.line(elem_mask, first, start, (255, 255, 255), 1)
                 break
@@ -211,7 +211,7 @@ class MediapipeFaceExtractor(BaseFaceExtractor):
 
         # right eye
         start, first, second = None, None, None
-        for id in range(0, len(self.RIGHT_EYE_LANDMARKS) + 1):
+        for id in range(len(self.RIGHT_EYE_LANDMARKS) + 1):
             if id == len(self.RIGHT_EYE_LANDMARKS):
                 cv2.line(elem_mask, first, start, (255, 255, 255), 1)
                 break
