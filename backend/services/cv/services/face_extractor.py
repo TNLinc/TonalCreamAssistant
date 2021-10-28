@@ -3,7 +3,7 @@ from typing import List, Optional
 
 import mediapipe as mp
 import numpy as np
-from backend.services.cv.core.settings import HAARCASCADE_DIR
+from core.settings import HAARCASCADE_DIR
 from cv2 import cv2
 
 
