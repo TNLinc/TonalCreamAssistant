@@ -2,6 +2,7 @@ import logging
 
 import uvicorn
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse
 from fastapi_health import health
 
@@ -52,6 +53,15 @@ app = FastAPI(
     docs_url="/api/vendor/openapi",
     openapi_url="/api/vendor/openapi.json",
     default_response_class=ORJSONResponse,
+)
+
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
