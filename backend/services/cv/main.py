@@ -4,6 +4,7 @@ from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
 from flask import Flask
 from flask_apispec import FlaskApiSpec, doc
+from flask_cors import CORS
 from healthcheck import HealthCheck
 
 from api.v1.cv import bp as cv_bp_v1
@@ -40,6 +41,7 @@ spec.tag(
 )
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config.from_object(settings)
 
 health = HealthCheck()

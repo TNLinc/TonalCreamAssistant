@@ -4,6 +4,7 @@ import uvicorn
 from fastapi import Depends, FastAPI
 from fastapi.responses import ORJSONResponse
 from fastapi_health import health
+from fastapi.middleware.cors import CORSMiddleware
 
 import db
 from api.v1 import product, vendor
@@ -54,6 +55,14 @@ app = FastAPI(
     default_response_class=ORJSONResponse,
 )
 
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def startup():
