@@ -2,9 +2,9 @@ import logging
 
 import uvicorn
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse
 from fastapi_health import health
-from fastapi.middleware.cors import CORSMiddleware
 
 import db
 from api.v1 import product, vendor
@@ -63,6 +63,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.on_event("startup")
 async def startup():
