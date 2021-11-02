@@ -1,8 +1,6 @@
 resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
-  tags = {
-    Name = "${var.app_name}-vpc"
-  }
+  tags       = merge(var.tags, { Name = "${var.app_name}-vpc" }, )
 }
 
 resource "aws_subnet" "public-subnet-1" {
@@ -11,9 +9,7 @@ resource "aws_subnet" "public-subnet-1" {
   availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "${var.app_name}-public-subnet-1"
-  }
+  tags = merge(var.tags, { Name = "${var.app_name}-public-subnet-1" }, )
 }
 
 resource "aws_subnet" "public-subnet-2" {
@@ -22,9 +18,7 @@ resource "aws_subnet" "public-subnet-2" {
   availability_zone       = "eu-central-1b"
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "${var.app_name}-public-subnet-2"
-  }
+  tags = merge(var.tags, { Name = "${var.app_name}-public-subnet-2" }, )
 }
 
 resource "aws_subnet" "private-subnet-1" {
@@ -33,9 +27,7 @@ resource "aws_subnet" "private-subnet-1" {
   availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = false
 
-  tags = {
-    Name = "${var.app_name}-private-subnet-1"
-  }
+  tags = merge(var.tags, { Name = "${var.app_name}-private-subnet-1" }, )
 }
 
 resource "aws_subnet" "private-subnet-2" {
@@ -44,9 +36,7 @@ resource "aws_subnet" "private-subnet-2" {
   availability_zone       = "eu-central-1b"
   map_public_ip_on_launch = false
 
-  tags = {
-    Name = "${var.app_name}-private-subnet-2"
-  }
+  tags = merge(var.tags, { Name = "${var.app_name}-private-subnet-2" }, )
 }
 
 resource "aws_route_table_association" "a" {
@@ -76,9 +66,7 @@ resource "aws_route_table" "route-table" {
     gateway_id      = aws_internet_gateway.gw.id
   }
 
-  tags = {
-    Name = "${var.app_name}-route-table"
-  }
+  tags = merge(var.tags, { Name = "${var.app_name}-route-table" }, )
 }
 
 resource "aws_security_group" "allow_web" {
@@ -115,7 +103,5 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "${var.app_name}-allow-web"
-  }
+  tags = merge(var.tags, { Name = "${var.app_name}-allow-web" }, )
 }
