@@ -77,5 +77,5 @@ jobs:
             })
       -
         name: Fail job in case any steps before failed
-        if: ${{ failure() }}
+        if: steps.db.outcome != 'success' || steps.vendor.outcome != 'success' || steps.admin.outcome != 'success' || steps.cv.outcome != 'success'
         run: exit 1
