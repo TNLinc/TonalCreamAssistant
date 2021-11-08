@@ -106,6 +106,7 @@ class ImagePreview extends StatefulWidget {
 class _ImagePreviewState extends State<ImagePreview> {
   List<CameraDescription>? cameras;
   CameraController? controller;
+  Future? _future;
 
   getCameras() async {
     cameras = await availableCameras();
@@ -119,6 +120,12 @@ class _ImagePreviewState extends State<ImagePreview> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _future = getCameras();
+  }
+
+  @override
   void dispose() {
     controller?.dispose();
     super.dispose();
@@ -127,18 +134,18 @@ class _ImagePreviewState extends State<ImagePreview> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getCameras(),
+        future: _future,
         builder: (context, asyncSnapshot) {
           switch (asyncSnapshot.connectionState) {
             case ConnectionState.none:
             case ConnectionState.waiting:
             case ConnectionState.active:
-              return const Flexible(
+              return const Expanded(
                   child: Center(child: CircularProgressIndicator()));
             case ConnectionState.done:
               widget.notifyParent(controller);
 
-              return Flexible(
+              return Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(
                       top: 8.0, left: 8, right: 8, bottom: 5),
@@ -170,8 +177,7 @@ class _ImagePreviewState extends State<ImagePreview> {
                                         controller!.value.isInitialized
                                     ? Center(
                                         // Has camera access
-                                        child: Flexible(
-                                            child: CameraPreview(controller!)),
+                                        child: CameraPreview(controller!),
                                       )
                                     :
                                     // Moc icon
