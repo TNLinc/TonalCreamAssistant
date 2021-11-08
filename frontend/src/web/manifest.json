@@ -1,11 +1,11 @@
 {
-  "name": "src",
-  "short_name": "src",
+  "name": "TonalCreamAssistant",
+  "short_name": "TNL",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",
   "theme_color": "#0175C2",
-  "description": "A new Flutter project.",
+  "description": "The system which helps people to choose the right color tone for them using photos.",
   "orientation": "portrait-primary",
   "prefer_related_applications": false,
   "icons": [
