@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'separator.dart';
 
@@ -36,7 +37,7 @@ class Step extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(left: 8.0),
+        padding: EdgeInsets.only(left: 0.01.sh),
         child: Row(children: [
           StepNumber(number: number, active: active),
           Padding(
@@ -50,7 +51,7 @@ class Step extends StatelessWidget {
                           .copyWith(shadows: [
                           Shadow(
                               offset: const Offset(0, 3.0),
-                              blurRadius: 7.0,
+                              blurRadius: 0.009.sh,
                               color: Theme.of(context).shadowColor),
                         ], fontWeight: FontWeight.bold)
                       : Theme.of(context).textTheme.headline5))
@@ -79,11 +80,11 @@ class StepNumber extends StatelessWidget {
     }
 
     return Container(
-        padding: const EdgeInsets.all(6.0),
+        padding: EdgeInsets.all(0.008.sh),
         decoration: BoxDecoration(
             color: active ? textStyle.color : null,
             shape: BoxShape.circle,
-            border: Border.all(width: 2, color: textStyle.color!),
+            border: Border.all(width: 0.004.sh, color: textStyle.color!),
             boxShadow: boxShadow),
         child: Text(number.toString(),
             style: active
