@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Separator extends StatelessWidget {
   const Separator({Key? key}) : super(key: key);
@@ -6,7 +7,7 @@ class Separator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0),
+      padding: EdgeInsets.only(left: 0.028.sh),
       child: Text(
         "|",
         textAlign: TextAlign.center,
