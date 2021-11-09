@@ -1,22 +1,21 @@
 resource "aws_lb" "loadbalancer" {
   name               = "${var.app_name}-alb"
-  internal           = aws_ecs_service.controller
+  internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_security_group.id]
   subnets            = var.alb_subnet_ids
   tags               = var.tags
 }
 
-resource "aws_lb_target_group" "lb_target_group" {
-  name        = "${var.app_name}-target-froup"
-  port        = var.container_port
+resource "aws_lb_target_group" "lb_admin_target_group" {
+  name        = "${var.app_name}-admin-target-froup"
+  port        = "8000"
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
   target_type = "ip"
 
   health_check {
-    enabled = true
-    path    = "" #login path here
+    enabled = false
   }
   tags = var.tags
   depends_on = [
@@ -27,13 +26,106 @@ resource "aws_lb_target_group" "lb_target_group" {
   }
 }
 
-resource "aws_lb_listener" "http" {
+resource "aws_lb_listener" "admin" {
   load_balancer_arn = aws_lb.loadbalancer.arn
   port              = 80
   protocol          = "HTTP"
 
   default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.lb_target_group.arn
+    type             = "redirect"
+    target_group_arn = aws_lb_target_group.lb_admin_target_group.arn
+    redirect {
+      protocol    = "HTTP"
+      path        = "admin/"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+resource "aws_lb_target_group" "lb_vendor_target_group" {
+  name        = "${var.app_name}-vendor-target-froup"
+  port        = "8001"
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    enabled = false
+  }
+  tags = var.tags
+  depends_on = [
+    aws_lb.loadbalancer
+  ]
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_lb_listener" "vendor" {
+  load_balancer_arn = aws_lb.loadbalancer.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "redirect"
+    target_group_arn = aws_lb_target_group.lb_vendor_target_group.arn
+    redirect {
+      protocol    = "HTTP"
+      path        = "api/vendor/"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+resource "aws_lb_target_group" "lb_cv_target_group" {
+  name        = "${var.app_name}-cv-target-froup"
+  port        = "8002"
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    enabled = false
+  }
+  tags = var.tags
+  depends_on = [
+    aws_lb.loadbalancer
+  ]
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_lb_listener" "cv" {
+  load_balancer_arn = aws_lb.loadbalancer.arn
+  port              = 80
+  protocol          = "HTTP"
+
+
+  default_action {
+    type             = "redirect"
+    target_group_arn = aws_lb_target_group.lb_cv_target_group.arn
+    redirect {
+      protocol    = "HTTP"
+      path        = "api/cv/"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+resource "aws_lb_listener" "cv_spec" {
+  load_balancer_arn = aws_lb.loadbalancer.arn
+  port              = 80
+  protocol          = "HTTP"
+
+
+  default_action {
+    type             = "redirect"
+    target_group_arn = aws_lb_target_group.lb_cv_target_group.arn
+    redirect {
+      protocol    = "HTTP"
+      path        = "flask-apispec/"
+      status_code = "HTTP_301"
+    }
   }
 }

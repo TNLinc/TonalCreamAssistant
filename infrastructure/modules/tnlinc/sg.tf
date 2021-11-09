@@ -6,9 +6,35 @@ resource "aws_security_group" "controller_security_group" {
   ingress {
     protocol        = "tcp"
     self            = true
-    security_groups = [aws_security_group.alb_security_group.id, aws_security_group.ssh-sg.id, aws_security_group.access-sg.id]
-    from_port       = var.container_port
-    to_port         = var.container_port
+    security_groups = [aws_security_group.alb_security_group.id]
+    from_port       = "8000"
+    to_port         = "8000"
+    description     = "Communication channel to ${var.app_name}"
+  }
+  ingress {
+    protocol        = "tcp"
+    self            = true
+    security_groups = [aws_security_group.alb_security_group.id]
+    from_port       = "8001"
+    to_port         = "8001"
+    description     = "Communication channel to ${var.app_name}"
+  }
+
+  ingress {
+    protocol        = "tcp"
+    self            = true
+    security_groups = [aws_security_group.alb_security_group.id]
+    from_port       = "8002"
+    to_port         = "8002"
+    description     = "Communication channel to ${var.app_name}"
+  }
+
+  ingress {
+    protocol        = "tcp"
+    self            = true
+    security_groups = [aws_security_group.alb_security_group.id]
+    from_port       = "5432"
+    to_port         = "5432"
     description     = "Communication channel to ${var.app_name}"
   }
 
