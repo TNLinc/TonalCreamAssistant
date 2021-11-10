@@ -18,7 +18,7 @@
 
 # resource "aws_iam_role" "controller_task_role" {
 #   name               = "${var.app_name}-controller-task-role"
-#   assume_role_policy = data.aws_iam_policy_document.ecs_assume_policy.json
+#   assume_role_policy = data.aws_iam_policy_document.controller_task_policy.json
 #   tags               = var.tags
 # }
 

@@ -38,6 +38,14 @@ resource "aws_security_group" "controller_security_group" {
     description     = "Communication channel to ${var.app_name}"
   }
 
+  ingress {
+    protocol        = "tcp"
+    self            = true
+    security_groups = [aws_security_group.alb_security_group.id]
+    from_port       = "80"
+    to_port         = "80"
+    description     = "Communication channel to ${var.app_name}"
+  }
   egress {
     protocol    = "-1"
     from_port   = 0
@@ -73,6 +81,43 @@ resource "aws_security_group" "alb_security_group" {
     protocol    = "-1"
     from_port   = 0
     to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = var.tags
+}
+
+resource "aws_security_group" "allow_webtnlinc" {
+  name        = "${var.app_name}-web-traffic-tnlinc"
+  description = "Allow Web traffic"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
