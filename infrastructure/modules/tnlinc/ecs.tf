@@ -4,30 +4,87 @@ resource "aws_ecs_cluster" "cluster" {
   tags               = var.tags
 }
 
-resource "aws_ecs_service" "controller" {
-  name                   = "${var.app_name}-controller"
-  cluster                = aws_ecs_cluster.cluster.id
-  enable_execute_command = true
-  task_definition        = aws_ecs_task_definition.controller.arn
-  desired_count          = 1
-  launch_type            = "FARGATE"
-  platform_version       = "1.4.0"
+resource "aws_service_discovery_private_dns_namespace" "discovery" {
+  name        = var.app_name
+  vpc         = var.vpc_id
+  description = "${var.app_name} discovery managed zone"
+}
 
-  deployment_minimum_healthy_percent = 0
-  deployment_maximum_percent         = 100
-
-  load_balancer {
-    target_group_arn = aws_lb_target_group.lb_target_group.arn
-    container_name   = "" #front container
-    container_port   = var.container_port
+resource "aws_service_discovery_service" "db" {
+  name = "db"
+  dns_config {
+    namespace_id   = aws_service_discovery_private_dns_namespace.discovery.id
+    routing_policy = "MULTIVALUE"
+    dns_records {
+      ttl  = 60
+      type = "A"
+    }
   }
-
-  network_configuration {
-    subnets          = var.controller_subnet_ids
-    security_groups  = [aws_security_group.controller_security_group.id]
-    assign_public_ip = false
+  health_check_custom_config {
+    failure_threshold = 1
   }
-  depends_on = [
-    aws_lb.loadbalancer
-  ]
+}
+
+resource "aws_service_discovery_service" "nginx" {
+  name = "nginx"
+  dns_config {
+    namespace_id   = aws_service_discovery_private_dns_namespace.discovery.id
+    routing_policy = "MULTIVALUE"
+    dns_records {
+      ttl  = 60
+      type = "A"
+    }
+    dns_records {
+      ttl  = 60
+      type = "SRV"
+    }
+  }
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+}
+
+resource "aws_service_discovery_service" "admin" {
+  name = "admin"
+  dns_config {
+    namespace_id   = aws_service_discovery_private_dns_namespace.discovery.id
+    routing_policy = "MULTIVALUE"
+    dns_records {
+      ttl  = 60
+      type = "A"
+    }
+  }
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+}
+
+resource "aws_service_discovery_service" "vendor" {
+  name = "vendor"
+  dns_config {
+    namespace_id   = aws_service_discovery_private_dns_namespace.discovery.id
+    routing_policy = "MULTIVALUE"
+    dns_records {
+      ttl  = 60
+      type = "A"
+    }
+  }
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+}
+
+resource "aws_service_discovery_service" "cv" {
+  name = "cv"
+  dns_config {
+    namespace_id   = aws_service_discovery_private_dns_namespace.discovery.id
+    routing_policy = "MULTIVALUE"
+    dns_records {
+      ttl  = 60
+      type = "A"
+    }
+  }
+  health_check_custom_config {
+    failure_threshold = 1
+  }
 }
