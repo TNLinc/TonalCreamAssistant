@@ -75,7 +75,7 @@ jobs:
             #### Admin panel build 💻 \`${{ steps.admin.outcome }}\`
             #### Vendor build 💳 \`${{ steps.vendor.outcome }}\`
             #### CV build 📸 \`${{ steps.cv.outcome }}\`
-            #### Nginx build 📸 \`${{ steps.nginx.outcome }}\`
+            #### Nginx build 🧭 \`${{ steps.nginx.outcome }}\`
 
             *Pusher: @${{ github.actor }}, Action:  \`${{ github.event_name }}\`*`;
 
