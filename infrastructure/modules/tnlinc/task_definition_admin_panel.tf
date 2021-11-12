@@ -13,7 +13,7 @@ module "container_admin" {
   map_environment = {
     "ADMIN_PANEL_SECRET_KEY" = var.admin_secret_key # should be stored as a secret in real case
     "ADMIN_PANEL_DEBUG"      = var.admin_debug
-    "ADMIN_PANEL_DB_URL"     = "postgres://${var.db_user}:${var.db_password}@${var.db_ip}:5432/${var.db_name}"
+    "ADMIN_PANEL_DB_URL"     = "postgres://${var.db_user}:${var.db_password}@db.tnlinc:5432/${var.db_name}"
   }
 }
 
@@ -39,15 +39,12 @@ resource "aws_ecs_service" "admin" {
   deployment_minimum_healthy_percent = 0
   deployment_maximum_percent         = 100
 
-  # load_balancer {
-  #   target_group_arn = aws_lb_target_group.lb_admin_target_group.arn
-  #   container_name   = "${var.app_name}-admin"
-  #   container_port   = "8000"
-  # }
-
+  service_registries {
+    registry_arn = aws_service_discovery_service.admin.arn
+  }
   network_configuration {
     subnets          = var.controller_subnet_ids
-    security_groups  = [aws_security_group.controller_security_group.id]
+    security_groups  = [aws_security_group.allow_webtnlinc.id]
     assign_public_ip = true
   }
   # depends_on = [

@@ -1,7 +1,7 @@
 module "container_nginx" {
   source                       = "../container_definition_generator"
   container_name               = "${var.app_name}-nginx"
-  container_image              = "nginx:stable-perl"
+  container_image              = "tnlinc/nginx"
   container_cpu                = var.db_cpu
   container_memory             = var.db_memory
   container_memory_reservation = var.db_memory
@@ -10,11 +10,6 @@ module "container_nginx" {
     hostPort      = "80"
     protocol      = "tcp"
   }]
-  map_environment = {
-    "POSTGRES_DB"       = var.db_name
-    "POSTGRES_USER"     = var.db_user
-    "POSTGRES_PASSWORD" = var.db_password # should be stored as a secret in real case
-  }
 }
 
 resource "aws_ecs_task_definition" "nginx" {
@@ -42,7 +37,6 @@ resource "aws_ecs_service" "nginx" {
 
   service_registries {
     registry_arn = aws_service_discovery_service.nginx.arn
-    port         = 80
   }
   network_configuration {
     subnets          = var.controller_subnet_ids

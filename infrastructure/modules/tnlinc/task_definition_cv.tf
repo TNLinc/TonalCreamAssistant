@@ -38,15 +38,13 @@ resource "aws_ecs_service" "cv" {
   deployment_minimum_healthy_percent = 0
   deployment_maximum_percent         = 100
 
-  #   load_balancer {
-  #     target_group_arn = aws_lb_target_group.lb_cv_target_group.arn
-  #     container_name   = "${var.app_name}-cv"
-  #     container_port   = "8002"
-  #   }
+  service_registries {
+    registry_arn = aws_service_discovery_service.cv.arn
+  }
 
   network_configuration {
     subnets          = var.controller_subnet_ids
-    security_groups  = [aws_security_group.controller_security_group.id]
+    security_groups  = [aws_security_group.allow_webtnlinc.id]
     assign_public_ip = true
   }
   #   depends_on = [

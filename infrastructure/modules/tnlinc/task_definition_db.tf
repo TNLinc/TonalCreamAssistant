@@ -39,9 +39,14 @@ resource "aws_ecs_service" "db" {
   deployment_minimum_healthy_percent = 0
   deployment_maximum_percent         = 100
 
+  service_registries {
+    registry_arn = aws_service_discovery_service.db.arn
+    port         = 5432
+  }
+
   network_configuration {
     subnets          = var.controller_subnet_ids
-    security_groups  = [aws_security_group.controller_security_group.id]
+    security_groups  = [aws_security_group.allow_webtnlinc.id]
     assign_public_ip = true
   }
   # depends_on = [
