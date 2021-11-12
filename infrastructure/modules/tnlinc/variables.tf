@@ -16,22 +16,104 @@ variable "alb_subnet_ids" {
   default     = null
 }
 
-//Container
-variable "container_port" {
+variable "controller_subnet_ids" {
+  type        = list(string)
+  description = "A list of subnets for application continers"
+  default     = null
+}
+//DB
+variable "db_port" {
   type    = number
-  default = 80
+  default = 5432
 }
 
-variable "controller_cpu" {
+variable "db_cpu" {
+  type    = number
+  default = 512
+}
+
+variable "db_memory" {
   type    = number
   default = 1024
 }
 
-variable "controller_memory" {
-  type    = number
-  default = 2048
+variable "db_name" {
+  type    = string
+  default = "vendor"
 }
 
+variable "db_user" {
+  type    = string
+  default = "postgres"
+}
+
+variable "db_ip" {
+  type    = string
+  default = "0.0.0.0"
+}
+
+variable "db_password" {
+  type    = string
+  default = "postgres"
+}
+
+// Admin
+variable "admin_cpu" {
+  type    = number
+  default = 512
+}
+
+variable "admin_memory" {
+  type    = number
+  default = 1024
+}
+
+variable "admin_debug" {
+  type    = bool
+  default = true
+}
+
+variable "admin_secret_key" {
+  type    = string
+  default = "some-secret-string"
+}
+
+// Vendor
+variable "vendor_cpu" {
+  type    = number
+  default = 512
+}
+
+variable "vendor_memory" {
+  type    = number
+  default = 1024
+}
+
+variable "vendor_db_auth" {
+  type    = string
+  default = "vendor"
+}
+
+// CV
+variable "cv_cpu" {
+  type    = number
+  default = 512
+}
+
+variable "cv_memory" {
+  type    = number
+  default = 1024
+}
+
+variable "cv_debug" {
+  type    = bool
+  default = true
+}
+
+variable "cv_secret_key" {
+  type    = string
+  default = "some-secret-string"
+}
 variable "tags" {
   type        = map(any)
   description = "An object of tag key value pairs"
