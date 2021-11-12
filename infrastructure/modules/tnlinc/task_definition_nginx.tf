@@ -37,7 +37,7 @@ resource "aws_ecs_service" "nginx" {
 
   service_registries {
     registry_arn = aws_service_discovery_service.nginx.arn
-    port = 80
+    port         = 80
   }
   network_configuration {
     subnets          = var.controller_subnet_ids

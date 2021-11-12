@@ -18,7 +18,7 @@ resource "aws_security_group" "allow_webtnlinc" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-    ingress {
+  ingress {
     description = "HTTP"
     from_port   = 8000
     to_port     = 8000
