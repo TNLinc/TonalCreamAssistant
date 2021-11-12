@@ -41,7 +41,6 @@ resource "aws_ecs_service" "db" {
 
   service_registries {
     registry_arn = aws_service_discovery_service.db.arn
-    port         = 5432
   }
 
   network_configuration {
