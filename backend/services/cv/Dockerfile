@@ -1,4 +1,4 @@
-FROM amd64/python:3.9-bullseye
+FROM amd64/python:3.9.8-bullseye
 
 # requirements for opencv
 RUN apt-get update && apt-get install --no-install-recommends\
