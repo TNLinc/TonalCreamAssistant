@@ -1,5 +1,4 @@
 import json
-import logging
 from logging.config import dictConfig
 
 from apispec import APISpec
