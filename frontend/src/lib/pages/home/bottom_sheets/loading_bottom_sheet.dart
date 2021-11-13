@@ -8,14 +8,16 @@ import 'package:image_picker/image_picker.dart';
 
 import 'base_bottom_sheet.dart';
 
-const String url = "http://192.168.0.177/api/cv/v2/skin_tone";
-
 class LoadingBottomSheet extends StatefulWidget {
+  final String host;
   final Function(Map<String, dynamic>) notifyParent;
   final XFile image;
 
   const LoadingBottomSheet(
-      {Key? key, required this.image, required this.notifyParent})
+      {Key? key,
+      required this.image,
+      required this.notifyParent,
+      required this.host})
       : super(key: key);
 
   @override
@@ -26,10 +28,12 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  late final String url;
 
   @override
   void initState() {
     super.initState();
+     url = "http://${widget.host}/api/cv/v2/skin_tone";
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation = Tween<double>(begin: 0, end: 1).animate(

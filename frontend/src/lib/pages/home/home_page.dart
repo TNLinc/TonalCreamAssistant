@@ -10,7 +10,9 @@ import 'components/header.dart';
 import 'components/step_list.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final String host;
+
+  const HomePage({Key? key, required this.host}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -68,6 +70,7 @@ class _HomePageState extends State<HomePage> {
             case 2:
               {
                 return LoadingBottomSheet(
+                  host: widget.host,
                   image: _image!,
                   notifyParent: loadData,
                 );
