@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install --no-install-recommends\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip==21.1.1 setuptools==58.3.0
+RUN pip install --upgrade pip setuptools
 RUN pip install poetry==1.1.11
 
 WORKDIR /cv

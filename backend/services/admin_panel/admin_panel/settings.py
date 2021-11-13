@@ -17,7 +17,7 @@ SECRET_KEY = env.str("ADMIN_PANEL_SECRET_KEY", get_random_string(50, _CHARS))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("ADMIN_PANEL_DEBUG", default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list("ADMIN_PANEL_ALLOWED_HOSTS", default=['*'])
 
 # Application definition
 

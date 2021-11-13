@@ -12,4 +12,6 @@ env.read_env(str(BASE_DIR.parent.joinpath(".env")))
 PROJECT_NAME = "Vendor"
 DB_URL = env("VENDOR_DB_URL")
 
+VENDOR_ALLOWED_HOSTS = env.list("VENDOR_ALLOWED_HOSTS", default=['*'])
+
 DB_AUTH_SCHEMA = env("VENDOR_DB_AUTH_SCHEMA")

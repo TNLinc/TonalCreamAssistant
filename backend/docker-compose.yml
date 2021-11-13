@@ -16,7 +16,7 @@ services:
       - ./db:/docker-entrypoint-initdb.d/
       - db_volume:/var/lib/comparing/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -25,6 +25,10 @@ services:
     image: "nginx:stable-perl"
     depends_on:
       admin_panel:
+        condition: service_healthy
+      vendor:
+        condition: service_healthy
+      cv:
         condition: service_healthy
     ports:
       - 80:80
@@ -47,6 +51,7 @@ services:
       ADMIN_PANEL_SECRET_KEY: ${ADMIN_PANEL_SECRET_KEY}
       ADMIN_PANEL_DEBUG: ${ADMIN_PANEL_DEBUG}
       ADMIN_PANEL_DB_URL: "postgres://${DB_USER}:${DB_PASSWORD}@vendor_db:5432/${DB_NAME}"
+      ADMIN_PANEL_ALLOWED_HOSTS: ${ADMIN_PANEL_ALLOWED_HOSTS}
     networks:
       - main
     ports:
@@ -71,6 +76,7 @@ services:
     environment:
       VENDOR_DB_URL: "postgresql+asyncpg://${DB_USER}:${DB_PASSWORD}@vendor_db:5432/${DB_NAME}"
       VENDOR_DB_AUTH_SCHEMA: ${VENDOR_DB_AUTH_SCHEMA}
+      VENDOR_ALLOWED_HOSTS: ${VENDOR_ALLOWED_HOSTS}
     networks:
       - main
     ports:
@@ -90,6 +96,7 @@ services:
     environment:
       CV_SECRET_KEY: ${CV_SECRET_KEY}
       CV_DEBUG: ${CV_DEBUG}
+      CV_ALLOWED_HOSTS: ${CV_ALLOWED_HOSTS}
     networks:
       - main
     ports:
