@@ -10,6 +10,8 @@ void main() {
   runApp(const MyApp());
 }
 
+const String host = '127.0.0.1';
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -53,7 +55,7 @@ class MyApp extends StatelessWidget {
               )),
           home: Builder(
             builder: (context) => ResponsiveWrapper.builder(
-              const HomePage(),
+              const HomePage(host: host),
               maxWidth: 1200,
               minWidth: 480,
               defaultScale: true,
