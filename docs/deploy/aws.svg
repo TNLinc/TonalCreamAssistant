@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="807px" preserveAspectRatio="none" style="width:636px;height:807px;background:#FFFFFF;" version="1.1" viewBox="0 0 636 807" width="636px" zoomAndPan="magnify"><defs><filter height="300%" id="fa3qpk81z8vv6" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[88656e78e5bedad418341b6ececa151e]
+cluster AWS--><path d="M40.2685,32.3964 C54.525,12.6072 76.918,6.4521 90.1507,33.4871 C102.9421,14.0016 117.4575,14.5206 130.1713,33.5677 C144.4506,11.5923 164.9754,12.7062 179.5186,33.2615 C191.7385,7.5069 213.9482,6 228.2931,31.2285 C240.4894,14.3575 260.5523,16.2276 270.5815,33.8828 C280.5147,10.0711 300.0452,12.3732 312.9011,30.966 C326.472,10.8419 348.2271,9.8783 361.7439,31.0301 C373.7901,12.8904 396.2582,9.1882 406.6987,32.7607 C424.6053,6.1771 440.2834,10.9991 456.4595,34.4806 C467.0838,14.8618 483.1661,13.7962 497.7102,29.9621 C511.3574,10.4958 531.4929,7.9549 542.005,33.0765 C558.6319,11.0264 582.1744,11.6777 593.9843,38.2283 C597.1704,36.328 599.9537,36.8123 600.5772,41.0023 C621.7012,55.4127 620.1246,69.5993 602.8193,85.9277 C622.2236,98.5105 623.7812,115.7747 602.7288,128.271 C629.967,146.444 622.5357,161.465 601.5921,178.5487 C624.0757,188.9743 625.287,206.5073 605.8498,221.125 C625.5541,237.7621 626.7103,254.4989 602.6625,268.1719 C620.7998,283.3612 623.8676,299.442 601.0832,313.1958 C616.3562,322.6525 616.76,340.2383 601.755,350.2441 C627.1933,361.5797 624.1838,381.3873 604.9989,395.8938 C627.5028,410.7009 628.5464,428.5576 605.5483,443.8856 C623.9598,460.0408 621.7622,477.5551 599.8768,488.599 C626.0784,499.5783 625.3366,519.4193 603.6643,534.3609 C623.305,550.2101 620.3345,567.0129 598.793,578.2959 C620.9033,590.1874 617.524,608.9464 598.005,620.0523 C620.9584,641.2896 611.5559,657.8627 586.9843,668.2283 C589.2039,664.8045 591.9413,665.3095 593.626,668.746 C581.6795,696.3362 558.8017,700.7009 541.1672,674.2695 C526.908,696.005 510.0176,699.2908 495.4956,674.5276 C484.5993,696.8857 468.0443,695.8748 454.4314,677.2496 C440.7923,701.3684 418.7036,693.1411 408.5493,673.5884 C396.8042,696.4724 377.6956,700.853 360.8024,679.0945 C348.1746,700.7506 327.506,697.136 316.8161,677.0522 C302.3655,694.7476 282.3284,692.268 271.8512,672.3077 C259.4317,696.1446 236.4198,698.0381 222.2918,674.0794 C206.9377,695.7246 187.1776,690.6334 175.1467,670.3434 C164.5448,692.8676 146.2383,697.6091 129.4031,676.9454 C114.205,696.91 97.9127,692.1996 89.0983,670.7349 C66.9423,697.2027 42.4041,695.3023 29.9843,661.2283 C36.3457,660.199 37.973,662.9703 36.9987,668.7667 C14.14,652.2797 8.177,636.6124 34.228,617.483 C13.9836,604.6333 13.9764,593.1821 34.107,580.2013 C11.6853,566.0206 10.5061,545.7482 31.6261,529.4395 C12.8854,517.9451 13.2062,501.0086 29.9266,488.0578 C9.7793,474.5956 6,456.9884 28.3201,442.0436 C6.5523,425.3184 12.9921,408.3237 33.167,396.0153 C11.5158,385.497 9.1584,363.4767 29.7253,349.8136 C6.9696,335.7044 11.4459,321.1606 28.6249,306.0473 C10.6721,291.3768 12.7393,272.5184 32.7295,261.3308 C9.4662,250.5687 11.54,235.1521 28.9476,220.6124 C8.3746,205.757 11.6877,183.3339 34.2816,173.3502 C10.8088,161.4612 12.9218,147.1957 28.8863,130.3575 C10.1674,112.9183 11.9514,99.767 33.5467,86.6237 C7.5161,69.85 11.0748,44.7788 36.9843,31.2283 C38.5569,30.2809 39.6436,30.6794 40.2685,32.3964 " fill="#FFA1F8" filter="url(#fa3qpk81z8vv6)" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="17" font-weight="bold" lengthAdjust="spacing" textLength="38" x="292.9843" y="52.6638">AWS</text><!--MD5=[118ad15feed889b370ea6c7859f01b19]
+cluster Logically isolated virtual private cloud <img:VPC.png{scale=0.1}>--><rect fill="#FFA1F8" filter="url(#fa3qpk81z8vv6)" height="614" style="stroke:#000000;stroke-width:1.5;" width="564" x="29.9843" y="54.2283"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="278" x="144.3343" y="89.1751">Logically isolated virtual private cloud</text><image height="36" width="52" x="427.3343" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAAkCAYAAADGrhlwAAABXElEQVR4Xu2Yu00EMRRFrwigBlogISZCNEMRFAAZjdABCRE5ORRAQESCRMJXT7s6zx6/sT27XsGRTnL9fuFopH/+2Tmev/yY8HJVOjZP8sdPefrbNiY8do7DwQNrHAYeVuu5BoGHtbh1eFCrD9oyPGgpNwYXp0xxLF8XcVFu5BfSEqyPuBjv8svWPVyVujfjLfEWcREe5RelljKPvk+5/9PZmTP5ResazKPvJReBS1ILmUffS3aDg3MazKPvc7xTBRfyg1LWcCU/p8Y9BXmRb85ZC+fUeqQCJ/JNUxrMcxrMW5yExSUN5jkN5q0muZYvLGkwz2kwbzUJiyIazHMazHvoYEFEg3lOg3kPHSyIaDDPaTDvoYMFEQ3mOQ3mPXSwIKLBPKfBvIcOFkSshXNa/f54TsLCiHM4kO/vYRYW7oLFX81sGN0QbBrVWdzKDxjF4ld2iVf5oZv2Xn+RT1KA3ijWHp7UAAAAAElFTkSuQmCC" y="56.2283"/><!--MD5=[6901497d5affe165898022a08ac1f4f6]
+cluster AZ2--><rect fill="#FFA1F8" filter="url(#fa3qpk81z8vv6)" height="385" style="stroke:#000000;stroke-width:1.5;" width="270" x="315.9843" y="100.2283"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="254" x="323.9843" y="115.7634">Availability zone 2 (private subnet)</text><!--MD5=[25a0d76992377a979039761c70f26b28]
+cluster AZ1--><rect fill="#FFA1F8" filter="url(#fa3qpk81z8vv6)" height="385" style="stroke:#000000;stroke-width:1.5;" width="270" x="37.9843" y="100.2283"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="254" x="45.9843" y="115.7634">Availability zone 1 (private subnet)</text><!--MD5=[b77750067e160c5e66c823a87f4eba16]
+entity LB--><rect fill="#6A9EFF" filter="url(#fa3qpk81z8vv6)" height="123.043" style="stroke:#000000;stroke-width:1.5;" width="164" x="231.9843" y="537.2283"/><rect fill="#6A9EFF" height="10" style="stroke:#000000;stroke-width:1.5;" width="15" x="375.9843" y="542.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="373.9843" y="544.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="373.9843" y="548.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="286.9843" y="606.6423"/><image height="53" width="60" x="286.9843" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA1CAYAAAAd84i6AAABX0lEQVR4Xu2PwQpCMQwE/f+f1pMg0y10SYKJdmAvvnE3fTwulzfP5kmHA92SDge6JR0OdEs6HOiWdDhQMnII7yi5hQMlI4fwjpJbOPA5wt9LDviAWyV7HLgP3nyrgFslexy4D958q4BbJXscKBk5hHeU3MKBkpFDeEfJLRwoGTmEd5TcwoFuSYcD3ZIOB7olHQ50Szoc6JaW8Mi2h2bBx94H/xp87H3wt+FxExKCZRMSgmUTEoJlExKCZRMSgmXRQnZ161vKooXs6ta3lEUL2dWtbymLFrKrW99SFi1k11f7+EcnCjpOFHScSCg5UdBxoqDjRELJiYKOEwUdJxJKThR0nCjoOJFQcqKg40RBx4mE0k6kM9VbpJ1IZ6q3SDuRzlRvkXYinaneIu1EOlO9RXKioONEQceJhJITBR0nCjpOJJScKOg4UdBxIqHkREHHiYKOEwklJwo6ThR0nPwvL4vLpKLP6MYjAAAAAElFTkSuQmCC" y="557.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="351.8843" y="606.6423"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="251.9843" y="626.6638"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="114" x="251.9843" y="646.6853">Load balancer</text><!--MD5=[65b91354294cb6149a4dbb701569ef22]
+entity Frontend2--><rect fill="#6A9EFF" filter="url(#fa3qpk81z8vv6)" height="86.8215" style="stroke:#000000;stroke-width:1.5;" width="119" x="341.4843" y="390.2283"/><rect fill="#6A9EFF" height="10" style="stroke:#000000;stroke-width:1.5;" width="15" x="440.4843" y="395.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="438.4843" y="397.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="438.4843" y="401.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="376.4843" y="443.4423"/><image height="37" width="46" x="376.4843" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAlCAYAAAA9ftv0AAABaklEQVR4Xu2WPU4DQQyFHSpyhJQcAdo0nIoyDTUlHYiWkjNEiFtwhBSpET+yFGtn39gzDvGsRtF+0pN2nu3xSyKtQjTmtzM9kwMc6kVV3I0T4spzNsE9z61x7cLgG8dza/4VvAdceSR4b6qCA72oirtxQlx55uCBuPLMwQNx5bGCix8tD64+68JvypdGyIOr75gLp8KV5+yCX1H+M2PvQvEicN1nLcawqZ6UnteDF4GWJ8MK3j29BH9Bo4YV/Jrympx/Ei+CNekZimA4QXzWveKdAs7jnVhXwaHWaPvQw7OKqykI2XVh+MKN4mVYDTsaaqhjqb3v2f8Ab3XwrRmziGFT3Q5tVS7J3sHckV1bUmHWLASRfmCNUo2R+rtVaEkpvOUzUuN/qhmlwUis8JrHiL/HgmANtkALz88PyVk81if4I/Ci1nzRsO8teU5hb4smkn4LERLwrOHpKYLLT5EgZ36HWzzSeGamO/4AVrKtX5JKRIkAAAAASUVORK5CYII=" y="410.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="427.1843" y="443.4423"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="74" x="361.4843" y="463.4638">Frontend</text><!--MD5=[af1b37559313e03625f8d1eb893dc396]
+entity Backend2--><rect fill="#6A9EFF" filter="url(#fa3qpk81z8vv6)" height="93.5215" style="stroke:#000000;stroke-width:1.5;" width="177" x="329.4843" y="236.2283"/><rect fill="#6A9EFF" height="10" style="stroke:#000000;stroke-width:1.5;" width="15" x="486.4843" y="241.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="484.4843" y="243.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="484.4843" y="247.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="394.4843" y="296.1423"/><image height="44" width="44" x="394.4843" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAABI0lEQVR4Xu2WwQkCMRBFxwa82IIXwR7EZmzAFuzAFvTuXXG7EAR70KMHQRN2D8NfNslAzExgH3xcPjk8MsGEaGQkyM3layxBogsKM3G5YMmxJuxpsOCgMI4naUyZEQlboDrhKxYcFH4NpCQiYQtUJ3zGgvOg/j+CdpIRLc7I0mWHZQpVCM+pPxLtBIkuKMzC5Yglx5qwp8GCg8I4nqQxZUYkbIHqhKu76UTCp4GURCRsgaiwz9Pl0/1qRrSBosUZEV3NnGqE8ZLQTpDogsIcXLZYcqwJexosOCiM40kaU2ZEwhaoTjh6cVhDJIxnV+MMi4QtEBVeYamI95lhieypfUL6xfisLBG/o/fue0oCtI7HpouYNbXS+OT7Z96kt1EjI0X4AQEhP7YJU4uhAAAAAElFTkSuQmCC" y="256.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="443.5843" y="296.1423"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="132" x="349.4843" y="316.1638">Backend on EC2</text><!--MD5=[15c09bc1019853b240db9097cf2c95bd]
+entity DB2--><path d="M335.9843,137.2283 C335.9843,127.2283 417.9843,127.2283 417.9843,127.2283 C417.9843,127.2283 499.9843,127.2283 499.9843,137.2283 L499.9843,166.2498 C499.9843,176.2498 417.9843,176.2498 417.9843,176.2498 C417.9843,176.2498 335.9843,176.2498 335.9843,166.2498 L335.9843,137.2283 " fill="#6A9E82" filter="url(#fa3qpk81z8vv6)" style="stroke:#000000;stroke-width:1.5;"/><path d="M335.9843,137.2283 C335.9843,147.2283 417.9843,147.2283 417.9843,147.2283 C417.9843,147.2283 499.9843,147.2283 499.9843,137.2283 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="144" x="345.9843" y="167.6638">Secondary replica</text><!--MD5=[95e0705302a1c283f32053c0a5532e0d]
+entity Frontend1--><rect fill="#6A9EFF" filter="url(#fa3qpk81z8vv6)" height="86.8215" style="stroke:#000000;stroke-width:1.5;" width="119" x="163.4843" y="390.2283"/><rect fill="#6A9EFF" height="10" style="stroke:#000000;stroke-width:1.5;" width="15" x="262.4843" y="395.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="260.4843" y="397.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="260.4843" y="401.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="198.4843" y="443.4423"/><image height="37" width="46" x="198.4843" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAlCAYAAAA9ftv0AAABaklEQVR4Xu2WPU4DQQyFHSpyhJQcAdo0nIoyDTUlHYiWkjNEiFtwhBSpET+yFGtn39gzDvGsRtF+0pN2nu3xSyKtQjTmtzM9kwMc6kVV3I0T4spzNsE9z61x7cLgG8dza/4VvAdceSR4b6qCA72oirtxQlx55uCBuPLMwQNx5bGCix8tD64+68JvypdGyIOr75gLp8KV5+yCX1H+M2PvQvEicN1nLcawqZ6UnteDF4GWJ8MK3j29BH9Bo4YV/Jrympx/Ei+CNekZimA4QXzWveKdAs7jnVhXwaHWaPvQw7OKqykI2XVh+MKN4mVYDTsaaqhjqb3v2f8Ab3XwrRmziGFT3Q5tVS7J3sHckV1bUmHWLASRfmCNUo2R+rtVaEkpvOUzUuN/qhmlwUis8JrHiL/HgmANtkALz88PyVk81if4I/Ci1nzRsO8teU5hb4smkn4LERLwrOHpKYLLT5EgZ36HWzzSeGamO/4AVrKtX5JKRIkAAAAASUVORK5CYII=" y="410.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="249.1843" y="443.4423"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="74" x="183.4843" y="463.4638">Frontend</text><!--MD5=[42e640606b614df45be14f63a55deb78]
+entity Backend1--><rect fill="#6A9EFF" filter="url(#fa3qpk81z8vv6)" height="93.5215" style="stroke:#000000;stroke-width:1.5;" width="177" x="117.4843" y="236.2283"/><rect fill="#6A9EFF" height="10" style="stroke:#000000;stroke-width:1.5;" width="15" x="274.4843" y="241.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="272.4843" y="243.2283"/><rect fill="#6A9EFF" height="2" style="stroke:#000000;stroke-width:1.5;" width="4" x="272.4843" y="247.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="182.4843" y="296.1423"/><image height="44" width="44" x="182.4843" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAABI0lEQVR4Xu2WwQkCMRBFxwa82IIXwR7EZmzAFuzAFvTuXXG7EAR70KMHQRN2D8NfNslAzExgH3xcPjk8MsGEaGQkyM3layxBogsKM3G5YMmxJuxpsOCgMI4naUyZEQlboDrhKxYcFH4NpCQiYQtUJ3zGgvOg/j+CdpIRLc7I0mWHZQpVCM+pPxLtBIkuKMzC5Yglx5qwp8GCg8I4nqQxZUYkbIHqhKu76UTCp4GURCRsgaiwz9Pl0/1qRrSBosUZEV3NnGqE8ZLQTpDogsIcXLZYcqwJexosOCiM40kaU2ZEwhaoTjh6cVhDJIxnV+MMi4QtEBVeYamI95lhieypfUL6xfisLBG/o/fue0oCtI7HpouYNbXS+OT7Z96kt1EjI0X4AQEhP7YJU4uhAAAAAElFTkSuQmCC" y="256.2283"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="0" x="231.5843" y="296.1423"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="132" x="137.4843" y="316.1638">Backend on EC2</text><!--MD5=[10fb7f8619e33bbba3e12a51f8fb11e5]
+entity DB1--><path d="M134.9843,137.2283 C134.9843,127.2283 205.9843,127.2283 205.9843,127.2283 C205.9843,127.2283 276.9843,127.2283 276.9843,137.2283 L276.9843,166.2498 C276.9843,176.2498 205.9843,176.2498 205.9843,176.2498 C205.9843,176.2498 134.9843,176.2498 134.9843,166.2498 L134.9843,137.2283 " fill="#6A9E82" filter="url(#fa3qpk81z8vv6)" style="stroke:#000000;stroke-width:1.5;"/><path d="M134.9843,137.2283 C134.9843,147.2283 205.9843,147.2283 205.9843,147.2283 C205.9843,147.2283 276.9843,147.2283 276.9843,137.2283 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="17" lengthAdjust="spacing" textLength="122" x="144.9843" y="167.6638">Primary replica</text><!--MD5=[0ba5ee7700168656dc1b457c6fe9fdac]
+entity Client--><ellipse cx="313.9843" cy="729.7283" fill="#6A44FF" filter="url(#fa3qpk81z8vv6)" rx="8" ry="8" style="stroke:#000000;stroke-width:1.5;"/><path d="M313.9843,737.7283 L313.9843,764.7283 M300.9843,745.7283 L326.9843,745.7283 M313.9843,764.7283 L300.9843,779.7283 M313.9843,764.7283 L326.9843,779.7283 " fill="none" filter="url(#fa3qpk81z8vv6)" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40" x="293.9843" y="798.7634">Client</text><!--MD5=[b5b65b0dc1b972024eaa81fc627a1767]
+link Backend2 to Frontend2--><path d="M412.652,330.4345 C410.5001,349.4857 408.032,371.3354 405.9217,390.0182 " fill="none" id="Backend2-Frontend2" style="stroke:#222266;stroke-width:1.0;"/><!--MD5=[646091869c159def6f47308f322cf2c8]
+link DB2 to Backend2--><path d="M417.9843,176.4624 C417.9843,193.2022 417.9843,215.8478 417.9843,235.9758 " fill="none" id="DB2-Backend2" style="stroke:#222266;stroke-width:1.0;"/><!--MD5=[a607f00b8909394b5ea05832f6115bf0]
+link Backend1 to Frontend1--><path d="M211.3166,330.4345 C213.4685,349.4857 215.9366,371.3354 218.0469,390.0182 " fill="none" id="Backend1-Frontend1" style="stroke:#222266;stroke-width:1.0;"/><!--MD5=[121a019a7aeb13b4cb0b42eaf623a9a4]
+link DB1 to Backend1--><path d="M205.9843,176.4624 C205.9843,193.2022 205.9843,215.8478 205.9843,235.9758 " fill="none" id="DB1-Backend1" style="stroke:#222266;stroke-width:1.0;"/><!--MD5=[ee5f766ed97ef51b9b3893e9468a00b2]
+reverse link Frontend1 to LB--><path d="M249.7627,482.2825 C259.2197,499.4299 269.9837,518.9471 279.9602,537.0363 " fill="none" id="Frontend1-backto-LB" style="stroke:#222266;stroke-width:1.0;"/><polygon fill="#222266" points="247.1317,477.5121,247.9756,487.3247,249.5464,481.8903,254.9808,483.4612,247.1317,477.5121" style="stroke:#222266;stroke-width:1.0;"/><!--MD5=[6da000b739325a0e9ac39517535abb94]
+reverse link Frontend2 to LB--><path d="M375.383,482.2825 C366.3416,499.4299 356.0508,518.9471 346.5128,537.0363 " fill="none" id="Frontend2-backto-LB" style="stroke:#222266;stroke-width:1.0;"/><polygon fill="#222266" points="377.8983,477.5121,370.1623,483.6074,375.5662,481.9349,377.2388,487.3388,377.8983,477.5121" style="stroke:#222266;stroke-width:1.0;"/><!--MD5=[0a53811248f7283c44f0d6ed953a591e]
+reverse link LB to Client--><path d="M313.9843,665.5865 C313.9843,683.954 313.9843,703.3228 313.9843,719.7556 " fill="none" id="LB-backto-Client" style="stroke:#222266;stroke-width:1.0;"/><polygon fill="#222266" points="313.9843,660.4357,309.9843,669.4357,313.9843,665.4357,317.9843,669.4357,313.9843,660.4357" style="stroke:#222266;stroke-width:1.0;"/><!--MD5=[333563c5268db37fd08e179d522d4c0c]
+@startuml
+skinparam component {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9EFF
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam database {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9E82
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam actor {
+    BackgroundColor    #6A44ff
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam cloud {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #FFA1F8
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+actor Client
+
+cloud AWS {
+    rectangle "Logically isolated virtual private cloud <img:VPC.png{scale=0.1}>" {
+        component "        <img:LB.png{scale=0.1}> \n\n Load balancer " as LB
+
+        rectangle "Availability zone 2 (private subnet)" as AZ2 {
+            component "    <img:Frontend.png{scale=0.1}> \n Frontend" as Frontend2
+            component "          <img:EC2.png{scale=0.1}> \n Backend on EC2" as Backend2
+            database "Secondary replica" as DB2
+
+            Frontend2 -up- Backend2
+            Backend2 -up- DB2
+        }
+
+        rectangle "Availability zone 1 (private subnet)" as AZ1 {
+            component "    <img:Frontend.png{scale=0.1}> \n Frontend" as Frontend1
+            component "          <img:EC2.png{scale=0.1}> \n Backend on EC2" as Backend1
+            database "Primary replica" as DB1
+
+            Frontend1 -up- Backend1
+            Backend1 -up- DB1
+        }
+
+        LB -up-> Frontend1
+        LB -up-> Frontend2
+    }
+}
+
+Client -up-> LB
+
+@enduml
+
+PlantUML version 1.2021.11(Sat Oct 02 16:26:11 MSK 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ru
+Country: RU
+--></g></svg>

@@ -42,12 +42,9 @@ node "VPN"{
     database Elasticsearch
     database Vendor_DB
     database User_info_DB
+    database Redis
 
-    component Logstash_1
-    component Logstash_2
-    component Logstash_3
-    component Logstash_4
-    component Logstash_5
+    component Logstash
 
     component Kibana
     component Admin_panel
@@ -59,39 +56,41 @@ node "VPN"{
     component CRM
 
     interface port_8000
+    interface port_8001
+    interface port_8002
+    interface port_5432
     interface port_5601
 
     actor Manager
     actor DevOps
 
-    Admin_panel -up- Vendor_DB
+    Admin_panel -up- port_5432
     Admin_panel -down- port_8000
 
-    Vendor_DB_API_Service -up- Vendor_DB
-    Vendor_DB_API_Service -down- Nginx
-    Vendor_DB_API_Service -up-> Logstash_1
+    Vendor_DB_API_Service -up- port_5432
+    Vendor_DB_API_Service -up-> Logstash
+    Vendor_DB_API_Service -down- port_8001
+    port_8001 -down- Nginx
 
-    CV_HTTP_service -down- Nginx
     CV_HTTP_service -right- Auth
-    CV_HTTP_service -up-> Logstash_2
+    CV_HTTP_service -up-> Logstash
+    CV_HTTP_service -down- port_8002
+    port_8002 -down- Nginx
 
-    Auth -down- User_info_DB
+    Auth -right- User_info_DB
+    Auth -down- Redis
     Auth -right- Billing
-    Auth -left- CRM
-    Auth -up-> Logstash_3
+    Auth -right- CRM
+    Auth -up-> Logstash
 
-    Billing -down- User_info_DB
-    Billing -up-> Logstash_4
+    Billing -left- User_info_DB
+    Billing -up-> Logstash
 
     CRM -down- User_info_DB
-    CRM -right- Billing
-    CRM -up-> Logstash_5
+    CRM -up- Billing
+    CRM -up-> Logstash
 
-    Logstash_1 -up-> Elasticsearch
-    Logstash_2 -up-> Elasticsearch
-    Logstash_3 -up-> Elasticsearch
-    Logstash_4 -up-> Elasticsearch
-    Logstash_5 -up-> Elasticsearch
+    Logstash -up-> Elasticsearch
 
     Elasticsearch -right- Kibana
 
@@ -100,6 +99,8 @@ node "VPN"{
     DevOps -left- port_5601
 
     Manager -up- port_8000
+
+    Vendor_DB -down- port_5432
 }
 
 interface port_80
