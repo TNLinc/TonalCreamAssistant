@@ -54,7 +54,8 @@ disable = [
     "no-member",
     "no-name-in-module",
     "c-extension-no-member",
-    "duplicate-code"
+    "duplicate-code",
+    "inconsistent-return-statements"
 ]
 
 [tool.isort]
