@@ -87,9 +87,8 @@ def handle_validation_error(err):
 def check_for_maintenance():
     if not DEBUG and request.host.split(':')[0] not in CV_ALLOWED_HOSTS:
         return ErrorSchema().dump({"error": {"host": "host is not allowed!"}}), 403
+    return
 
 
 if __name__ == "__main__":
     app.run(debug=DEBUG, port=8000)
-else:
-    app.logger.addHandler(logging.StreamHandler())
