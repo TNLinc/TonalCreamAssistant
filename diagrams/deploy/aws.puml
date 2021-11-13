@@ -1,0 +1,72 @@
+@startuml
+skinparam component {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9EFF
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam database {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #6A9E82
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam actor {
+    BackgroundColor    #6A44ff
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+skinparam cloud {
+    FontColor          black
+    AttributeFontColor black
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #FFA1F8
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+actor Client
+
+cloud AWS {
+    rectangle "Logically isolated virtual private cloud <img:VPC.png{scale=0.1}>" {
+        component "        <img:LB.png{scale=0.1}> \n\n Load balancer " as LB
+
+        rectangle "Availability zone 2 (private subnet)" as AZ2 {
+            component "    <img:Frontend.png{scale=0.1}> \n Frontend" as Frontend2
+            component "          <img:EC2.png{scale=0.1}> \n Backend on EC2" as Backend2
+            database "Secondary replica" as DB2
+
+            Frontend2 -up- Backend2
+            Backend2 -up- DB2
+        }
+
+        rectangle "Availability zone 1 (private subnet)" as AZ1 {
+            component "    <img:Frontend.png{scale=0.1}> \n Frontend" as Frontend1
+            component "          <img:EC2.png{scale=0.1}> \n Backend on EC2" as Backend1
+            database "Primary replica" as DB1
+
+            Frontend1 -up- Backend1
+            Backend1 -up- DB1
+        }
+
+        LB -up-> Frontend1
+        LB -up-> Frontend2
+    }
+}
+
+Client -up-> LB
+
+@enduml

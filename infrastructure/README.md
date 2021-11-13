@@ -1,6 +1,6 @@
 # AWS TonalCreamAssistant Architecrute
 
-First revision architecrute ![Architecrute](./docs/aws_architecture.png)
+First revision architecrute ![Architecrute](../docs/deploy/aws.png)
 
 ## Terraform solution which creates a whole environment. The following resources are created
 
