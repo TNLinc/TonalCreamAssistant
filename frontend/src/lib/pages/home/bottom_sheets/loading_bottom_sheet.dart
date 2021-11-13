@@ -33,7 +33,7 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
   @override
   void initState() {
     super.initState();
-     url = "http://${widget.host}/api/cv/v2/skin_tone";
+    url = "http://${widget.host}/api/cv/v2/skin_tone";
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation = Tween<double>(begin: 0, end: 1).animate(
