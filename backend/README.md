@@ -25,19 +25,19 @@ Install Docker and Docker compose
     - `ADMIN_PANEL_PORT` = exposed port for admin panel (delete for production)
     - `ADMIN_PANEL_ALLOWED_HOSTS` = a list of strings representing the
       host/domain names that admin panel service can serve. This is a security
-      measure to prevent HTTP Host header attacks.
+      measure to prevent HTTP Host header attacks
     - `VENDOR_DB_URL` = url for vendor_db for vendor api service (async)
     - `VENDOR_DB_AUTH_SCHEMA` = schema of vendor_db for vendor api service
     - `VENDOR_ALLOWED_HOSTS` = a list of strings representing the host/domain
       names that vendor service can serve. This is a security measure to prevent
-      HTTP Host header attacks.
+      HTTP Host header attacks
     - `VENDOR_PORT` = exposed port for the vendor service (delete for
       production)
     - `CV_SECRET_KEY` = secret key for cv service
     - `CV_DEBUG` = enable of disable debug mode for cv service
     - `CV_ALLOWED_HOSTS` = a list of strings representing the host/domain names
       that cv service can serve. This is a security measure to prevent HTTP Host
-      header attacks.
+      header attacks
     - `CV_PORT` = exposed port for cv service (delete for production)
 
 3. Run `docker compose up` in the backend repository folder
