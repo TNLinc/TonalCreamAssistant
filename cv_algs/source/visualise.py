@@ -1,7 +1,7 @@
 import cv2.cv2 as cv2
 
 from cv_algs.source.utils import show_palette
-from services.cv_processor import CVProcessor
+from services.cv_tone_processor import CVProcessor
 
 TEST_IMAGE_PATH = '../data/w_sexy.jpeg'
 
