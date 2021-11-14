@@ -69,4 +69,3 @@ cloud AWS {
 
 Client -up-> LB
 
-@enduml

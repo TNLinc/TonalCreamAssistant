@@ -158,7 +158,7 @@ node "VPN"{
     DevOps -left- port_5601
 
     Manager -up- port_8000
-    
+
     Vendor_DB -down- port_5432
 }
 
