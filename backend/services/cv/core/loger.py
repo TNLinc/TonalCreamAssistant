@@ -36,7 +36,11 @@ LOGGING = {
     "loggers": {
         "": {"handlers": LOG_DEFAULT_HANDLERS, "level": "INFO"},
         "gunicorn.error": {"level": "INFO"},
-        "gunicorn.access": {"handlers": ["access"], "level": "INFO", "propagate": False},
+        "gunicorn.access": {
+            "handlers": ["access"],
+            "level": "INFO",
+            "propagate": False,
+        },
     },
     "root": {"level": "INFO", "formatter": "verbose", "handlers": LOG_DEFAULT_HANDLERS},
 }
