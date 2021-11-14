@@ -9,9 +9,9 @@ from flask_cors import CORS
 from healthcheck import HealthCheck
 
 from api.v1.cv import bp as cv_bp_v1
-from api.v1.cv.tonal import cv_skin_tone_v1
+from api.v1.cv.tonal import opencv_skin_tone_v1
 from api.v2.cv import bp as cv_bp_v2
-from api.v2.cv.tonal import cv_skin_tone_v2
+from api.v2.cv.tonal import mediapipe_skin_tone_v2, opencv_skin_tone_v2
 from core import settings
 from core.loger import LOGGING
 from core.settings import CV_ALLOWED_HOSTS, DEBUG
@@ -71,8 +71,9 @@ docs = FlaskApiSpec(app, document_options=False)
 
 app.register_blueprint(cv_bp_v1)
 app.register_blueprint(cv_bp_v2)
-docs.register(cv_skin_tone_v1, blueprint=cv_bp_v1.name)
-docs.register(cv_skin_tone_v2, blueprint=cv_bp_v2.name)
+docs.register(opencv_skin_tone_v1, blueprint=cv_bp_v1.name)
+docs.register(opencv_skin_tone_v2, blueprint=cv_bp_v2.name)
+docs.register(mediapipe_skin_tone_v2, blueprint=cv_bp_v2.name)
 docs.register(health_check)
 
 
@@ -84,7 +85,7 @@ def handle_validation_error(err):
 
 @app.before_request
 def check_for_maintenance():
-    if not DEBUG and request.host.split(':')[0] not in CV_ALLOWED_HOSTS:
+    if not DEBUG and request.host.split(":")[0] not in CV_ALLOWED_HOSTS:
         return ErrorSchema().dump({"error": {"host": "host is not allowed!"}}), 403
 
 

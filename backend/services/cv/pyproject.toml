@@ -29,6 +29,8 @@ isort = "^5.9.3"
 black = "21.5b1"
 pyproject-flake8 = "^0.0.1-alpha.2"
 flake8-html = "^0.4.1"
+pytest = "^6.2.5"
+coverage = "^6.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -39,10 +41,10 @@ build-backend = "poetry.core.masonry.api"
 based_on_style = "pep8"
 
 [tool.pylint.'MASTER']
-ignore=".venv, Dockerfile, poetry.lock, pyproject.toml, __init__.py, test_cv.py"
+ignore = ".venv, Dockerfile, poetry.lock, pyproject.toml, __init__.py, test_cv.py"
 
 [tool.pylint.'REPORTS']
-output-format="json"
+output-format = "json"
 
 [tool.pylint.messages_control]
 max-line-length = 120
@@ -67,3 +69,9 @@ max-line-length = 120
 format = "html"
 htmldir = "flake-report"
 exclude = [".venv", "api/v1/cv/__init__.py", "api/v2/cv/__init__.py"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]

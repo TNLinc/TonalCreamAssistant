@@ -6,6 +6,8 @@ import numpy as np
 from cv2 import cv2
 
 from core.settings import HAARCASCADE_DIR
+from services.chain.cell import CellFromFabric
+from services.cv_context import CVContext
 
 
 class BaseFaceExtractor(ABC):
@@ -252,3 +254,14 @@ face_extractor_fabric = {
     "haar": HaarFaceExtractor(),
     "mediapipe": MediapipeFaceExtractor(),
 }
+
+
+class FaceExtractorCell(CellFromFabric):
+    def __init__(self, face_extractor: str):
+        super().__init__(fabric=face_extractor_fabric, item_name=face_extractor)
+
+    def __call__(self, context: CVContext):
+        context.face_pixels = self._item.get_face_pixels(context.image)
+        if context.face_pixels is None:
+            return None
+        return super().__call__(context=context)
