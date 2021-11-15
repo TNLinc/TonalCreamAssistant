@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   getRecomendations(List<dynamic> data) {
     setState(() {
      // _products = data;
-      // It is temporary for testing
+      // It is temporary for  testing
       dynamic _products1 =   {
         "name": "string1",
         "type": "TONAL_CREAM1",
