@@ -11,7 +11,6 @@ void main() {
 }
 
 const String host = '127.0.0.1';
-//const String host = '192.168.0.103';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

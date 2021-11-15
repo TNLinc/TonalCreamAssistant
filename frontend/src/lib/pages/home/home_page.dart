@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'bottom_sheets/home_bottom_sheet.dart';
 import 'bottom_sheets/loading_bottom_sheet.dart';
 import 'bottom_sheets/recommendation_bottom_sheet.dart';
-import 'bottom_sheets/get_recomendations.dart';
 import 'components/header.dart';
 import 'components/step_list.dart';
 
@@ -20,8 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Map<String, String>? _color;
-  late List<dynamic> _products;
+  Map<String, String>? _data;
   XFile? _image;
   int activeStep = 1;
 
@@ -33,30 +31,7 @@ class _HomePageState extends State<HomePage> {
 
   loadData(Map<String, dynamic> data) {
     setState(() {
-      _color = {'color': data['color']};
-      activeStep = 4;
-    });
-  }
-
-  getRecomendations(List<dynamic> data) {
-    setState(() {
-     // _products = data;
-      // It is temporary for testing
-      dynamic _products1 =   {
-        "name": "string1",
-        "type": "TONAL_CREAM1",
-        "color": "string1",
-        "vendor_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-      };
-      dynamic _products2 =   {
-        "name": "string2",
-        "type": "TONAL_CREAM2",
-        "color": "string2",
-        "vendor_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-      };
-      _products = [_products1, _products2];
+      _data = {'color': data['color']};
       activeStep = 3;
     });
   }
@@ -100,19 +75,10 @@ class _HomePageState extends State<HomePage> {
                   notifyParent: loadData,
                 );
               }
-            case 4:
-              {
-                return GetRecomendations(
-                  host: widget.host,
-                  data: _color!['color']!,
-                  notifyParent: getRecomendations,
-                );
-              }
             case 3:
               {
                 return RecommendationBottomSheet(
-                  data_color: _color!,
-                  data_products: _products,
+                  data: _data!,
                 );
               }
             default:
