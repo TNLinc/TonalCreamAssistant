@@ -2,4 +2,4 @@
 
 # Start server
 echo "Starting server"
-gunicorn --log-level DEBUG --bind 0.0.0.0:8000 main:app
+gunicorn --access-logfile - --log-file - --log-level DEBUG --bind 0.0.0.0:8000 main:app

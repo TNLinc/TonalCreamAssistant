@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'base_bottom_sheet.dart';
 
 class HomeBottomSheet extends StatefulWidget {
-  final Function(XFile) notifyParent;
+  final Function(XFile?) notifyParent;
   final XFile? initImage;
 
   const HomeBottomSheet({Key? key, required this.notifyParent, this.initImage})
@@ -18,22 +18,46 @@ class HomeBottomSheet extends StatefulWidget {
   State<HomeBottomSheet> createState() => _HomeBottomSheetState();
 }
 
-class _HomeBottomSheetState extends State<HomeBottomSheet> {
+class _HomeBottomSheetState extends State<HomeBottomSheet>
+    with WidgetsBindingObserver {
   XFile? _image;
   final ImagePicker _picker = ImagePicker();
+  List<CameraDescription>? cameras;
   CameraController? controller;
-
-  getCameraController(CameraController? controller) {
-    this.controller = controller;
-  }
+  Future? _future;
 
   @override
   void initState() {
     super.initState();
     _image = widget.initImage;
+    _future = getCameras();
   }
 
-  getImageGallery() async {
+  @override
+  void dispose() {
+    super.dispose();
+    controller?.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _future = controller?.initialize();
+    }
+  }
+
+  getCameras() async {
+    cameras = await availableCameras();
+    controller = CameraController(
+        kIsWeb
+            ? cameras!.first
+            : cameras!.firstWhere(
+                (camera) => camera.lensDirection == CameraLensDirection.front),
+        ResolutionPreset.max);
+    await controller?.initialize();
+  }
+
+  _getImageGallery() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
       _image = image;
@@ -44,32 +68,61 @@ class _HomeBottomSheetState extends State<HomeBottomSheet> {
     }
   }
 
-  getImageCamera() async {
+  _getImageCamera() async {
     // If already have image (Take another button)
     if (_image != null) {
       setState(() {
+        _future = controller?.initialize();
         _image = null;
       });
-      return;
+    } else {
+      final image = await controller?.takePicture();
+      setState(() {
+        _image = image;
+      });
     }
 
-    final image = await controller?.takePicture();
-    setState(() {
-      _image = image;
-    });
-
-    if (image != null) {
-      widget.notifyParent(image);
-    }
+    widget.notifyParent(_image);
   }
 
   @override
   Widget build(BuildContext context) {
     return BaseBottomSheet(
         child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ImagePreview(image: _image, notifyParent: getCameraController),
+        FutureBuilder(
+            future: _future,
+            builder: (context, asyncSnapshot) {
+              switch (asyncSnapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                case ConnectionState.active:
+                  return const Expanded(
+                      child: Center(child: CircularProgressIndicator()));
+                case ConnectionState.done:
+                  if (_image != null) {
+                    return ImagePreview(image: _image!);
+                  }
+                  if (!asyncSnapshot.hasError &&
+                      controller!.value.isInitialized) {
+                    // Has camera access
+                    return Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(30)),
+                          child: CameraPreview(controller!),
+                        ),
+                      ),
+                    );
+                  } else {
+                    // Moc icon
+                    return const Icon(Icons.add_photo_alternate);
+                  }
+              }
+            }),
         Padding(
           padding: const EdgeInsets.only(bottom: 5.0),
           child: Row(
@@ -79,11 +132,11 @@ class _HomeBottomSheetState extends State<HomeBottomSheet> {
               BottomSheetButton(
                   icon: Icons.add_photo_alternate,
                   text: 'Gallery',
-                  onPressed: getImageGallery),
+                  onPressed: _getImageGallery),
               BottomSheetButton(
                   icon: _image == null ? Icons.camera : Icons.repeat,
                   text: _image == null ? "Camera" : "Take another",
-                  onPressed: getImageCamera),
+                  onPressed: _getImageCamera),
             ],
           ),
         ),
@@ -92,95 +145,36 @@ class _HomeBottomSheetState extends State<HomeBottomSheet> {
   }
 }
 
-class ImagePreview extends StatefulWidget {
-  final XFile? image;
-  final Function(CameraController?) notifyParent;
+class ImagePreview extends StatelessWidget {
+  final XFile image;
 
-  const ImagePreview({Key? key, this.image, required this.notifyParent})
-      : super(key: key);
-
-  @override
-  State<ImagePreview> createState() => _ImagePreviewState();
-}
-
-class _ImagePreviewState extends State<ImagePreview> {
-  List<CameraDescription>? cameras;
-  CameraController? controller;
-
-  getCameras() async {
-    cameras = await availableCameras();
-    controller = CameraController(
-        kIsWeb
-            ? cameras!.first
-            : cameras!.firstWhere(
-                (camera) => camera.lensDirection == CameraLensDirection.front),
-        ResolutionPreset.high);
-    await controller?.initialize();
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
+  const ImagePreview({Key? key, required this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: getCameras(),
-        builder: (context, asyncSnapshot) {
-          switch (asyncSnapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.waiting:
-            case ConnectionState.active:
-              return const Flexible(
-                  child: Center(child: CircularProgressIndicator()));
-            case ConnectionState.done:
-              widget.notifyParent(controller);
-
-              return Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 8.0, left: 8, right: 8, bottom: 5),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30)),
-                    child: Container(
-                        //If we don't chose the image
-                        color: Theme.of(context).disabledColor,
-                        child:
-                            // If has image
-                            widget.image != null
-                                ? kIsWeb
-                                    // If web platform
-                                    ? Image.network(
-                                        widget.image!.path,
-                                        fit: BoxFit.fitHeight,
-                                      )
-                                    :
-                                    // If android platform
-                                    Image.file(
-                                        File(widget.image!.path),
-                                        fit: BoxFit.fitHeight,
-                                      )
-                                :
-                                // If don't have image enable camera
-                                !asyncSnapshot.hasError &&
-                                        controller!.value.isInitialized
-                                    ? Center(
-                                        // Has camera access
-                                        child: Flexible(
-                                            child: CameraPreview(controller!)),
-                                      )
-                                    :
-                                    // Moc icon
-                                    const Icon(Icons.add_photo_alternate)),
-                  ),
-                ),
-              );
-          }
-        });
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8, bottom: 5),
+        child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
+            child: Container(
+                //If we don't chose the image
+                color: Theme.of(context).disabledColor,
+                child: kIsWeb
+                    ?
+                    // If web platform
+                    Image.network(
+                        image.path,
+                        fit: BoxFit.fitHeight,
+                      )
+                    :
+                    // If android platform
+                    Image.file(
+                        File(image.path),
+                        fit: BoxFit.fitHeight,
+                      ))),
+      ),
+    );
   }
 }
 

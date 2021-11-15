@@ -1,6 +1,7 @@
 import 'package:TonalCreamAssistant/pages/home/components/step_list.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'bottom_sheets/home_bottom_sheet.dart';
 import 'bottom_sheets/loading_bottom_sheet.dart';
@@ -9,7 +10,9 @@ import 'components/header.dart';
 import 'components/step_list.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final String host;
+
+  const HomePage({Key? key, required this.host}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   XFile? _image;
   int activeStep = 1;
 
-  loadImage(XFile image) {
+  loadImage(XFile? image) {
     setState(() {
       _image = image;
     });
@@ -51,9 +54,10 @@ class _HomePageState extends State<HomePage> {
           const Header(text: 'Tonal assistant'),
           // Body
           Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+            padding: EdgeInsets.only(top: 0.028.sh),
             child: StepList(activeStep: activeStep),
-          )
+          ),
+          const Spacer(),
         ])),
         // Footer
         bottomSheet: Builder(builder: (context) {
@@ -66,6 +70,7 @@ class _HomePageState extends State<HomePage> {
             case 2:
               {
                 return LoadingBottomSheet(
+                  host: widget.host,
                   image: _image!,
                   notifyParent: loadData,
                 );

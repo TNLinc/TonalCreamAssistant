@@ -133,3 +133,8 @@ poetry.lock
 
 # Pycharm
 .idea
+
+# Terraform managed files
+*/.terraform
+*/.terraform*
+*.tfstate

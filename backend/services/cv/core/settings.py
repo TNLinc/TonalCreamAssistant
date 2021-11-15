@@ -11,7 +11,9 @@ HAARCASCADE_DIR = BASE_DIR / "services/haarcascade"
 
 env.read_env(str(BASE_DIR.parent.joinpath(".env")))
 
-DEBUG = env("CV_DEBUG")
+DEBUG = env.bool("CV_DEBUG", default=True)
+
+CV_ALLOWED_HOSTS = env.list("CV_ALLOWED_HOSTS")
 
 CV_SECRET_KEY = env("CV_SECRET_KEY")
 
