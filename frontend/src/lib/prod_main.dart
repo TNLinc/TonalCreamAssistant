@@ -10,7 +10,7 @@ void main() {
   runApp(const MyApp());
 }
 
-const String host = '3.68.216.91';
+const String host = 'tnl-cv-eu.herokuapp.com';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
