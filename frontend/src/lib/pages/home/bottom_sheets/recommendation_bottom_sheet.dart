@@ -5,9 +5,10 @@ import 'package:flutter/rendering.dart';
 import 'base_bottom_sheet.dart';
 
 class RecommendationBottomSheet extends StatelessWidget {
-  final Map<String, dynamic> data;
+  final Map<String, dynamic> data_color;
+  final List<dynamic> data_products;
 
-  const RecommendationBottomSheet({Key? key, required this.data})
+  const RecommendationBottomSheet({Key? key, required this.data_color, required this.data_products})
       : super(key: key);
 
   @override
@@ -30,10 +31,10 @@ class RecommendationBottomSheet extends StatelessWidget {
               child: Container(
                   height: 80,
                   width: 200,
-                  color: HexColor(data['color']),
+                  color: HexColor(data_color['color']),
                   child: Align(
                       alignment: Alignment.bottomCenter,
-                      child: Text(data['color'],
+                      child: Text(data_color['color'],
                           style: Theme.of(context)
                               .textTheme
                               .headline5!
@@ -48,41 +49,9 @@ class RecommendationBottomSheet extends StatelessWidget {
               padding: const EdgeInsets.all(5.0),
               child: Scrollbar(
                 child:
-                    ListView(scrollDirection: Axis.horizontal, children: const [
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  )
-                ]),
+                    ListView(scrollDirection: Axis.horizontal, children: <Widget>[
+    for (var product in data_products) ProductCard(name: product['name'])
+    ]),
               ),
             ),
           ),
