@@ -8,14 +8,18 @@ import 'base_bottom_sheet.dart';
 
 class GetRecomendations extends StatefulWidget {
   final String host;
-  final Function(List<dynamic>) notifyParent;
+  final Function(Map<String, dynamic>) notifyParent;
   final String data;
+  final int limit;
+  final int offset;
 
   const GetRecomendations(
       {Key? key,
         required this.data,
         required this.notifyParent,
-        required this.host})
+        required this.host,
+        required this.limit,
+        required this.offset})
       : super(key: key);
 
   @override
@@ -31,7 +35,7 @@ class _GetRecomendations extends State<GetRecomendations>
   @override
   void initState() {
     super.initState();
-    url = "http://${widget.host}/api/vendor/v1/products";
+    url = "https://${widget.host}/api/vendor/v1/products/limit-offset/";
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation = Tween<double>(begin: 0, end: 1).animate(
@@ -41,7 +45,8 @@ class _GetRecomendations extends State<GetRecomendations>
   Future<Response<String>> sendPhoto() async {
     Dio dio = Dio();
     dio.options.headers["Content-Type"] = "application/json";
-    return dio.get(url, queryParameters: {"color": widget.data});
+    return dio.get(url, queryParameters: {"color": widget.data,
+      "limit": widget.limit, "offset": widget.offset});
   }
 
   List<Widget> errorProcessing(DioError error) {
@@ -62,7 +67,7 @@ class _GetRecomendations extends State<GetRecomendations>
   }
 
   List<Widget> dataProcessing(Response<String> data) {
-    List<dynamic> responseJson = json.decode(data.toString());
+    Map<String, dynamic> responseJson = json.decode(data.toString());
 
     List<Widget> children = [];
     children.add(AnimatedCheck(

@@ -9,8 +9,12 @@ import 'pages/home/home_page.dart';
 void main() {
   runApp(const MyApp());
 }
-
-const String host = 'tnl-cv-eu.herokuapp.com';
+// ignore: constant_identifier_names
+const String cv_host = 'tnl-cv-eu.herokuapp.com';
+// ignore: constant_identifier_names
+const String vendor_host = 'tnl-vendor-eu.herokuapp.com';
+const int limit = 5;
+const int offset = 0;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -55,7 +59,8 @@ class MyApp extends StatelessWidget {
               )),
           home: Builder(
             builder: (context) => ResponsiveWrapper.builder(
-              const HomePage(host: host),
+              const HomePage(cv_host: cv_host, vendor_host: vendor_host,
+                  limit: limit, offset:offset),
               maxWidth: 1200,
               minWidth: 480,
               defaultScale: true,

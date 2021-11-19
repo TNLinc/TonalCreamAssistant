@@ -5,9 +5,12 @@ import 'package:flutter/rendering.dart';
 import 'base_bottom_sheet.dart';
 
 class RecommendationBottomSheet extends StatelessWidget {
+  // ignore: non_constant_identifier_names
   final Map<String, dynamic> data_color;
+  // ignore: non_constant_identifier_names
   final List<dynamic> data_products;
 
+// ignore: non_constant_identifier_names
   const RecommendationBottomSheet({Key? key, required this.data_color, required this.data_products})
       : super(key: key);
 
@@ -40,6 +43,15 @@ class RecommendationBottomSheet extends StatelessWidget {
                               .headline5!
                               .copyWith(fontWeight: FontWeight.bold))))),
         ),
+        Padding(
+            padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
+            child: BorderedText(
+                strokeWidth: 1.2,
+                child: Text("Recommended products for you: ",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5!
+                        .copyWith(fontWeight: FontWeight.bold)))),
         Flexible(
           child: Container(
             constraints: const BoxConstraints(

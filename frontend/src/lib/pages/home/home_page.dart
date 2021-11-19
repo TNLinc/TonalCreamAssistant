@@ -11,9 +11,16 @@ import 'components/header.dart';
 import 'components/step_list.dart';
 
 class HomePage extends StatefulWidget {
-  final String host;
+  // ignore: non_constant_identifier_names
+  final String cv_host;
+  // ignore: non_constant_identifier_names
+  final String vendor_host;
+  final int limit;
+  final int offset;
 
-  const HomePage({Key? key, required this.host}) : super(key: key);
+  // ignore: non_constant_identifier_names
+  const HomePage({Key? key, required this.cv_host, required this.vendor_host,
+    required this.limit, required this.offset}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -38,25 +45,9 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  getRecomendations(List<dynamic> data) {
+  getRecomendations(Map<String, dynamic> data) {
     setState(() {
-     // _products = data;
-      // It is temporary for  testing
-      dynamic _products1 =   {
-        "name": "string1",
-        "type": "TONAL_CREAM1",
-        "color": "string1",
-        "vendor_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-      };
-      dynamic _products2 =   {
-        "name": "string2",
-        "type": "TONAL_CREAM2",
-        "color": "string2",
-        "vendor_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-      };
-      _products = [_products1, _products2];
+      _products = data['items'];
       activeStep = 3;
     });
   }
@@ -95,7 +86,7 @@ class _HomePageState extends State<HomePage> {
             case 2:
               {
                 return LoadingBottomSheet(
-                  host: widget.host,
+                  host: widget.cv_host,
                   image: _image!,
                   notifyParent: loadData,
                 );
@@ -103,9 +94,11 @@ class _HomePageState extends State<HomePage> {
             case 4:
               {
                 return GetRecomendations(
-                  host: widget.host,
+                  host: widget.vendor_host,
                   data: _color!['color']!,
                   notifyParent: getRecomendations,
+                  limit: widget.limit,
+                  offset: widget.offset
                 );
               }
             case 3:
