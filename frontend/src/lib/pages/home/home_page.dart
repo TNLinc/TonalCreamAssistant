@@ -19,8 +19,13 @@ class HomePage extends StatefulWidget {
   final int offset;
 
   // ignore: non_constant_identifier_names
-  const HomePage({Key? key, required this.cv_host, required this.vendor_host,
-    required this.limit, required this.offset}) : super(key: key);
+  const HomePage(
+      {Key? key,
+      required this.cv_host,
+      required this.vendor_host,
+      required this.limit,
+      required this.offset})
+      : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -94,12 +99,11 @@ class _HomePageState extends State<HomePage> {
             case 4:
               {
                 return GetRecomendations(
-                  host: widget.vendor_host,
-                  data: _color!['color']!,
-                  notifyParent: getRecomendations,
-                  limit: widget.limit,
-                  offset: widget.offset
-                );
+                    host: widget.vendor_host,
+                    data: _color!['color']!,
+                    notifyParent: getRecomendations,
+                    limit: widget.limit,
+                    offset: widget.offset);
               }
             case 3:
               {

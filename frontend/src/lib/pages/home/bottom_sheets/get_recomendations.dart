@@ -15,11 +15,11 @@ class GetRecomendations extends StatefulWidget {
 
   const GetRecomendations(
       {Key? key,
-        required this.data,
-        required this.notifyParent,
-        required this.host,
-        required this.limit,
-        required this.offset})
+      required this.data,
+      required this.notifyParent,
+      required this.host,
+      required this.limit,
+      required this.offset})
       : super(key: key);
 
   @override
@@ -45,8 +45,11 @@ class _GetRecomendations extends State<GetRecomendations>
   Future<Response<String>> sendPhoto() async {
     Dio dio = Dio();
     dio.options.headers["Content-Type"] = "application/json";
-    return dio.get(url, queryParameters: {"color": widget.data,
-      "limit": widget.limit, "offset": widget.offset});
+    return dio.get(url, queryParameters: {
+      "color": widget.data,
+      "limit": widget.limit,
+      "offset": widget.offset
+    });
   }
 
   List<Widget> errorProcessing(DioError error) {
@@ -117,11 +120,11 @@ class _GetRecomendations extends State<GetRecomendations>
           }
           return BaseBottomSheet(
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: children,
-                ),
-              ));
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: children,
+            ),
+          ));
         });
   }
 }

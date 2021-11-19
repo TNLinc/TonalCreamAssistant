@@ -9,6 +9,7 @@ import 'pages/home/home_page.dart';
 void main() {
   runApp(const MyApp());
 }
+
 // ignore: constant_identifier_names
 const String cv_host = 'tnl-cv-eu.herokuapp.com';
 // ignore: constant_identifier_names
@@ -59,8 +60,11 @@ class MyApp extends StatelessWidget {
               )),
           home: Builder(
             builder: (context) => ResponsiveWrapper.builder(
-              const HomePage(cv_host: cv_host, vendor_host: vendor_host,
-                  limit: limit, offset:offset),
+              const HomePage(
+                  cv_host: cv_host,
+                  vendor_host: vendor_host,
+                  limit: limit,
+                  offset: offset),
               maxWidth: 1200,
               minWidth: 480,
               defaultScale: true,

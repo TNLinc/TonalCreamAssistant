@@ -11,7 +11,8 @@ class RecommendationBottomSheet extends StatelessWidget {
   final List<dynamic> data_products;
 
 // ignore: non_constant_identifier_names
-  const RecommendationBottomSheet({Key? key, required this.data_color, required this.data_products})
+  const RecommendationBottomSheet(
+      {Key? key, required this.data_color, required this.data_products})
       : super(key: key);
 
   @override
@@ -60,10 +61,12 @@ class RecommendationBottomSheet extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Scrollbar(
-                child:
-                    ListView(scrollDirection: Axis.horizontal, children: <Widget>[
-    for (var product in data_products) ProductCard(name: product['name'])
-    ]),
+                child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      for (var product in data_products)
+                        ProductCard(name: product['name'])
+                    ]),
               ),
             ),
           ),
