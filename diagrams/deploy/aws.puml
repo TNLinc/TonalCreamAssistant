@@ -42,28 +42,45 @@ actor Client
 
 cloud AWS {
     rectangle "Logically isolated virtual private cloud <img:VPC.png{scale=0.1}>" {
-        component "        <img:LB.png{scale=0.1}> \n\n Load balancer " as LB
+
 
         rectangle "Availability zone 2 (private subnet)" as AZ2 {
-            component "    <img:Frontend.png{scale=0.1}> \n Frontend" as Frontend2
-            component "          <img:EC2.png{scale=0.1}> \n Backend on EC2" as Backend2
-            database "Secondary replica" as DB2
 
-            Frontend2 -up- Backend2
-            Backend2 -up- DB2
+            component "    <img:ECS.png{scale=0.2}> \n ECS" as ECS2
+            component "    <img:Docker.png{scale=0.05}> \n nginx" as nginx2
+            component "    <img:Docker.png{scale=0.05}> \n admin" as admin2
+            component "    <img:Docker.png{scale=0.05}> \n vendor" as vendor2
+            component "    <img:Docker.png{scale=0.05}> \n db" as db2
+            component "    <img:Docker.png{scale=0.05}> \n cv" as cv2
+            ECS2 -up- nginx2
+            nginx2 -up- admin2
+            nginx2 -up- vendor2
+            nginx2 -up- cv2
+            vendor2 -up- db2
+            admin2 -up- db2
         }
 
         rectangle "Availability zone 1 (private subnet)" as AZ1 {
-            component "    <img:Frontend.png{scale=0.1}> \n Frontend" as Frontend1
-            component "          <img:EC2.png{scale=0.1}> \n Backend on EC2" as Backend1
-            database "Primary replica" as DB1
-
-            Frontend1 -up- Backend1
-            Backend1 -up- DB1
+            component "    <img:ECS.png{scale=0.2}> \n ECS" as ECS1
+            component "    <img:Docker.png{scale=0.05}> \n nginx" as nginx1
+            component "    <img:Docker.png{scale=0.05}> \n admin" as admin1
+            component "    <img:Docker.png{scale=0.05}> \n vendor" as vendor1
+            component "    <img:Docker.png{scale=0.05}> \n db" as db1
+            component "    <img:Docker.png{scale=0.05}> \n cv" as cv1
+            ECS1 -up- nginx1
+            nginx1 -up- admin1
+            nginx1 -up- vendor1
+            nginx1 -up- cv1
+            vendor1 -up- db1
+            admin1 -up- db1
         }
 
-        LB -up-> Frontend1
-        LB -up-> Frontend2
+        rectangle "Availability zone 1,2 (public subnet)" as AZ12 {
+            component "        <img:ELB.png{scale=0.2}> \n\n Load balancer " as LB
+            LB -up-> ECS1
+            LB -up-> ECS2
+        }
+
     }
 }
 

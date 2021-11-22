@@ -29,12 +29,12 @@ variable "db_port" {
 
 variable "db_cpu" {
   type    = number
-  default = 512
+  default = 256
 }
 
 variable "db_memory" {
   type    = number
-  default = 1024
+  default = 512
 }
 
 variable "db_name" {
@@ -60,12 +60,12 @@ variable "db_password" {
 // Admin
 variable "admin_cpu" {
   type    = number
-  default = 512
+  default = 256
 }
 
 variable "admin_memory" {
   type    = number
-  default = 1024
+  default = 512
 }
 
 variable "admin_debug" {
@@ -81,12 +81,12 @@ variable "admin_secret_key" {
 // Vendor
 variable "vendor_cpu" {
   type    = number
-  default = 512
+  default = 256
 }
 
 variable "vendor_memory" {
   type    = number
-  default = 1024
+  default = 512
 }
 
 variable "vendor_db_auth" {
@@ -97,12 +97,12 @@ variable "vendor_db_auth" {
 // CV
 variable "cv_cpu" {
   type    = number
-  default = 512
+  default = 256
 }
 
 variable "cv_memory" {
   type    = number
-  default = 1024
+  default = 512
 }
 
 variable "cv_debug" {
