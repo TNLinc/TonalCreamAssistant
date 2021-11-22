@@ -15,7 +15,8 @@ resource "aws_lb_target_group" "lb_target_group" {
   target_type = "ip"
 
   health_check {
-    enabled = false
+    enabled = true
+    port = 80
   }
   tags = var.tags
   depends_on = [
