@@ -44,7 +44,12 @@ resource "aws_ecs_service" "nginx" {
     security_groups  = [aws_security_group.allow_webtnlinc.id]
     assign_public_ip = true
   }
-  # depends_on = [
-  #       aws_lb_listener.db
-  # ]
+  load_balancer {
+    target_group_arn = aws_lb_target_group.lb_target_group.arn
+    container_port   = "80"
+    container_name   = "${var.app_name}-nginx"
+  }
+  depends_on = [
+    aws_lb_listener.http
+  ]
 }

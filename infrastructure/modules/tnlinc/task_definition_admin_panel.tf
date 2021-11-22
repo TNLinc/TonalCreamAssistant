@@ -11,9 +11,10 @@ module "container_admin" {
     protocol      = "tcp"
   }]
   map_environment = {
-    "ADMIN_PANEL_SECRET_KEY" = var.admin_secret_key # should be stored as a secret in real case
-    "ADMIN_PANEL_DEBUG"      = var.admin_debug
-    "ADMIN_PANEL_DB_URL"     = "postgres://${var.db_user}:${var.db_password}@db.tnlinc:5432/${var.db_name}"
+    "ADMIN_PANEL_SECRET_KEY"    = var.admin_secret_key # should be stored as a secret in real case
+    "ADMIN_PANEL_DEBUG"         = var.admin_debug
+    "ADMIN_PANEL_DB_URL"        = "postgres://${var.db_user}:${var.db_password}@db.tnlinc:5432/${var.db_name}"
+    "ADMIN_PANEL_ALLOWED_HOSTS" = "*"
   }
 }
 

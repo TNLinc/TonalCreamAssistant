@@ -11,8 +11,9 @@ module "container_cv" {
     protocol      = "tcp"
   }]
   map_environment = {
-    "CV_SECRET_KEY" = var.cv_secret_key # should be stored as a secret in real case
-    "CV_DEBUG"      = var.cv_debug
+    "CV_SECRET_KEY"    = var.cv_secret_key # should be stored as a secret in real case
+    "CV_DEBUG"         = var.cv_debug
+    "CV_ALLOWED_HOSTS" = "*"
   }
 }
 
