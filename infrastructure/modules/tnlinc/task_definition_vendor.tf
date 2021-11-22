@@ -13,6 +13,7 @@ module "container_vendor" {
   map_environment = {
     "VENDOR_DB_URL"         = "postgresql+asyncpg://${var.db_user}:${var.db_password}@db.tnlinc:5432/${var.db_name}"
     "VENDOR_DB_AUTH_SCHEMA" = var.vendor_db_auth
+    "VENDOR_ALLOWED_HOSTS"  = "*"
   }
 }
 
