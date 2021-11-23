@@ -91,15 +91,16 @@ class _HomePageState extends State<HomePage> {
         }),
         floatingActionButton: _image != null && activeStep == 1
             ? FloatingActionButton(
-                onPressed: () {
-                  setState(() {
-                    activeStep = 2;
-                  });
-                },
-                child: const Icon(
-                  Icons.arrow_forward_ios,
-                ),
-              )
+          elevation: 10,
+              onPressed: () {
+                setState(() {
+                  activeStep = 2;
+                });
+              },
+              child: const Icon(
+                Icons.arrow_forward_ios,
+              ),
+            )
             : null,
       ),
     );

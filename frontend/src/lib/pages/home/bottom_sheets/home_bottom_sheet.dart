@@ -165,13 +165,13 @@ class ImagePreview extends StatelessWidget {
                     // If web platform
                     Image.network(
                         image.path,
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.fitWidth,
                       )
                     :
                     // If android platform
                     Image.file(
                         File(image.path),
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.fitWidth,
                       ))),
       ),
     );
