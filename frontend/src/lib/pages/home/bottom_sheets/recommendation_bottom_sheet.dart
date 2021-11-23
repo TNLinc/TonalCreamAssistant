@@ -5,9 +5,14 @@ import 'package:flutter/rendering.dart';
 import 'base_bottom_sheet.dart';
 
 class RecommendationBottomSheet extends StatelessWidget {
-  final Map<String, dynamic> data;
+  // ignore: non_constant_identifier_names
+  final Map<String, dynamic> data_color;
+  // ignore: non_constant_identifier_names
+  final List<dynamic> data_products;
 
-  const RecommendationBottomSheet({Key? key, required this.data})
+// ignore: non_constant_identifier_names
+  const RecommendationBottomSheet(
+      {Key? key, required this.data_color, required this.data_products})
       : super(key: key);
 
   @override
@@ -30,15 +35,24 @@ class RecommendationBottomSheet extends StatelessWidget {
               child: Container(
                   height: 80,
                   width: 200,
-                  color: HexColor(data['color']),
+                  color: HexColor(data_color['color']),
                   child: Align(
                       alignment: Alignment.bottomCenter,
-                      child: Text(data['color'],
+                      child: Text(data_color['color'],
                           style: Theme.of(context)
                               .textTheme
                               .headline5!
                               .copyWith(fontWeight: FontWeight.bold))))),
         ),
+        Padding(
+            padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
+            child: BorderedText(
+                strokeWidth: 1.2,
+                child: Text("Recommended products for you: ",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5!
+                        .copyWith(fontWeight: FontWeight.bold)))),
         Flexible(
           child: Container(
             constraints: const BoxConstraints(
@@ -47,42 +61,12 @@ class RecommendationBottomSheet extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Scrollbar(
-                child:
-                    ListView(scrollDirection: Axis.horizontal, children: const [
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  ),
-                  ProductCard(
-                    name: 'product name',
-                  )
-                ]),
+                child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      for (var product in data_products)
+                        ProductCard(name: product['name'])
+                    ]),
               ),
             ),
           ),

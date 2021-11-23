@@ -1,30 +1,32 @@
 import 'dart:convert';
-
 import 'package:animated_check/animated_check.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'base_bottom_sheet.dart';
 
-class LoadingBottomSheet extends StatefulWidget {
+class GetRecomendations extends StatefulWidget {
   final String host;
   final Function(Map<String, dynamic>) notifyParent;
-  final XFile image;
+  final String data;
+  final int limit;
+  final int offset;
 
-  const LoadingBottomSheet(
+  const GetRecomendations(
       {Key? key,
-      required this.image,
+      required this.data,
       required this.notifyParent,
-      required this.host})
+      required this.host,
+      required this.limit,
+      required this.offset})
       : super(key: key);
 
   @override
-  State<LoadingBottomSheet> createState() => _LoadingBottomSheetState();
+  State<GetRecomendations> createState() => _GetRecomendations();
 }
 
-class _LoadingBottomSheetState extends State<LoadingBottomSheet>
+class _GetRecomendations extends State<GetRecomendations>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -33,7 +35,7 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
   @override
   void initState() {
     super.initState();
-    url = "https://${widget.host}/api/cv/v2/skin_tone_mediapipe";
+    url = "https://${widget.host}/api/vendor/v1/products/limit-offset/";
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation = Tween<double>(begin: 0, end: 1).animate(
@@ -42,18 +44,19 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
 
   Future<Response<String>> sendPhoto() async {
     Dio dio = Dio();
-    dio.options.headers["Content-Type"] = "multipart/form-data";
-    final bytes = await widget.image.readAsBytes();
-    FormData formData = FormData.fromMap(
-        {'image': MultipartFile.fromBytes(bytes, filename: 'image.jpg')});
-    return dio.post(url, data: formData);
+    dio.options.headers["Content-Type"] = "application/json";
+    return dio.get(url, queryParameters: {
+      "color": widget.data,
+      "limit": widget.limit,
+      "offset": widget.offset
+    });
   }
 
   List<Widget> errorProcessing(DioError error) {
     List<Widget> children = [];
-    if (error.response?.statusCode == 400) {
+    if (error.response?.statusCode == 422) {
       children.add(Text(
-        "No face on the image!",
+        "Validation Error!",
         style: Theme.of(context).textTheme.caption,
       ));
     } else {
