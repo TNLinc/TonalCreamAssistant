@@ -149,10 +149,12 @@ class _HomeBottomSheetState extends State<HomeBottomSheet>
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               BottomSheetButton(
+                  key: Key('ImageButton'),
                   icon: Icons.add_photo_alternate,
                   text: 'Gallery',
                   onPressed: _getImageGallery),
               BottomSheetButton(
+                  key: Key('CameraButton'),
                   icon: _image == null ? Icons.camera : Icons.repeat,
                   text: _image == null ? "Camera" : "Take another",
                   onPressed: _getImageCamera),
