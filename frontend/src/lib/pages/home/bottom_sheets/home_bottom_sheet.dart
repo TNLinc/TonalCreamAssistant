@@ -121,13 +121,13 @@ class _HomeBottomSheetState extends State<HomeBottomSheet>
                                 child: ClipRRect(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(30)),
-                                  child: Transform.scale(
-                                    scale: kIsWeb
-                                        ? _controller!.value.aspectRatio * 0.8
-                                        : _controller!.value.aspectRatio / 0.8,
-                                    child: Center(
-                                      child: CameraPreview(_controller!),
-                                    ),
+                                  child: ColoredBox(
+                                    color: Theme.of(context).disabledColor,
+                                    child: Column(children: [
+                                      Expanded(
+                                        child: CameraPreview(_controller!),
+                                      ),
+                                    ]),
                                   ),
                                 ),
                               ),
@@ -190,7 +190,7 @@ class ImagePreview extends StatelessWidget {
                         )
                       :
                       // If android platform
-                      Image.file(File(image.path), fit: BoxFit.fitWidth))),
+                      Image.file(File(image.path), fit: BoxFit.fitHeight))),
         ),
       ),
     );
