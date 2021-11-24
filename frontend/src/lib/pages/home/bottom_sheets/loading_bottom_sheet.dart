@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:TonalCreamAssistant/models/color.dart';
 import 'package:animated_check/animated_check.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -10,7 +11,7 @@ import 'base_bottom_sheet.dart';
 
 class LoadingBottomSheet extends StatefulWidget {
   final String host;
-  final Function(Map<String, dynamic>) notifyParent;
+  final Function(ColorRead) notifyParent;
   final XFile image;
 
   const LoadingBottomSheet(
@@ -33,7 +34,7 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
   @override
   void initState() {
     super.initState();
-    url = "https://${widget.host}/api/cv/v2/skin_tone_mediapipe";
+    url = "${widget.host}/api/cv/v2/skin_tone_mediapipe";
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation = Tween<double>(begin: 0, end: 1).animate(
@@ -67,8 +68,7 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
   }
 
   List<Widget> dataProcessing(Response<String> data) {
-    Map<String, dynamic> responseJson = json.decode(data.toString());
-
+    ColorRead dataColor = ColorRead.fromJson(json.decode(data.toString()));
     List<Widget> children = [];
     children.add(AnimatedCheck(
       progress: _animation,
@@ -78,7 +78,7 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
     ));
 
     _controller.forward().whenComplete(() {
-      widget.notifyParent(responseJson);
+      widget.notifyParent(dataColor);
     });
     return children;
   }

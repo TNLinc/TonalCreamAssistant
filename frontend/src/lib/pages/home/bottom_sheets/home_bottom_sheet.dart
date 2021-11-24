@@ -22,8 +22,8 @@ class _HomeBottomSheetState extends State<HomeBottomSheet>
     with WidgetsBindingObserver {
   XFile? _image;
   final ImagePicker _picker = ImagePicker();
-  List<CameraDescription>? cameras;
-  CameraController? controller;
+  List<CameraDescription>? _cameras;
+  CameraController? _controller;
   Future? _future;
 
   @override
@@ -36,25 +36,27 @@ class _HomeBottomSheetState extends State<HomeBottomSheet>
   @override
   void dispose() {
     super.dispose();
-    controller?.dispose();
+    _controller?.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      _future = controller?.initialize();
+      _future = _controller?.initialize();
     }
   }
 
   getCameras() async {
-    cameras = await availableCameras();
-    controller = CameraController(
-        kIsWeb
-            ? cameras!.first
-            : cameras!.firstWhere(
-                (camera) => camera.lensDirection == CameraLensDirection.front),
-        ResolutionPreset.max);
-    await controller?.initialize();
+    _cameras = await availableCameras();
+    _controller = CameraController(
+      kIsWeb
+          ? _cameras!.first
+          : _cameras!.firstWhere(
+              (camera) => camera.lensDirection == CameraLensDirection.front),
+      ResolutionPreset.max,
+      enableAudio: false,
+    );
+    await _controller?.initialize();
   }
 
   _getImageGallery() async {
@@ -72,11 +74,11 @@ class _HomeBottomSheetState extends State<HomeBottomSheet>
     // If already have image (Take another button)
     if (_image != null) {
       setState(() {
-        _future = controller?.initialize();
+        _future = _controller?.initialize();
         _image = null;
       });
     } else {
-      final image = await controller?.takePicture();
+      final image = await _controller?.takePicture();
       setState(() {
         _image = image;
       });
@@ -89,40 +91,57 @@ class _HomeBottomSheetState extends State<HomeBottomSheet>
   Widget build(BuildContext context) {
     return BaseBottomSheet(
         child: Column(
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        FutureBuilder(
-            future: _future,
-            builder: (context, asyncSnapshot) {
-              switch (asyncSnapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                case ConnectionState.active:
-                  return const Expanded(
-                      child: Center(child: CircularProgressIndicator()));
-                case ConnectionState.done:
-                  if (_image != null) {
-                    return ImagePreview(image: _image!);
-                  }
-                  if (!asyncSnapshot.hasError &&
-                      controller!.value.isInitialized) {
-                    // Has camera access
-                    return Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(30)),
-                          child: CameraPreview(controller!),
-                        ),
-                      ),
-                    );
-                  } else {
-                    // Moc icon
-                    return const Icon(Icons.add_photo_alternate);
-                  }
-              }
-            }),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FutureBuilder(
+                  future: _future,
+                  builder: (context, asyncSnapshot) {
+                    switch (asyncSnapshot.connectionState) {
+                      case ConnectionState.none:
+                      case ConnectionState.waiting:
+                      case ConnectionState.active:
+                        return const Expanded(
+                            child: Center(child: CircularProgressIndicator()));
+                      case ConnectionState.done:
+                        if (_image != null) {
+                          return ImagePreview(image: _image!);
+                        }
+                        if (!asyncSnapshot.hasError &&
+                            _controller!.value.isInitialized) {
+                          // Has camera access
+                          return Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: AspectRatio(
+                                aspectRatio: 1 / 0.8,
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(30)),
+                                  child: Transform.scale(
+                                    scale: kIsWeb
+                                        ? _controller!.value.aspectRatio * 0.8
+                                        : _controller!.value.aspectRatio / 0.8,
+                                    child: Center(
+                                      child: CameraPreview(_controller!),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        } else {
+                          // Moc icon
+                          return const Icon(Icons.add_photo_alternate);
+                        }
+                    }
+                  }),
+            ],
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.only(bottom: 5.0),
           child: Row(
@@ -152,27 +171,27 @@ class ImagePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8, bottom: 5),
-        child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(30)),
-            child: Container(
-                //If we don't chose the image
-                color: Theme.of(context).disabledColor,
-                child: kIsWeb
-                    ?
-                    // If web platform
-                    Image.network(
-                        image.path,
-                        fit: BoxFit.fitWidth,
-                      )
-                    :
-                    // If android platform
-                    Image.file(
-                        File(image.path),
-                        fit: BoxFit.fitWidth,
-                      ))),
+        child: AspectRatio(
+          aspectRatio: 1 / 0.8,
+          child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              child: Container(
+                  //If we don't chose the image
+                  color: Theme.of(context).disabledColor,
+                  child: kIsWeb
+                      ?
+                      // If web platform
+                      Image.network(
+                          image.path,
+                          fit: BoxFit.fitHeight,
+                        )
+                      :
+                      // If android platform
+                      Image.file(File(image.path), fit: BoxFit.fitWidth))),
+        ),
       ),
     );
   }

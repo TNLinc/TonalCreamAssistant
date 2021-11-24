@@ -1,20 +1,30 @@
+import 'package:TonalCreamAssistant/models/color.dart';
+import 'package:TonalCreamAssistant/pages/home/components/color_card.dart';
+import 'package:TonalCreamAssistant/pages/home/components/recommendation_list.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'base_bottom_sheet.dart';
 
-class RecommendationBottomSheet extends StatelessWidget {
-  // ignore: non_constant_identifier_names
-  final Map<String, dynamic> data_color;
-  // ignore: non_constant_identifier_names
-  final List<dynamic> data_products;
+class RecommendationBottomSheet extends StatefulWidget {
+  final String host;
+  final Function(Map<String, dynamic>) notifyParent;
+  final ColorRead dataColor;
 
-// ignore: non_constant_identifier_names
   const RecommendationBottomSheet(
-      {Key? key, required this.data_color, required this.data_products})
+      {Key? key,
+      required this.dataColor,
+      required this.host,
+      required this.notifyParent})
       : super(key: key);
 
+  @override
+  State<RecommendationBottomSheet> createState() =>
+      _RecommendationBottomSheetState();
+}
+
+class _RecommendationBottomSheetState extends State<RecommendationBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return BaseBottomSheet(
@@ -31,18 +41,7 @@ class RecommendationBottomSheet extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold)))),
         Padding(
           padding: const EdgeInsets.only(top: 5.0, bottom: 5),
-          child: Card(
-              child: Container(
-                  height: 80,
-                  width: 200,
-                  color: HexColor(data_color['color']),
-                  child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(data_color['color'],
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5!
-                              .copyWith(fontWeight: FontWeight.bold))))),
+          child: ColorCard(color: widget.dataColor.color),
         ),
         Padding(
             padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
@@ -53,70 +52,11 @@ class RecommendationBottomSheet extends StatelessWidget {
                         .textTheme
                         .headline5!
                         .copyWith(fontWeight: FontWeight.bold)))),
-        Flexible(
-          child: Container(
-            constraints: const BoxConstraints(
-              maxWidth: 1000,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Scrollbar(
-                child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      for (var product in data_products)
-                        ProductCard(name: product['name'])
-                    ]),
-              ),
-            ),
-          ),
+        RecommendationList(
+          host: widget.host,
+          color: widget.dataColor.color,
         )
       ],
     ));
-  }
-}
-
-class HexColor extends Color {
-  static int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll("#", "");
-    if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
-    }
-    return int.parse(hexColor, radix: 16);
-  }
-
-  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
-}
-
-class ProductCard extends StatelessWidget {
-  final String name;
-
-  const ProductCard({Key? key, required this.name}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Text(name),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Container(
-                constraints: const BoxConstraints(
-                  minWidth: 100,
-                  minHeight: 120,
-                ),
-                color: Colors.grey,
-                child: const Icon(Icons.photo),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
   }
 }

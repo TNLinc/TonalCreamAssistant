@@ -35,7 +35,7 @@ class _GetRecomendations extends State<GetRecomendations>
   @override
   void initState() {
     super.initState();
-    url = "https://${widget.host}/api/vendor/v1/products/limit-offset/";
+    url = "${widget.host}/api/vendor/v1/products/limit-offset/";
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation = Tween<double>(begin: 0, end: 1).animate(
