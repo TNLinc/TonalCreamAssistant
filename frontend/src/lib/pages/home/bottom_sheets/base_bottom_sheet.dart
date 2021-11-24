@@ -1,3 +1,5 @@
+import 'package:TonalCreamAssistant/utils/check_wrap.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,25 +11,15 @@ class BaseBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      return BottomSheet(
-        elevation: 3,
-        enableDrag: false,
-        constraints: BoxConstraints(
-          maxHeight: 0.5.sh,
-          minHeight: 0.5.sh,
+      return PhysicalModel(
+        elevation: 10,
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+        color: Theme.of(context).bottomAppBarColor,
+        child: SizedBox(
+          height: checkWrap(context) ? 0.43.sh : 0.54.sh,
+          child: child,
         ),
-        builder: (BuildContext context) {
-          return ClipRRect(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).bottomAppBarColor,
-                ),
-                child: child,
-              ));
-        },
-        onClosing: () {},
       );
     });
   }

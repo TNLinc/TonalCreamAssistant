@@ -10,12 +10,8 @@ void main() {
   runApp(const MyApp());
 }
 
-// ignore: constant_identifier_names
-const String cv_host = 'tnl-cv-eu.herokuapp.com';
-// ignore: constant_identifier_names
-const String vendor_host = 'tnl-vendor-eu.herokuapp.com';
-const int limit = 5;
-const int offset = 0;
+const String cvHost = 'http://127.0.0.1';
+const String vendorHost = 'http://127.0.0.1';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -45,31 +41,30 @@ class MyApp extends StatelessWidget {
               ),
               canvasColor: Colors.transparent,
               textTheme: TextTheme(
-                // Header
-                headline1: TextStyle(
-                    fontSize: kIsWeb ? 66.sp : 72.sp,
-                    fontWeight: FontWeight.bold,
+                  // Header
+                  headline1: TextStyle(
+                      fontSize: 66.sp,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'inter',
+                      color: Colors.amber),
+                  // Steps
+                  headline5: TextStyle(
+                    fontSize: 20.5.sp,
                     fontFamily: 'inter',
-                    color: Colors.amber),
-                // Steps
-                headline5: TextStyle(
-                  fontSize: kIsWeb ? 20.5.sp : 25.sp,
-                  fontFamily: 'inter',
-                  color: Colors.white,
-                ),
-              )),
+                    color: Colors.white,
+                  ),
+                  bodyText1: const TextStyle(
+                    fontFamily: 'inter',
+                    color: Colors.white,
+                  ))),
           home: Builder(
             builder: (context) => ResponsiveWrapper.builder(
-              const HomePage(
-                  cv_host: cv_host,
-                  vendor_host: vendor_host,
-                  limit: limit,
-                  offset: offset),
+              const HomePage(cvHost: cvHost, vendorHost: vendorHost),
               maxWidth: 1200,
-              minWidth: 480,
+              minWidth: 320,
               defaultScale: true,
               breakpoints: [
-                const ResponsiveBreakpoint.resize(480, name: MOBILE),
+                const ResponsiveBreakpoint.resize(320, name: MOBILE),
                 const ResponsiveBreakpoint.resize(800, name: TABLET),
                 const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
               ],

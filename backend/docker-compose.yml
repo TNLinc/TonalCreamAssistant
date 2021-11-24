@@ -2,7 +2,7 @@ version: "3.9"
 services:
   vendor_db:
     build: ./db
-    image: tnlinc/db
+    image: tnlinc/db:latest
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -41,7 +41,7 @@ services:
 
   admin_panel:
     build: ./services/admin_panel
-    image: tnlinc/admin-panel
+    image: tnlinc/admin-panel:latest
     depends_on:
       vendor_db:
         condition: service_healthy
@@ -67,16 +67,22 @@ services:
 
   vendor:
     build: ./services/vendor
-    image: tnlinc/vendor
+    image: tnlinc/vendor:v0.1.4
     depends_on:
       vendor_db:
         condition: service_healthy
     expose:
       - "8000"
     environment:
-      VENDOR_DB_URL: "postgresql+asyncpg://${DB_USER}:${DB_PASSWORD}@vendor_db:5432/${DB_NAME}"
-      VENDOR_DB_AUTH_SCHEMA: ${VENDOR_DB_AUTH_SCHEMA}
-      VENDOR_ALLOWED_HOSTS: ${VENDOR_ALLOWED_HOSTS}
+      # VENDOR_DB_URL: "postgresql+asyncpg://${DB_USER}:${DB_PASSWORD}@vendor_db:5432/${DB_NAME}"
+      # VENDOR_DB_AUTH_SCHEMA: ${VENDOR_DB_AUTH_SCHEMA}
+      # VENDOR_ALLOWED_HOSTS: ${VENDOR_ALLOWED_HOSTS}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: vendor_db
+      DB_PORT: 5432
+      VENDOR_DB_SCHEMA: ${VENDOR_DB_SCHEMA}
     networks:
       - main
     ports:
