@@ -39,13 +39,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  getRecommendations(Map<String, dynamic> data) {
-    setState(() {
-      _products = data['items'];
-      activeStep = 4;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -86,7 +79,6 @@ class _HomePageState extends State<HomePage> {
               {
                 return RecommendationBottomSheet(
                   host: widget.vendorHost,
-                  notifyParent: getRecommendations,
                   dataColor: _color!,
                 );
               }

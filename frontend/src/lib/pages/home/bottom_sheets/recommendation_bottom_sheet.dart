@@ -9,14 +9,10 @@ import 'base_bottom_sheet.dart';
 
 class RecommendationBottomSheet extends StatefulWidget {
   final String host;
-  final Function(Map<String, dynamic>) notifyParent;
   final ColorRead dataColor;
 
   const RecommendationBottomSheet(
-      {Key? key,
-      required this.dataColor,
-      required this.host,
-      required this.notifyParent})
+      {Key? key, required this.dataColor, required this.host})
       : super(key: key);
 
   @override
