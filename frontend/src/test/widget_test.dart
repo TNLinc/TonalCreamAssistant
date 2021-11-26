@@ -17,7 +17,6 @@ void main() {
 
     expect(CameraButton, findsOneWidget);
     expect(ImageButton, findsOneWidget);
-
   });
 
   testWidgets('Check StepList', (WidgetTester tester) async {

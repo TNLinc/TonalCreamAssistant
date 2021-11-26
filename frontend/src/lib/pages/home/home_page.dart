@@ -54,7 +54,10 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: SafeArea(
             child: Column(children: [
-          const Header(text: 'Tonal assistant', key: Key('MainHeader'),),
+          const Header(
+            text: 'Tonal assistant',
+            key: Key('MainHeader'),
+          ),
           // Body
           StepList(activeStep: activeStep, key: Key('StepList')),
           const Spacer(),
