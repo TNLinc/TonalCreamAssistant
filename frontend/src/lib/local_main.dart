@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(builder: () {
       return MaterialApp(
           title: 'Tonal cream assistant',
+          key: Key('MaterialAppWidget'),
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               primaryColor: Colors.amber,
