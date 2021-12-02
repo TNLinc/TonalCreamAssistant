@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.src">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Tonal cream assistant"
         android:icon="@mipmap/ic_launcher">
