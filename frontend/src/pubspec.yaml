@@ -21,6 +21,8 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   back_button_interceptor: ^5.0.2
   json_annotation: ^4.3.0
+  flutter_logs: ^2.1.4
+  sentry_flutter: ^6.1.2
 
 dev_dependencies:
   flutter_test:

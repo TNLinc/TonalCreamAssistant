@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'base_bottom_sheet.dart';
 
@@ -47,44 +48,64 @@ class _HomeBottomSheetState extends State<HomeBottomSheet>
   }
 
   getCameras() async {
-    _cameras = await availableCameras();
-    _controller = CameraController(
-      kIsWeb
-          ? _cameras!.first
-          : _cameras!.firstWhere(
-              (camera) => camera.lensDirection == CameraLensDirection.front),
-      ResolutionPreset.max,
-      enableAudio: false,
-    );
-    await _controller?.initialize();
+    try {
+      _cameras = await availableCameras();
+      _controller = CameraController(
+        kIsWeb
+            ? _cameras!.first
+            : _cameras!.firstWhere(
+                (camera) => camera.lensDirection == CameraLensDirection.front),
+        ResolutionPreset.max,
+        enableAudio: false,
+      );
+      await _controller?.initialize();
+    } catch (exception, stackTrace) {
+      await Sentry.captureException(
+        exception,
+        stackTrace: stackTrace,
+      );
+    }
   }
 
   _getImageGallery() async {
-    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _image = image;
-    });
+    try {
+      XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        _image = image;
+      });
 
-    if (image != null) {
-      widget.notifyParent(image);
+      if (image != null) {
+        widget.notifyParent(image);
+      }
+    } catch (exception, stackTrace) {
+      await Sentry.captureException(
+        exception,
+        stackTrace: stackTrace,
+      );
     }
   }
 
   _getImageCamera() async {
-    // If already have image (Take another button)
-    if (_image != null) {
-      setState(() {
-        _future = _controller?.initialize();
-        _image = null;
-      });
-    } else {
-      final image = await _controller?.takePicture();
-      setState(() {
-        _image = image;
-      });
+    try {
+      // If already have image (Take another button)
+      if (_image != null) {
+        setState(() {
+          _future = _controller?.initialize();
+          _image = null;
+        });
+      } else {
+        final image = await _controller?.takePicture();
+        setState(() {
+          _image = image;
+        });
+      }
+      widget.notifyParent(_image);
+    } catch (exception, stackTrace) {
+      await Sentry.captureException(
+        exception,
+        stackTrace: stackTrace,
+      );
     }
-
-    widget.notifyParent(_image);
   }
 
   @override

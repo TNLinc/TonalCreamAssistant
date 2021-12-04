@@ -5,6 +5,7 @@ import 'package:animated_check/animated_check.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_logs/flutter_logs.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'base_bottom_sheet.dart';
@@ -53,11 +54,15 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
   List<Widget> errorProcessing(DioError error) {
     List<Widget> children = [];
     if (error.response?.statusCode == 400) {
+      FlutterLogs.logInfo(
+          "Error", "Error sending image on server", "No face on the image!");
       children.add(Text(
         "No face on the image!",
         style: Theme.of(context).textTheme.caption,
       ));
     } else {
+      FlutterLogs.logInfo(
+          "Error", "Error sending image on server", "Unknown error!");
       children.add(Text(
         "Unknown error!",
         style: Theme.of(context).textTheme.headline5!.copyWith(
@@ -101,10 +106,14 @@ class _LoadingBottomSheetState extends State<LoadingBottomSheet>
                 break;
               }
               if (asyncSnapshot.hasData) {
+                FlutterLogs.logInfo(
+                    "Info", "Sending image to server", "Result: SUCCESS");
                 children =
                     dataProcessing(asyncSnapshot.data as Response<String>);
                 break;
               } else {
+                FlutterLogs.logInfo("Error", "Error sending image on server",
+                    "Server didn't send response :(");
                 children.add(Text(
                   "Server didn't send response :(",
                   style: Theme.of(context)

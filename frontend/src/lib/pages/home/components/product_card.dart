@@ -22,23 +22,11 @@ class ProductCard extends StatelessWidget {
               strokeWidth: 2,
               child: Text(
                 name,
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Container(
-                constraints: const BoxConstraints(
-                  minWidth: 100,
-                  minHeight: 120,
-                ),
-                color: Colors.grey,
-                child: const Icon(Icons.photo),
-              ),
-            ),
-          )
         ],
       ),
     );
