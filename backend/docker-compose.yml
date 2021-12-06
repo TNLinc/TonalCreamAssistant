@@ -40,7 +40,6 @@ services:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
 
   admin_panel:
-    build: ./services/admin_panel
     image: tnlinc/admin-panel:latest
     depends_on:
       vendor_db:
@@ -66,7 +65,6 @@ services:
       retries: 5
 
   vendor:
-    build: ./services/vendor
     image: tnlinc/vendor:v0.1.4
     depends_on:
       vendor_db:
@@ -95,7 +93,6 @@ services:
       retries: 5
 
   cv:
-    build: ./services/cv
     image: tnlinc/cv:latest
     expose:
       - "8000"

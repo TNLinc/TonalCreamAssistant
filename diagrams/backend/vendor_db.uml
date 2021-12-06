@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>DATABASE</ID>
-  <OriginalElement>634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.product</OriginalElement>
+  <OriginalElement>634ecbb9-5948-49b5-9e7f-7d48254c37fe.SCHEMA:vendor.vendor</OriginalElement>
   <nodes>
-    <node x="30.5" y="0.0">634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.vendor</node>
-    <node x="0.0" y="150.0">634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.product</node>
+    <node x="0.0" y="0.0">634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.vendor</node>
+    <node x="49.0" y="148.0">634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.product</node>
+    <node x="156.0" y="0.0">634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.vendor_color</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.product" target="634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.vendor_color" relationship="REFERENCES">
+      <point x="79.5" y="-82.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
     <edge source="634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.product" target="634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.vendor" relationship="REFERENCES">
-      <point x="0.0" y="-72.0" />
-      <point x="0.0" y="50.0" />
+      <point x="-79.5" y="-82.0" />
+      <point x="0.0" y="49.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="98.5" y="147.0" />
-  <SelectedNodes>
-    <node>634ecbb9-5948-49b5-9e7f-7d48254c37fe.TABLE:vendor.vendor.product</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="149.0" y="156.0" />
+  <SelectedNodes />
   <Categories>
     <Category>Columns</Category>
     <Category>Comments</Category>
