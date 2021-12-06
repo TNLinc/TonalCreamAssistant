@@ -31,4 +31,3 @@ CREATE TABLE IF NOT EXISTS vendor.product (
         color_id uuid NOT NULL CONSTRAINT vendor_product_color_id_fk_vendor_vendor_color_id REFERENCES vendor.vendor_color ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
         url text
 );
-
