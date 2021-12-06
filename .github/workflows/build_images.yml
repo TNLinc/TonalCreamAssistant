@@ -57,5 +57,5 @@ jobs:
             })
       -
         name: Fail job in case any steps before failed
-        if: steps.db.outcome != 'success' || steps.vendor.outcome != 'success' || steps.admin.outcome != 'success' || steps.cv.outcome != 'success' || steps.nginx.outcome != 'success'
+        if: steps.db.outcome != 'success' || steps.nginx.outcome != 'success'
         run: exit 1
