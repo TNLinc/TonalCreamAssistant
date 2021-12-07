@@ -3,6 +3,8 @@ import 'package:TonalCreamAssistant/pages/home/bottom_sheets/recommendation_bott
 import 'package:TonalCreamAssistant/pages/home/components/step_list.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_logs/flutter_logs.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'bottom_sheets/home_bottom_sheet.dart';
 import 'bottom_sheets/loading_bottom_sheet.dart';
@@ -27,6 +29,8 @@ class _HomePageState extends State<HomePage> {
   int activeStep = 1;
 
   loadImage(XFile? image) {
+    FlutterLogs.logInfo(
+        "Info", "Loading image from camera/gallery", "Result - SUCCESS");
     setState(() {
       _image = image;
     });

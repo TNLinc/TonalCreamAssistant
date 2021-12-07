@@ -4,6 +4,7 @@ import 'package:TonalCreamAssistant/models/product.dart';
 import 'package:TonalCreamAssistant/pages/home/components/product_card.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_logs/flutter_logs.dart';
 
 class RecommendationList extends StatefulWidget {
   final String color;
@@ -39,12 +40,16 @@ class _RecommendationListState extends State<RecommendationList> {
   List<Widget> errorProcessing(DioError error) {
     List<Widget> children = [];
     if (error.response?.statusCode == 422) {
+      FlutterLogs.logInfo("Error", "Error getting recommendations products",
+          "Validation Error!");
       children.add(Text(
         "Validation Error!",
         style: Theme.of(context).textTheme.headline5!.copyWith(
             color: Theme.of(context).errorColor, fontWeight: FontWeight.bold),
       ));
     } else {
+      FlutterLogs.logInfo(
+          "Error", "Error getting recommendations products", "Unknown error!");
       children.add(Text(
         "Unknown error!",
         style: Theme.of(context).textTheme.headline5!.copyWith(
@@ -96,9 +101,15 @@ class _RecommendationListState extends State<RecommendationList> {
               if (snapshot.hasError) {
                 children = errorProcessing(snapshot.error as DioError);
               } else if (snapshot.hasData) {
+                FlutterLogs.logInfo("Info",
+                    "getting recommendations from server", "Result: SUCCESS");
                 children = dataProcessing(snapshot.data as Response<String>);
                 break;
               } else {
+                FlutterLogs.logInfo(
+                    "Error",
+                    "Error getting recommendations products",
+                    "Server didn't send response :(");
                 children.add(Text(
                   "Server didn't send response :(",
                   style: Theme.of(context)
