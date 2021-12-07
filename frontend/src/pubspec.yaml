@@ -23,6 +23,7 @@ dependencies:
   json_annotation: ^4.3.0
   flutter_logs: ^2.1.4
   sentry_flutter: ^6.1.2
+  url_launcher: ^6.0.17
 
 dev_dependencies:
   flutter_test:
