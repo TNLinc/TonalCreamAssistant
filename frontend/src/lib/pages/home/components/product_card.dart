@@ -9,8 +9,7 @@ _launchURL(url) async {
   try {
     await launch(url);
   } catch (exception, stackTrace) {
-    FlutterLogs.logInfo("Error", "Error opening page by url",
-        "url: $url");
+    FlutterLogs.logInfo("Error", "Error opening page by url", "url: $url");
     await Sentry.captureException(
       exception,
       stackTrace: stackTrace,
@@ -23,7 +22,8 @@ class ProductCard extends StatelessWidget {
   final String color;
   final String url;
 
-  const ProductCard({Key? key, required this.name, required this.color, required this.url})
+  const ProductCard(
+      {Key? key, required this.name, required this.color, required this.url})
       : super(key: key);
 
   @override
@@ -31,23 +31,23 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
         onTap: () => _launchURL(url),
         child: Card(
-      elevation: 4,
-      color: HexColor(color),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: BorderedText(
-              strokeWidth: 2,
-              child: Text(
-                name,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyText1,
+          elevation: 4,
+          color: HexColor(color),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: BorderedText(
+                  strokeWidth: 2,
+                  child: Text(
+                    name,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 }
