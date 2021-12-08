@@ -76,7 +76,8 @@ class _RecommendationListState extends State<RecommendationList> {
               itemCount: _products!.length,
               itemBuilder: (context, index) {
                 ProductRead product = _products![index];
-                return ProductCard(name: product.name, color: product.color);
+                return ProductCard(
+                    name: product.name, color: product.color, url: product.url);
               }),
         ),
       ),
