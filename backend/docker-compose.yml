@@ -22,7 +22,7 @@ services:
       retries: 5
 
   nginx:
-    image: "nginx:stable-perl"
+    image: "nginx:1.21.4"
     depends_on:
       admin_panel:
         condition: service_healthy
@@ -65,16 +65,13 @@ services:
       retries: 5
 
   vendor:
-    image: tnlinc/vendor:v0.1.4
+    image: tnlinc/vendor:latest
     depends_on:
       vendor_db:
         condition: service_healthy
     expose:
       - "8000"
     environment:
-      # VENDOR_DB_URL: "postgresql+asyncpg://${DB_USER}:${DB_PASSWORD}@vendor_db:5432/${DB_NAME}"
-      # VENDOR_DB_AUTH_SCHEMA: ${VENDOR_DB_AUTH_SCHEMA}
-      # VENDOR_ALLOWED_HOSTS: ${VENDOR_ALLOWED_HOSTS}
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -87,7 +84,7 @@ services:
       - "${VENDOR_PORT}:8000"
     restart: on-failure
     healthcheck:
-      test: ["CMD-SHELL", "bash scripts/fastApi_health_check.sh"]
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
       interval: 30s
       timeout: 30s
       retries: 5
@@ -106,13 +103,65 @@ services:
       - "${CV_PORT}:8000"
     restart: on-failure
     healthcheck:
-      test: ["CMD-SHELL", "bash scripts/flask_health_check.sh"]
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/ht || exit 1"]
       interval: 30s
       timeout: 30s
       retries: 5
 
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.16.0
+    environment:
+      ES_HOST: "elasticsearch"
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    ports:
+      - "${LOGSTASH_PORT}:5044/udp"
+    volumes:
+      - ./deploy/:/config/:ro
+    command: logstash -f /config/logstash.conf
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
+    networks:
+      - main
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.0
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - ${ES_PORT}:9200
+      - "9300:9300"
+    volumes:
+      - es_volume:/usr/share/elasticsearch/data
+    healthcheck:
+      test: curl -u elastic:elastic -s -f elasticsearch:9200/_cat/health >/dev/null || exit 1
+      interval: 60s
+      timeout: 30s
+      retries: 5
+    networks:
+      - main
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.16.0
+    ports:
+      - "${KIBANA_PORT}:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:5601 || exit 1" ]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+    networks:
+      - main
+
 volumes:
   db_volume: {}
+  es_volume: {}
 
 networks:
   main: {}
