@@ -44,6 +44,7 @@ node "VPN"{
     component Logstash
 
     component Kibana
+    component Grafana
     component Admin_panel
     component Vendor_DB_API_Service
     component CV_HTTP_service
@@ -56,10 +57,12 @@ node "VPN"{
     interface port_5432
     interface port_5601
     interface port_9200
+    interface port_3000
     interface port_udp_5044
 
     actor Manager
-    actor DevOps
+    actor DevOps1
+    actor DevOps2
 
     Admin_panel -up- port_5432
     Admin_panel -down- port_8000
@@ -79,11 +82,14 @@ node "VPN"{
 
     CRM -left-> port_udp_5044
 
-    Elasticsearch -right- Kibana
+    port_9200 -right- Kibana
+    port_9200 -left- Grafana
 
     Kibana -right- port_5601
+    Grafana -left- port_3000
 
-    DevOps -left- port_5601
+    DevOps1 -left- port_5601
+    DevOps2 -right- port_3000
 
     Manager -up- port_8000
 
