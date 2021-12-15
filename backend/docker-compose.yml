@@ -16,7 +16,7 @@ services:
       - ./db:/docker-entrypoint-initdb.d/
       - db_volume:/var/lib/comparing/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER}" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -59,7 +59,7 @@ services:
     volumes:
       - ./services/admin_panel/static:/admin_pannel/static
     healthcheck:
-      test: ["CMD-SHELL", "bash scripts/django_health_check.sh"]
+      test: [ "CMD-SHELL", "bash scripts/django_health_check.sh" ]
       interval: 30s
       timeout: 30s
       retries: 5
@@ -69,6 +69,8 @@ services:
     depends_on:
       vendor_db:
         condition: service_healthy
+      logstash:
+        condition: service_started
     expose:
       - "8000"
     environment:
@@ -77,14 +79,16 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_HOST: vendor_db
       DB_PORT: 5432
-      VENDOR_DB_SCHEMA: ${VENDOR_DB_SCHEMA}
+      DB_SCHEMA: ${VENDOR_DB_SCHEMA}
+      LOGSTASH_HOST: logstash
+      LOGSTASH_PORT: 5044
     networks:
       - main
     ports:
       - "${VENDOR_PORT}:8000"
     restart: on-failure
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      test: [ "CMD-SHELL", "curl -f http://localhost:8000/health || exit 1" ]
       interval: 30s
       timeout: 30s
       retries: 5
@@ -93,17 +97,22 @@ services:
     image: tnlinc/cv:latest
     expose:
       - "8000"
+    depends_on:
+      logstash:
+        condition: service_started
     environment:
       CV_SECRET_KEY: ${CV_SECRET_KEY}
       CV_DEBUG: ${CV_DEBUG}
       CV_ALLOWED_HOSTS: ${CV_ALLOWED_HOSTS}
+      LOGSTASH_HOST: logstash
+      LOGSTASH_PORT: 5044
     networks:
       - main
     ports:
       - "${CV_PORT}:8000"
     restart: on-failure
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8000/ht || exit 1"]
+      test: [ "CMD-SHELL", "curl -f http://localhost:8000/ht || exit 1" ]
       interval: 30s
       timeout: 30s
       retries: 5
@@ -131,6 +140,11 @@ services:
     environment:
       - "discovery.type=single-node"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=true
+      - bootstrap.memory_lock=true
     ports:
       - ${ES_PORT}:9200
       - "9300:9300"
@@ -152,16 +166,35 @@ services:
       elasticsearch:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:5601 || exit 1"]
+      test: [ "CMD-SHELL", "curl -f http://localhost:5601 || exit 1" ]
       interval: 30s
       timeout: 30s
       retries: 5
     networks:
       - main
 
+  grafana:
+    image: grafana/grafana
+    environment:
+      GF_AUTH_DISABLE_LOGIN_FORM: true
+      GF_AUTH_ANONYMOUS_ENABLED: true
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_volume:/var/lib/grafana
+    networks:
+      - main
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
+
 volumes:
-  db_volume: {}
-  es_volume: {}
+  db_volume: { }
+  es_volume: { }
+  grafana_volume: { }
 
 networks:
-  main: {}
+  main: { }
